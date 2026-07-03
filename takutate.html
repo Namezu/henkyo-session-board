@@ -48,7 +48,10 @@ textarea{min-height:74px;resize:vertical}
 </head>
 <body>
 <div class="wrap">
-<h1>卓立てジェネレータ</h1>
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+ <h1>卓立てジェネレータ</h1>
+ <button class="mini warn" id="clearAll" title="入力内容をぜんぶ消して最初から">🧹 白紙にする</button>
+</div>
 <div class="sub">穴埋め→「タイトル・募集要項・予定リスト行・卓ピタメモ」が完成。設定はこの端末が覚えます。</div>
 
 <fieldset>
@@ -58,7 +61,6 @@ textarea{min-height:74px;resize:vertical}
  <button class="mini" id="setLoad">呼び出す</button>
  <button class="mini" id="setSave">現在の内容を保存</button>
  <button class="mini warn" id="setDel">削除</button>
- <button class="mini warn" id="clearAll">🧹 白紙にする</button>
 </div>
 <div class="note">例：「ランダムダンジョン」「依頼板の向こう側」「ダークファンタジー」…卓のシリーズごとに全項目を丸ごと保存できます。前回生成した内容も自動で復元されます。</div>
 </fieldset>
