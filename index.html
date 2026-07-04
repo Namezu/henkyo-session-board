@@ -211,11 +211,11 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 @keyframes kbout{from{opacity:1;transform:none}to{opacity:0;transform:translateX(120px)}}
 #kanban.kb-in{animation:kbin .6s ease}
 #kanban.kb-out{animation:kbout .85s ease forwards}
-.kb-girl{width:132px;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));transition:transform .2s}
+.kb-girl{width:auto;height:320px;margin-right:-52px;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 8px 18px rgba(0,0,0,.55));transition:transform .2s}
 .kb-girl:hover{transform:translateY(-4px)}
 #kbShow{position:fixed;right:0;bottom:90px;z-index:40;writing-mode:vertical-rl;border:1px solid var(--glass-brd);border-right:none;background:rgba(24,26,30,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--grn);font-family:'Shippori Mincho',serif;font-size:.74em;letter-spacing:.2em;padding:12px 6px;border-radius:12px 0 0 12px;cursor:pointer;box-shadow:var(--glass-in),var(--shadow)}
 #kbShow[hidden]{display:none}
-@media(max-width:560px){.kb-girl{width:96px}.kb-bubble{max-width:190px;font-size:.74em}}
+@media(max-width:560px){.kb-girl{height:230px;margin-right:-38px}.kb-bubble{max-width:190px;font-size:.74em}}
 footer{margin-top:34px;font-size:.72em;color:var(--mut);text-align:center;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:14px}
 footer::before,footer::after{content:"";height:1px;width:min(90px,18vw);background:linear-gradient(90deg,transparent,var(--cln));display:block}
 footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
