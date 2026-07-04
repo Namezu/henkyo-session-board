@@ -266,6 +266,41 @@ document.querySelectorAll("#optChips .chip input").forEach(c=>c.addEventListener
 $("aiUse").addEventListener("change",()=>$("aiUse").closest(".chip").classList.toggle("on",$("aiUse").checked));
 document.querySelectorAll("#senkouBtns .mini").forEach(b=>b.addEventListener("click",()=>{$("senkou").value=($("senkou").value+b.dataset.t).replace(/^ ?⇒ ?/,"")}));
 
+// ---- Markdown整形ミニツールバー（選択行の見出し化・太字など。もう一度押すと解除＝トグル） ----
+function mdLineOp(ta,prefix){ // 行頭記号系（見出し/引用/リスト）＝選択範囲の行ごとに付け外し
+ const v=ta.value;const s=ta.selectionStart,e=ta.selectionEnd;
+ const ls=v.lastIndexOf("\n",s-1)+1;let le=v.indexOf("\n",e);if(le<0)le=v.length;
+ const seg=v.slice(ls,le).split("\n");
+ const all=seg.every(x=>x.startsWith(prefix)||!x.trim());
+ const out=seg.map(x=>!x.trim()?x:(all?x.slice(prefix.length):(x.startsWith(prefix)?x:prefix+x))).join("\n");
+ ta.value=v.slice(0,ls)+out+v.slice(le);
+ ta.focus();ta.setSelectionRange(ls,ls+out.length);
+ ta.dispatchEvent(new Event("input",{bubbles:true}));
+}
+function mdWrap(ta,mark){ // 囲み系（太字/コード枠）＝選択範囲を囲む。未選択ならいまの行全体
+ const v=ta.value;let s=ta.selectionStart,e=ta.selectionEnd;
+ if(s===e){s=v.lastIndexOf("\n",s-1)+1;e=v.indexOf("\n",e);if(e<0)e=v.length}
+ const sel=v.slice(s,e);if(!sel.trim())return;
+ const wrapped=sel.startsWith(mark)&&sel.endsWith(mark)&&sel.length>=mark.length*2;
+ const out=wrapped?sel.slice(mark.length,sel.length-mark.length):mark+sel+mark;
+ ta.value=v.slice(0,s)+out+v.slice(e);
+ ta.focus();ta.setSelectionRange(s,s+out.length);
+ ta.dispatchEvent(new Event("input",{bubbles:true}));
+}
+// 生Markdownがそのまま投稿に出る2欄にだけ付ける（注意事項/ハウスルールは自動整形があるので対象外）
+["footerFree","trailer"].forEach(id=>{
+ const ta=$(id);if(!ta)return;
+ const bar=document.createElement("div");bar.className="chips";bar.style.margin="6px 0 2px";
+ [["見出し大",()=>mdLineOp(ta,"# ")],["見出し中",()=>mdLineOp(ta,"## ")],["見出し小",()=>mdLineOp(ta,"### ")],
+  ["太字",()=>mdWrap(ta,"**")],["引用",()=>mdLineOp(ta,"> ")],["リスト",()=>mdLineOp(ta,"- ")],["コード枠",()=>mdWrap(ta,"```")]
+ ].forEach(([t,fn])=>{
+  const b=document.createElement("button");b.type="button";b.className="mini";b.textContent=t;
+  b.addEventListener("mousedown",ev=>ev.preventDefault()); // クリックで選択が消えないように
+  b.addEventListener("click",fn);bar.appendChild(b);
+ });
+ ta.parentNode.insertBefore(bar,ta);
+});
+
 // ---- 複数日程（時刻は30分刻みセレクト・9:00〜28:30＝深夜25時表記対応） ----
 let TIMES=[];for(let h=6;h<=28;h++)for(const m of["00","30"])TIMES.push(`${h}:${m}`);  // 6:00〜28:30（早起き勢〜深夜勢）
 const timeOpts=v=>`<option value=""${!v?" selected":""}>--:--</option>`+TIMES.map(t=>`<option${t===v?" selected":""}>${t}</option>`).join("");
