@@ -729,6 +729,8 @@ function kbLines(){
  }}));
  if(nearest&&nearest.t.getTime()===t0.getTime())
   L.push(`今日は卓の日だよ！　${nearest.dd.start||""}から『${nearest.s.scenario}』！`);
+ else
+  L.push("今日は卓がないみたい。どうする？　立てちゃう〜？");
  if(nearestOpen)
   L.push(`募集中でいちばん日程が近いのは${nearestOpen.t.getMonth()+1}/${nearestOpen.t.getDate()}の『${nearestOpen.s.scenario}』だよ。気になったら急いで！`);
  if(nearest&&!nearest.s.open&&nearest.t.getTime()!==t0.getTime())
