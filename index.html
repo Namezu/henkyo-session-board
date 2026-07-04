@@ -259,6 +259,7 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <button class="f on" data-f="all">すべて</button>
  <button class="f" data-f="open">募集中だけ</button>
  <span class="tooldiv"></span>
+ <select class="fsel" id="sysSel"><option value="">システム: 全て</option></select>
  <select class="fsel" id="regSel"><option value="">レギュ: 全て</option></select>
  <select class="fsel" id="gmSel"><option value="">GM: 全て</option></select>
  <button class="f bf" data-band="asa" type="button">朝</button>
@@ -266,7 +267,7 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <button class="f bf" data-band="yoru" type="button">夜</button>
  <span class="tooldiv"></span>
  <button class="f" id="rowBtn" type="button">レギュ名も表示</button>
- <a class="tolink" href="takutate.html">🛠 セッション作成マイセット →</a>
+ <a class="tolink" href="takutate.html">🛠 セッション作成マイセット（アリアンロッド用）→</a>
 </div>
 
 <div class="calpanel">
@@ -400,7 +401,9 @@ function dayMap(){
  (DATA.sessions||[]).forEach(s=>{const st=stOf(s);
   const dim=dimOf(s,st);
   (s.dates||[]).forEach(d=>{(m[d.date]=m[d.date]||[]).push({s,st,d,dim:dim||bandDimDate(d)})})});
- for(const k in m)m[k].sort((a,b)=>(a.dim-b.dim)||String(a.d.start||"").localeCompare(String(b.d.start||"")));
+ // 開始時刻の数値ソート（文字列比較だと 9:00 が 25:00 より後ろに来てしまう）。25時=深夜はその日の最後
+ const mins=st=>{const x=String(st||"").match(/(\d+):?(\d*)/);return x?(+x[1])*60+(+x[2]||0):9999};
+ for(const k in m)m[k].sort((a,b)=>(a.dim-b.dim)||(mins(a.d.start)-mins(b.d.start)));
  return m;
 }
 function renderLegend(){
@@ -414,7 +417,7 @@ function renderLegend(){
   const c=SYS_COLORS[k]||"#9a948a";
   return`<span class="lg${SYSF===k?" on":""}" data-r="${esc(k)}" style="--rc:${c};--rc-bg:${tint(c)}"><span class="sw"></span>${esc(k)}（${n}）</span>`}).join("");
  el.querySelectorAll(".lg").forEach(p=>p.addEventListener("click",()=>{
-  SYSF=(SYSF===p.dataset.r?null:p.dataset.r);renderAll()}));
+  SYSF=(SYSF===p.dataset.r?null:p.dataset.r);syncSysSel();renderAll()}));
 }
 // ---- ホバーツールチップ ----
 const tip=document.createElement("div");tip.id="tip";document.body.appendChild(tip);
@@ -640,13 +643,33 @@ function syncRowBtn(){rowBtn.classList.toggle("on",TWO)}
 rowBtn.addEventListener("click",()=>{TWO=!TWO;localStorage.setItem("board_two_v2",TWO?"1":"0");syncRowBtn();renderAll()});
 syncRowBtn();
 // レギュ/GM絞り込みプルダウン（データ読込後に選択肢を作る・非該当はグレーアウト）
-function fillFilterSelects(){
- const regs=new Set(),gms=new Set();
- (DATA.sessions||[]).forEach(s=>{if(s.reg&&!s.reg_is_name)regs.add(s.reg);if(s.gm)gms.add(s.gm)});
- const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
- $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+[...regs].sort().map(opt).join("");
- $("gmSel").innerHTML=`<option value="">GM: 全て</option>`+[...gms].sort().map(opt).join("");
+// レギュ欄＝選択中システムのレギュだけに絞る（アリアン/SW/サタスペ…各システムにレギュがある前提の設計）
+function updateRegOptions(){
+ const regs=new Set();
+ (DATA.sessions||[]).forEach(s=>{if(s.reg&&!s.reg_is_name&&(!SYSF||sysGroup(s)===SYSF))regs.add(s.reg)});
+ const cur=REGF;
+ $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+[...regs].sort().map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+ if(cur&&regs.has(cur)){$("regSel").value=cur}
+ else{REGF=null;$("regSel").classList.remove("on")}
 }
+function syncSysSel(){
+ $("sysSel").value=SYSF||"";
+ $("sysSel").classList.toggle("on",!!SYSF);
+ updateRegOptions();
+}
+function fillFilterSelects(){
+ const gms=new Set(),syss=new Map();
+ (DATA.sessions||[]).forEach(s=>{
+  if(s.gm)gms.add(s.gm);
+  const g=sysGroup(s);syss.set(g,(syss.get(g)||0)+1);
+ });
+ const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
+ $("sysSel").innerHTML=`<option value="">システム: 全て</option>`+
+  [...syss.entries()].sort((a,b)=>b[1]-a[1]).map(([k])=>opt(k)).join("");
+ $("gmSel").innerHTML=`<option value="">GM: 全て</option>`+[...gms].sort().map(opt).join("");
+ updateRegOptions();
+}
+$("sysSel").addEventListener("change",e=>{SYSF=e.target.value||null;syncSysSel();renderAll()});
 $("regSel").addEventListener("change",e=>{REGF=e.target.value||null;e.target.classList.toggle("on",!!REGF);renderAll()});
 $("gmSel").addEventListener("change",e=>{GMF=e.target.value||null;e.target.classList.toggle("on",!!GMF);renderAll()});
 // 朝昼夜トグル（複数選択可・全部OFF=全て表示）
