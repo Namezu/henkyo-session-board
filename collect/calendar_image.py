@@ -39,7 +39,6 @@ SYS_DEFS = [
     ("ブルアカ",         "#6fb8d8", re.compile(r"ブルアカ")),
     ("ステラナイツ",     "#d8b56a", re.compile(r"ステラナイツ")),
     ("D&D",             "#c87878", re.compile(r"D&D|DnD|ダンジョンズ", re.I)),
-    ("Needle",          "#7ab8b4", re.compile(r"Needle|ニードル", re.I)),
     ("アークナイツTRPG", "#7f9bb0", re.compile(r"アークナイツ")),
 ]
 OTHER = "#9a948a"
