@@ -729,6 +729,36 @@ function kbLines(){
   L.push(same?`今日は卓の日だよ！　${nearest.dd.start||""}から『${nearest.s.scenario}』！`
             :`いちばん近い卓は${nearest.t.getMonth()+1}/${nearest.t.getDate()}の『${nearest.s.scenario}』だよ`);
  }
+ // ---- カレンダー連動の観察セリフ ----
+ if(VIEW==="year")L.push("一年分をながめてるの？　壮観だよねえ");
+ if(SYSF)L.push(`いまは${SYSF}の卓だけ表示中だよ`);
+ if(FILTER==="all")L.push("ぜんぶ表示モードだね。開催済の卓も、いい思い出でしょ？");
+ // 今週末の卓
+ const sat=new Date(t0);sat.setDate(sat.getDate()+((6-sat.getDay()+7)%7));
+ const sun=new Date(sat);sun.setDate(sat.getDate()+1);
+ const wk=ses.reduce((a,s)=>a+(s.dates||[]).filter(dd=>{const t=jd(dd.date);return t.getTime()===sat.getTime()||t.getTime()===sun.getTime()}).length,0);
+ if(wk)L.push(`今週末は${wk}卓あるよ。よい週末になりそうだね`);
+ // 夜行性・朝型の観察
+ let nb=0,mb=0;mine.forEach(s=>(s.dates||[]).forEach(dd=>{const t=jd(dd.date);if(t.getFullYear()===curY&&t.getMonth()===curM){const b=timeBand(dd.start);if(b==="yoru")nb++;else if(b==="asa")mb++}}));
+ if(nb>=3)L.push(`今月の夜卓は${nb}件。村のみんな、けっこう夜行性だよねえ`);
+ if(mb)L.push(`朝の卓も${mb}件あるよ。健康的でえらい！`);
+ // 今月の残り卓数
+ const rest=mine.reduce((a,s)=>a+(s.dates||[]).filter(dd=>{const t=jd(dd.date);return t>=t0&&t.getFullYear()===curY&&t.getMonth()===curM}).length,0);
+ if(rest)L.push(`今月はあと${rest}卓残ってるよ。まだまだ遊べるね`);
+ // 明日の卓
+ const tm=new Date(t0);tm.setDate(tm.getDate()+1);
+ const tmw=ses.find(s=>(s.dates||[]).some(dd=>jd(dd.date).getTime()===tm.getTime()));
+ if(tmw)L.push(`明日は『${tmw.scenario}』があるよ。よく寝て備えよ？`);
+ // 新着貼り紙（3日以内）
+ const fresh=ses.filter(s=>s.created&&(Date.now()-new Date(s.created).getTime())<3*86400000).length;
+ if(fresh)L.push(`ここ3日で新しい貼り紙が${fresh}枚増えたんだ。にぎやか〜`);
+ // 未来・過去の月を見ている時
+ if(curY>now.getFullYear()||(curY===now.getFullYear()&&curM>now.getMonth()))L.push(`${curM+1}月の予定を先取り？　計画的でえらい`);
+ if(curY<now.getFullYear()||(curY===now.getFullYear()&&curM<now.getMonth()))L.push(`${curM+1}月のページ……思い出、めくってるの？`);
+ // 今月の最多システム
+ const bySys={};mine.forEach(s=>{const g=sysGroup(s);bySys[g]=(bySys[g]||0)+1});
+ const top=Object.entries(bySys).sort((a,b)=>b[1]-a[1])[0];
+ if(top&&top[1]>=2)L.push(`今月は${top[0]}が${top[1]}卓でいちばん多いみたい`);
  // 季節のひとこと（表示中の月に合わせて）
  const m2=curM+1;
  L.push(m2>=3&&m2<=5?"春だねえ。新しい冒険、はじめたくなる季節":
@@ -746,12 +776,17 @@ function kbLines(){
  return L;
 }
 let kbLast="";
+// 特定のセリフの直後に確定で続ける解説（村人が知らない存在への注釈・後輩くん指定）
+const KB_FOLLOWUPS=[
+ [/^ポリステスは今日も/,"あ、ポリステスっていうのはね……甲殻飛行魔獣ポリステス。すっごく危ない魔獣だから、見つけても近づかないでね！"],
+];
 function kbSay(text){
  const b=$("kbBubble");if(!b)return;
  if(!text){const L=kbLines().filter(x=>x!==kbLast);text=L[Math.floor(Math.random()*L.length)]||"…"}
  kbLast=text;
  b.style.animation="none";void b.offsetWidth;b.style.animation="";
  b.textContent=text;
+ for(const[re,note]of KB_FOLLOWUPS)if(re.test(text))setTimeout(()=>{if(kbLast===text)kbSay(note)},4800);
 }
 // 表示状態＝3モード: "on"=呼んだ(常に表示・カレンダー中でも並べて見たい人向け) / "off"=閉じた(タブのみ) / 未設定=おまかせ(スクロール連動)
 let kbCalVisible=true,kbBroken=false;
