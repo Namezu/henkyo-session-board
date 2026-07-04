@@ -42,6 +42,18 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.4em;color:var(--g
 .sch{display:block;border-radius:6px;padding:1px 5px;margin-top:2px;font-size:.68em;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--rc-bg,#e4eee6);color:#37352e;border-left:3px solid var(--rc,#4f8160)}
 .sch.closed{filter:saturate(.25);opacity:.75}
 .sch.done{filter:saturate(.1);opacity:.45}
+/* 2行表示＝1行目シナリオ名・2行目レギュ名（レギュ無し卓は1行のまま） */
+.sch .rg{display:block;font-size:.9em;font-weight:400;opacity:.72;line-height:1.3;overflow:hidden;text-overflow:ellipsis}
+.cal.two .cell{height:128px}
+/* 朝昼夜ミニアイコン（自前SVG） */
+.sch .tb{width:11px;height:11px;vertical-align:-1px;margin-right:3px}
+/* レギュ/GM絞り込みプルダウン */
+.fsel{border:1.5px solid var(--cln);background:#fffdf9;border-radius:20px;padding:7px 10px;font-size:.85em;font-family:inherit;color:var(--mut);max-width:44vw;cursor:pointer}
+.fsel.on{border-color:var(--grn);color:var(--grn);font-weight:700}
+/* 絞り込み非該当＝グレーアウト（場所は残す。〆切=彩度薄め/開催済=かなり薄めとは別の「完全モノクロ」） */
+.sch.dim{opacity:.25;filter:grayscale(1)}
+.card.dim{opacity:.32;filter:grayscale(1)}
+.ticket.dim{opacity:.32;filter:grayscale(1)}
 /* 年表示 */
 .ycal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:6px}
 .ym{background:var(--card);border:1px solid var(--cln);border-radius:12px;padding:10px 11px;cursor:pointer;transition:transform .15s,box-shadow .15s}
@@ -62,6 +74,9 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.4em;color:var(--g
 @media(max-width:560px){
  .cell{height:62px;padding:3px 3px 2px}
  .sch{font-size:0;padding:0;height:7px;margin-top:3px;border-left:none}
+ .sch .rg{display:none}
+ .sch .tb{display:none}
+ .cal.two .cell{height:62px}
  .cnt{position:absolute;bottom:3px;right:5px;font-size:.72em;font-weight:700;color:var(--grn)}
 }
 .cnt{display:none}
@@ -128,7 +143,9 @@ footer{margin-top:24px;font-size:.72em;color:var(--mut);text-align:center}
 
 /* ---- ダークモード ---- */
 [data-theme=dark]{--bg:#17181b;--card:#232529;--tx:#d8dade;--mut:#8f8a81;--cln:#3a3d42;--grn:#8fbc9b;--grn2:#6a9c78;--ter:#d98a5f;--gold:#cfa54a;--sun:#d76c5e;--sat:#7ea2cf}
-[data-theme=dark] .f,[data-theme=dark] .nav,[data-theme=dark] .lg{background:var(--card)}
+[data-theme=dark] .f,[data-theme=dark] .nav,[data-theme=dark] .lg,[data-theme=dark] .fsel{background:var(--card)}
+[data-theme=dark] .fsel.on{border-color:var(--grn);color:var(--grn)}
+[data-theme=dark] .sch.dim,[data-theme=dark] .card.dim,[data-theme=dark] .ticket.dim{opacity:.3}
 [data-theme=dark] .f.on{background:#3f6c4c;border-color:#3f6c4c;color:#fff}
 [data-theme=dark] .sch{color:#e6e3dc}
 [data-theme=dark] .ymd{background:#2c2e33}
@@ -164,6 +181,9 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 <div class="toolrow">
  <button class="f on" data-f="all">すべて</button>
  <button class="f" data-f="open">募集中だけ</button>
+ <button class="f" id="rowBtn" type="button">レギュ名も表示</button>
+ <select class="fsel" id="regSel"><option value="">レギュ: 全て</option></select>
+ <select class="fsel" id="gmSel"><option value="">GM: 全て</option></select>
  <button class="f themeBtn" type="button">🌙 ダーク</button>
  <a class="tolink" href="takutate.html">🛠 セッション作成マイセット →</a>
 </div>
@@ -182,7 +202,6 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 <div id="suriSec"></div>
 <div id="daySec"></div>
 <div id="monthSec"></div>
-<div id="unparsedSec"></div>
 
 <div class="manual">
 <b>📌 このボードは全自動です</b>：卓部屋フォーラムにトピックを立てるだけで載ります（過去1,186卓の実タイトルで<b>99%</b>を自動認識）。専用の記入作業はありません。日時や内容の変更もトピックを直せば追従します。<br><br>
@@ -193,6 +212,7 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 タイトルが読めなかった卓は下の⚠枠に表示されます。<b>トピックのタイトルを上の型に直せば、次の更新（15分毎）から自動で載ります。</b><br>
 載せたくない卓はトピック本文に「<b>掲載不要</b>」と書けば外れます。
 </div>
+<div id="unparsedSec"></div>
 <footer>辺境TRPG村 セッションボード（プロトタイプ）／時刻はすべて日本時間</footer>
 </div>
 
@@ -200,6 +220,8 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 (function(){
 const WD=["日","月","火","水","木","金","土"];
 let DATA=null,FILTER="all",selDate=null,SYSF=null;   // SYSF=システム絞り込み
+let TWO=localStorage.getItem("board_two")!=="0";     // 2行表示（シナリオ名＋レギュ名）＝既定ON
+let REGF=null,GMF=null;                              // レギュ/GM絞り込み（非該当はdim＝グレーアウトで残す）
 // 色分け＝システム単位（アリアンロッド2E＝村の主流＝緑／その他システム＝青）
 const AR2E_REGS=new Set(["ミスリルクレスト","ミスリルクエスト","氷原開拓団","フツウノアリアン","イジョウナアリアン","ピースメイカー","アンコールを流星に","さちあれ","賽は投げられた","ダンジョン・トラベラーズ","ネームドエネミー討伐RTA!!","勇者の首を晒せ","グルメ卓"]);
 // システム分類＝村のリアクションロール対応システム＋CoC（それぞれ固有色）
@@ -226,12 +248,18 @@ function sysGroup(s){
 }
 function sysColor(s){return SYS_COLORS[sysGroup(s)]||"#9a948a"}
 function tint(c){return c+"22"}
-// カレンダーのチップは開始時刻を「朝/昼/夜」に短縮（シナリオ名の見える幅を稼ぐ・正確な時刻はホバー/クリックで）
+// カレンダーのチップは開始時刻をアイコンに短縮（シナリオ名の見える幅を稼ぐ・正確な時刻はホバー/クリックで）
 // 朝=5〜11時開始／昼=12〜17時開始／夜=18〜4時開始（25時=翌1時などの24+表記も夜に落ちる）
+// アイコンは自前SVG＝3つおそろいの丸目デザイン・ボードの落ち着いた配色（絵文字は端末ごとに見た目が揃わない）
+const TB_ICONS={
+ asa:`<svg class="tb" viewBox="0 0 12 12" aria-label="朝"><g stroke="#c86c3e" stroke-width="1.1" stroke-linecap="round"><line x1="6" y1="1.2" x2="6" y2="2.6"/><line x1="2.4" y1="3.2" x2="3.4" y2="4.2"/><line x1="9.6" y1="3.2" x2="8.6" y2="4.2"/></g><path d="M2.8 8.2a3.2 3.2 0 0 1 6.4 0Z" fill="#c86c3e"/><rect x="1" y="8.2" width="10" height="1.3" rx=".65" fill="#c86c3e"/></svg>`,
+ hiru:`<svg class="tb" viewBox="0 0 12 12" aria-label="昼"><g stroke="#b98a2f" stroke-width="1.1" stroke-linecap="round"><line x1="6" y1=".9" x2="6" y2="2.2"/><line x1="6" y1="9.8" x2="6" y2="11.1"/><line x1=".9" y1="6" x2="2.2" y2="6"/><line x1="9.8" y1="6" x2="11.1" y2="6"/><line x1="2.4" y1="2.4" x2="3.3" y2="3.3"/><line x1="8.7" y1="8.7" x2="9.6" y2="9.6"/><line x1="9.6" y1="2.4" x2="8.7" y2="3.3"/><line x1="3.3" y1="8.7" x2="2.4" y2="9.6"/></g><circle cx="6" cy="6" r="2.5" fill="#b98a2f"/></svg>`,
+ yoru:`<svg class="tb" viewBox="0 0 12 12" aria-label="夜"><path d="M9.8 8.6A4.7 4.7 0 1 1 5.6 1.4a3.7 3.7 0 0 0 4.2 7.2Z" fill="#5b6a95"/></svg>`,
+};
 function timeBand(st){
  const h=parseInt(st,10);if(isNaN(h))return"";
  const n=((h%24)+24)%24;
- return n>=5&&n<=11?"朝":n>=12&&n<=17?"昼":"夜";
+ return n>=5&&n<=11?"asa":n>=12&&n<=17?"hiru":"yoru";
 }
 const now=new Date();let curY=now.getFullYear(),curM=now.getMonth(); // 0-based
 const $=id=>document.getElementById(id);
@@ -248,15 +276,21 @@ function stOf(s){
  if(s.suriawase)return"suri";
  return s.open?"open":"closed";
 }
-function visible(st){return FILTER==="all"||st==="open"}
-// 日付→その日のセッション一覧
+// 絞り込み非該当か（消さずにdim＝グレーアウトで場所を残す）
+function dimOf(s,st){
+ if(FILTER==="open"&&st!=="open")return true;
+ if(SYSF&&sysGroup(s)!==SYSF)return true;
+ if(REGF&&(s.reg||"")!==REGF)return true;
+ if(GMF&&(s.gm||"")!==GMF)return true;
+ return false;
+}
+// 日付→その日のセッション一覧（該当が先・非該当dimは後ろ）
 function dayMap(){
  const m={};
  (DATA.sessions||[]).forEach(s=>{const st=stOf(s);
-  if(!visible(st)&&st!=="done")return;
-  if(FILTER==="open"&&st!=="open")return;
-  if(SYSF&&sysGroup(s)!==SYSF)return;
-  (s.dates||[]).forEach(d=>{(m[d.date]=m[d.date]||[]).push({s,st,d})})});
+  const dim=dimOf(s,st);
+  (s.dates||[]).forEach(d=>{(m[d.date]=m[d.date]||[]).push({s,st,d,dim})})});
+ for(const k in m)m[k].sort((a,b)=>(a.dim-b.dim)||String(a.d.start||"").localeCompare(String(b.d.start||"")));
  return m;
 }
 function renderLegend(){
@@ -316,36 +350,41 @@ function renderCal(){
  const map=dayMap();
  $("calTitle").textContent=`${curY}年 ${curM+1}月`;
  const first=new Date(curY,curM,1),days=new Date(curY,curM+1,0).getDate();
- const cal=$("cal");cal.innerHTML=WD.map((w,i)=>`<div class="dow${i===0?" sun":i===6?" sat":""}">${w}</div>`).join("");
+ const cal=$("cal");cal.classList.toggle("two",TWO);
+ cal.innerHTML=WD.map((w,i)=>`<div class="dow${i===0?" sun":i===6?" sat":""}">${w}</div>`).join("");
  for(let i=0;i<first.getDay();i++)cal.insertAdjacentHTML("beforeend",`<div class="cell out"></div>`);
  const todayK=key(now.getFullYear(),now.getMonth(),now.getDate());
  let monthCount=0,openCount=0;
  for(let d=1;d<=days;d++){
-  const k=key(curY,curM,d),list=map[k]||[];monthCount+=list.length;openCount+=list.filter(x=>x.st==="open").length;
+  const k=key(curY,curM,d),list=map[k]||[];
+  const act=list.filter(x=>!x.dim);   // 絞り込み該当分だけ数える
+  monthCount+=act.length;openCount+=act.filter(x=>x.st==="open").length;
   const dow=new Date(curY,curM,d).getDay();
   const cell=document.createElement("div");
   cell.className="cell"+(k===todayK?" today":"")+(k===selDate?" sel":"")+(dow===0?" sunday":dow===6?" saturday":"");
-  cell.innerHTML=`<span class="dn">${d}</span>${list.length?`<span class="cnt">${list.length}卓</span>`:""}`;
-  list.slice(0,3).forEach(x=>{
-   const ch=document.createElement("span");ch.className=`sch ${x.st}`;
+  cell.innerHTML=`<span class="dn">${d}</span>${act.length?`<span class="cnt">${act.length}卓</span>`:""}`;
+  const lim=TWO?2:3; // 2行表示はチップが背高＝1セルに2枚まで
+  list.slice(0,lim).forEach(x=>{
+   const ch=document.createElement("span");ch.className=`sch ${x.st}${x.dim?" dim":""}`;
    const c=sysColor(x.s);
    ch.style.setProperty("--rc",c);ch.style.setProperty("--rc-bg",tint(c));
    const bd=timeBand(x.d.start);
-   ch.textContent=`${bd?bd+" ":""}${x.s.scenario}`;
+   ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
+   if(TWO&&x.s.reg){const rg=document.createElement("span");rg.className="rg";rg.textContent=x.s.reg;ch.appendChild(rg)}
    attachTip(ch,x);
    cell.appendChild(ch);
   });
-  if(list.length>3){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-3}`;cell.appendChild(mo)}
+  if(list.length>lim){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-lim}`;cell.appendChild(mo)}
   cell.addEventListener("click",()=>{selDate=(selDate===k?null:k);renderCal();renderDay()});
   cal.appendChild(cell);
  }
  $("calSum").textContent=monthCount?`この月の卓：${monthCount}件（うち募集中 ${openCount}件）`:"この月の卓はまだありません";
 }
-function card({s,st}){
+function card({s,st,dim}){
  const isNew=s.created&&(Date.now()-new Date(s.created).getTime())<3*86400000;
  const badge=st==="open"?`<span class="badge b-open">募集中</span>`:st==="suri"?`<span class="badge b-suri">調整中</span>`:st==="done"?`<span class="badge b-done">開催済</span>`:`<span class="badge b-closed">〆切</span>`;
  const when=st==="suri"?"日程すり合わせ中":(s.dates||[]).map(d=>{const x=jd(d.date);return`${x.getMonth()+1}/${x.getDate()}<span class="wd">(${WD[x.getDay()]})</span> ${d.start||""}${d.end?"-"+d.end:""}`}).join(" ／ ");
- return`<a class="card${st==="closed"?" closed":st==="done"?" done":""}" style="border-left-color:${sysColor(s)}"${s.url?` href="${s.url}" target="_blank" rel="noopener"`:""}>${badge}
+ return`<a class="card${st==="closed"?" closed":st==="done"?" done":""}${dim?" dim":""}" style="border-left-color:${sysColor(s)}"${s.url?` href="${s.url}" target="_blank" rel="noopener"`:""}>${badge}
   <div class="when">${when}${isNew?'<span class="new">NEW</span>':""}</div>
   <div class="name">${esc(s.scenario)}</div>
   <div class="meta">${s.reg&&!s.reg_is_name?`<span class="reg">【${esc(s.reg)}】</span>`:""}${s.gm?`<span>GM: ${esc(s.gm)}</span>`:""}${s.source==="manual"?"<span>✍ 手動掲載</span>":""}</div></a>`;
@@ -360,7 +399,9 @@ function renderDay(){
  el.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function renderSuri(){
- const list=(DATA.sessions||[]).map(s=>({s,st:stOf(s)})).filter(x=>x.st==="suri").filter(x=>FILTER==="all"||x.st==="open"||x.st==="suri").filter(x=>!SYSF||sysGroup(x.s)===SYSF);
+ // すり合わせ卓は「募集中だけ」では薄くしない（従来から表示対象）＝システム/レギュ/GM絞り込みのみdim
+ const suriDim=s=>(SYSF&&sysGroup(s)!==SYSF)||(REGF&&(s.reg||"")!==REGF)||(GMF&&(s.gm||"")!==GMF);
+ const list=(DATA.sessions||[]).map(s=>({s,st:stOf(s)})).filter(x=>x.st==="suri").map(x=>({...x,dim:suriDim(x.s)}));
  const el=$("suriSec");
  if(!list.length){el.innerHTML="";return}
  el.innerHTML=`<div class="suriband"><div class="sb-h">📌 日程すり合わせ中の貼り紙</div>
@@ -368,7 +409,7 @@ function renderSuri(){
   <div class="suriwrap"></div></div>`;
  const wrap=el.querySelector(".suriwrap");
  list.forEach(x=>{
-  const t=document.createElement("div");t.className="ticket";
+  const t=document.createElement("div");t.className="ticket"+(x.dim?" dim":"");
   t.innerHTML=`<span class="tk-pin">📍</span><div class="tk-name">${esc(x.s.scenario)}</div>
    <div class="tk-meta"><span class="tk-dot" style="background:${sysColor(x.s)}"></span>${x.s.reg&&!x.s.reg_is_name?esc(x.s.reg):esc(sysGroup(x.s))}</div>
    ${x.s.gm?`<div class="tk-meta">GM: ${esc(x.s.gm)}</div>`:""}`;
@@ -379,7 +420,7 @@ function renderSuri(){
 function renderMonth(){
  const items=(DATA.sessions||[]).map(s=>({s,st:stOf(s)}))
   .filter(x=>x.s.dates&&x.s.dates.length&&x.s.dates.some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM}))
-  .filter(x=>FILTER==="all"||x.st==="open").filter(x=>!SYSF||sysGroup(x.s)===SYSF);
+  .map(x=>({...x,dim:dimOf(x.s,x.st)}));
  items.sort((a,b)=>a.s.dates[0].date<b.s.dates[0].date?-1:1);
  $("monthSec").innerHTML=items.length?`<div class="section">🗒 ${curM+1}月の卓一覧</div>`+items.map(card).join(""):"";
 }
@@ -397,7 +438,7 @@ function renderYear(){
   let cnt=0,cells="";
   for(let i=0;i<first;i++)cells+=`<span class="ymd o"></span>`;
   for(let d=1;d<=days;d++){
-   const k=key(curY,m,d),n=(map[k]||[]).length;cnt+=n;
+   const k=key(curY,m,d),n=(map[k]||[]).filter(x=>!x.dim).length;cnt+=n;
    const cl=n>=3?"c3":n===2?"c2":n===1?"c1":"";
    cells+=`<span class="ymd ${cl}${k===todayK?" t":""}" title="${m+1}/${d}${n?`：${n}卓`:""}"></span>`;
   }
@@ -430,10 +471,24 @@ $("prev").addEventListener("click",()=>{if(VIEW==="year"){curY--}else{curM--;if(
 $("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else{curM++;if(curM>11){curM=0;curY++}}selDate=null;renderAll()});
 $("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="month";renderAll()});
 $("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="month"?"year":"month");selDate=null;renderAll()});
+const rowBtn=$("rowBtn");
+function syncRowBtn(){rowBtn.classList.toggle("on",TWO)}
+rowBtn.addEventListener("click",()=>{TWO=!TWO;localStorage.setItem("board_two",TWO?"1":"0");syncRowBtn();renderAll()});
+syncRowBtn();
+// レギュ/GM絞り込みプルダウン（データ読込後に選択肢を作る・非該当はグレーアウト）
+function fillFilterSelects(){
+ const regs=new Set(),gms=new Set();
+ (DATA.sessions||[]).forEach(s=>{if(s.reg&&!s.reg_is_name)regs.add(s.reg);if(s.gm)gms.add(s.gm)});
+ const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
+ $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+[...regs].sort().map(opt).join("");
+ $("gmSel").innerHTML=`<option value="">GM: 全て</option>`+[...gms].sort().map(opt).join("");
+}
+$("regSel").addEventListener("change",e=>{REGF=e.target.value||null;e.target.classList.toggle("on",!!REGF);renderAll()});
+$("gmSel").addEventListener("change",e=>{GMF=e.target.value||null;e.target.classList.toggle("on",!!GMF);renderAll()});
 document.querySelectorAll(".toolrow .f[data-f]").forEach(b=>b.addEventListener("click",()=>{
  document.querySelectorAll(".toolrow .f[data-f]").forEach(x=>x.classList.remove("on"));b.classList.add("on");FILTER=b.dataset.f;renderAll()}));
 fetch("sessions.json?t="+Date.now()).then(r=>r.json()).then(d=>{
- DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;renderAll();
+ DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;fillFilterSelects();renderAll();
 }).catch(()=>{$("cal").innerHTML="";$("calSum").textContent="データの読込に失敗しました"});
 })();
 </script>
