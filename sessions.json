@@ -1,5 +1,5 @@
 {
- "updated": "2026/07/04 15:53",
+ "updated": "2026/07/04 16:08",
  "guild": "LODGE",
  "sessions": [
   {
@@ -383,6 +383,42 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522857700701114490",
    "created": "2026-07-04T06:52:49.175000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "宵闇の路地",
+   "reg": "シノビガミ",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": "19:00",
+     "end": "21:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522861610014871683",
+   "created": "2026-07-04T07:08:21.228000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "週末の大乱闘",
+   "reg": "サタスペ",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": "25:00",
+     "end": "27:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522861611612635246",
+   "created": "2026-07-04T07:08:21.609000+00:00",
    "source": "forum"
   }
  ],
