@@ -85,9 +85,9 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .dow{text-align:center;font-size:.74em;font-weight:700;letter-spacing:.2em;color:var(--mut);padding:3px 0 5px}
 .dow.sun{color:var(--sun)}.dow.sat{color:var(--sat)}
-.cell{background:rgba(30,33,38,.72);border:1px solid var(--glass-brd);border-radius:14px;height:96px;overflow:hidden;padding:5px 5px 4px;cursor:pointer;position:relative;
+.cell{background:rgba(30,33,38,.45);border:1px solid var(--glass-brd);border-radius:14px;height:96px;overflow:hidden;padding:5px 5px 4px;cursor:pointer;position:relative;
  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 1px 4px rgba(0,0,0,.25);transition:box-shadow .18s,transform .18s,border-color .18s,background .18s}
-.cell:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),var(--shadow);transform:translateY(-2px);background:rgba(44,48,55,.8)}
+.cell:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,.16),var(--shadow);transform:translateY(-2px);background:rgba(44,48,55,.6)}
 .cell.out{background:transparent;border-color:transparent;cursor:default;box-shadow:none}
 .cell.out:hover{transform:none}
 /* 過ぎた日はパネルごと沈める（開催済チップの個別フェードより先に、面で「過去」が分かる） */
