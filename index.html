@@ -80,6 +80,18 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.4em;color:var(--g
 #modal .mb.fix{background:#f4efe6;color:var(--grn);border:1.5px solid var(--cln)}
 #modal .m-close{position:absolute;top:8px;right:12px;border:none;background:none;font-size:1.3em;color:var(--mut);cursor:pointer}
 #modal .m-hint{font-size:.72em;color:var(--mut);margin-top:8px}
+/* ---- すり合わせ＝掲示板の貼り紙風（カレンダー=確定と別軸の表現） ---- */
+.suriband{margin-top:22px;background:linear-gradient(180deg,#f7efdf,#f4ead6);border:1px solid #e8d9bd;border-radius:14px;padding:12px 14px 14px}
+.suriband .sb-h{font-family:'Shippori Mincho',serif;color:#8a5a28;font-size:1.02em;margin:0 0 2px}
+.suriband .sb-sub{font-size:.74em;color:#a8895f;margin-bottom:10px}
+.suriwrap{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 8px}
+.ticket{flex:0 0 auto;min-width:168px;max-width:220px;background:#fffdf6;border:1.6px dashed var(--ter);border-radius:3px 16px 3px 16px;padding:10px 13px;cursor:pointer;transform:rotate(-1.2deg);box-shadow:2px 3px 8px rgba(120,80,30,.12);transition:transform .15s}
+.ticket:nth-child(even){transform:rotate(1.1deg)}
+.ticket:hover{transform:rotate(0) translateY(-2px)}
+.ticket .tk-name{font-family:'Shippori Mincho',serif;font-weight:700;color:var(--grn);font-size:.95em;line-height:1.4}
+.ticket .tk-meta{font-size:.74em;color:var(--mut);margin-top:4px;display:flex;align-items:center;gap:5px}
+.ticket .tk-dot{width:9px;height:9px;border-radius:3px;flex:none}
+.ticket .tk-pin{float:right;font-size:.9em}
 /* ---- 選択日の詳細・すり合わせ・リスト ---- */
 .section{font-family:'Shippori Mincho',serif;color:var(--grn);font-size:1.05em;margin:20px 4px 6px;border-bottom:2px solid var(--cln);padding-bottom:3px}
 .card{display:block;background:var(--card);border:1px solid var(--cln);border-left:5px solid var(--grn2);border-radius:12px;padding:11px 13px;margin:7px 0;text-decoration:none;color:var(--tx);position:relative;transition:transform .15s,box-shadow .15s}
@@ -297,7 +309,20 @@ function renderDay(){
 }
 function renderSuri(){
  const list=(DATA.sessions||[]).map(s=>({s,st:stOf(s)})).filter(x=>x.st==="suri").filter(x=>FILTER==="all"||x.st==="open"||x.st==="suri").filter(x=>!SYSF||sysGroup(x.s)===SYSF);
- $("suriSec").innerHTML=list.length?`<div class="section">📅 日程すり合わせ中の卓</div>`+list.map(card).join(""):"";
+ const el=$("suriSec");
+ if(!list.length){el.innerHTML="";return}
+ el.innerHTML=`<div class="suriband"><div class="sb-h">📌 日程すり合わせ中の貼り紙</div>
+  <div class="sb-sub">まだ日付が決まっていない卓。日程が決まるとカレンダーへ引っ越します（貼り紙をタップで詳細）</div>
+  <div class="suriwrap"></div></div>`;
+ const wrap=el.querySelector(".suriwrap");
+ list.forEach(x=>{
+  const t=document.createElement("div");t.className="ticket";
+  t.innerHTML=`<span class="tk-pin">📍</span><div class="tk-name">${esc(x.s.scenario)}</div>
+   <div class="tk-meta"><span class="tk-dot" style="background:${sysColor(x.s)}"></span>${x.s.reg&&!x.s.reg_is_name?esc(x.s.reg):esc(sysGroup(x.s))}</div>
+   ${x.s.gm?`<div class="tk-meta">GM: ${esc(x.s.gm)}</div>`:""}`;
+  t.addEventListener("click",()=>openDetail(x));
+  wrap.appendChild(t);
+ });
 }
 function renderMonth(){
  const items=(DATA.sessions||[]).map(s=>({s,st:stOf(s)}))
