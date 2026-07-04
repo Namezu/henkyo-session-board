@@ -350,6 +350,16 @@ function regLabel(s){
  if(g==="その他システム")return esc(s.reg);
  return(g==="アリアンロッド2E"?"アリアンロッド":g)+`【${esc(s.reg)}】`;
 }
+// チップ2行目用の短縮表記＝「AR2E/ミスリルクレスト」式（システム名/レギュ名・後輩くん指定）
+const SYS_SHORT={"アリアンロッド2E":"AR2E"};
+function chipRegLabel(s){
+ if(!s.reg||s.reg_is_name)return"";
+ const g=sysGroup(s);
+ const def=SYS_DEFS.find(x=>x[0]===g);
+ if(def&&def[2].test(s.reg)&&g!=="アリアンロッド2E")return esc(s.reg); // 【SW2.5】等=システム名だけ
+ if(g==="その他システム")return esc(s.reg);
+ return esc((SYS_SHORT[g]||g)+"/"+s.reg);
+}
 function tint(c){return c+"22"}
 // カレンダーのチップは開始時刻をアイコンに短縮（シナリオ名の見える幅を稼ぐ・正確な時刻はホバー/クリックで）
 // 朝=5〜11時開始／昼=12〜17時開始／夜=18〜4時開始（25時=翌1時などの24+表記も夜に落ちる）
@@ -495,10 +505,10 @@ function renderCal(){
    ch.style.setProperty("--rc",c);ch.style.setProperty("--rc-bg",tint(c));
    const bd=timeBand(x.d.start);
    if(TWO&&x.s.reg){
-    // 2行表示＝1行目シナリオ名（幅いっぱい）・2行目に朝昼夜アイコン＋レギュ名を集約
-    ch.innerHTML=esc(x.s.scenario);
+    // 2行表示＝1行目:アイコン＋シナリオ名／2行目:「AR2E/レギュ名」式
+    ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
     const rg=document.createElement("span");rg.className="rg";
-    rg.innerHTML=`${bd?TB_ICONS[bd]+" ":""}${esc(x.s.reg)}`;ch.appendChild(rg);
+    rg.innerHTML=chipRegLabel(x.s);ch.appendChild(rg);
    }else{
     ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
    }
@@ -773,6 +783,7 @@ function kbInit(){
  img.addEventListener("click",next);$("kbBubble").addEventListener("click",next);
  $("kbShow").addEventListener("click",()=>{kbShown()?kbFarewell():kbSummon()});
  kbSay();
+ setInterval(()=>{if(!$("kanban").hidden)kbSay()},10000); // 10秒ごとに自動でおしゃべり（表示中のみ）
 }
 fetch("sessions.json?t="+Date.now()).then(r=>r.json()).then(d=>{
  DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;fillFilterSelects();renderAll();kbInit();

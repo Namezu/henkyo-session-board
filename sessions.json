@@ -1,23 +1,35 @@
 {
- "updated": "2026/07/04 16:08",
+ "updated": "2026/07/04 16:30",
  "guild": "LODGE",
  "sessions": [
   {
-   "scenario": "神智に狂いし者",
-   "reg": "ミスリルクレスト",
+   "scenario": "昼下がりの抗争",
+   "reg": "サタスペ",
    "reg_is_name": false,
    "dates": [
     {
-     "date": "2026-07-10",
-     "start": "21:00",
-     "end": "25:00"
+     "date": "2026-07-16",
+     "start": "14:00",
+     "end": "17:00"
     }
    ],
-   "open": true,
+   "open": false,
    "suriawase": false,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786344101871820",
-   "created": "2026-07-04T02:09:16.436000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522867194164416553",
+   "created": "2026-07-04T07:30:32.593000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "黄昏図書館の忘れ物",
+   "reg": "CoC",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857692476211220",
+   "created": "2026-07-04T06:52:47.214000+00:00",
    "source": "forum"
   },
   {
@@ -39,194 +51,33 @@
    "source": "forum"
   },
   {
-   "scenario": "散華(初心者歓迎卓)",
+   "scenario": "小さな麦畑の大事件",
    "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-13",
-     "start": "14:00",
-     "end": "18:00"
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786357293092925",
-   "created": "2026-07-04T02:09:19.581000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "連続卓テスト",
-   "reg": "賽は投げられた",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-16",
-     "start": "21:00",
-     "end": "24:00"
-    },
-    {
-     "date": "2026-07-17",
-     "start": "21:00",
-     "end": "24:00"
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786364113031218",
-   "created": "2026-07-04T02:09:21.207000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "悪意の人形劇",
-   "reg": "ピースメイカー",
    "reg_is_name": false,
    "dates": [],
    "open": true,
    "suriawase": true,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786370588905634",
-   "created": "2026-07-04T02:09:22.751000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522857689984663635",
+   "created": "2026-07-04T06:52:46.620000+00:00",
    "source": "forum"
   },
   {
-   "scenario": "陽だまりへ連れ出して",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [],
-   "open": true,
-   "suriawase": true,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786377735999608",
-   "created": "2026-07-04T02:09:24.455000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "煌日の姫と冴月の王子",
-   "reg": "SW2.5",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-20",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786384530768023",
-   "created": "2026-07-04T02:09:26.075000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "グルメ卓",
-   "reg": null,
-   "reg_is_name": true,
-   "dates": [
-    {
-     "date": "2026-07-08",
-     "start": "22:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786392025858078",
-   "created": "2026-07-04T02:09:27.862000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "朝のダンジョンは健康にいい",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-22",
-     "start": "9:00",
-     "end": null
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786399466815619",
-   "created": "2026-07-04T02:09:29.636000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "全角数字テスト",
-   "reg": "フツウノアリアン",
+   "scenario": "朝霧の残響",
+   "reg": "CoC",
    "reg_is_name": false,
    "dates": [
     {
      "date": "2026-07-24",
-     "start": "21:00",
-     "end": null
+     "start": "9:30",
+     "end": "12:00"
     }
    ],
    "open": true,
    "suriawase": false,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786405854613614",
-   "created": "2026-07-04T02:09:31.159000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "終わった卓（開催済表示の検証）",
-   "reg": "ミスリルクレスト",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-01",
-     "start": "21:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786412242534541",
-   "created": "2026-07-04T02:09:32.682000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "ランダムダンジョン",
-   "reg": null,
-   "reg_is_name": true,
-   "dates": [
-    {
-     "date": "2026-07-26",
-     "start": "19:00",
-     "end": "23:00"
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522786418840174685",
-   "created": "2026-07-04T02:09:34.255000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "昼下がりの依頼板",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-18",
-     "start": "14:00",
-     "end": "18:00"
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857553858400359",
-   "created": "2026-07-04T06:52:14.165000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522867195443544218",
+   "created": "2026-07-04T07:30:32.898000+00:00",
    "source": "forum"
   },
   {
@@ -248,69 +99,87 @@
    "source": "forum"
   },
   {
-   "scenario": "朝霧の館",
-   "reg": "CoC",
+   "scenario": "花のブーケと誓い",
+   "reg": "ステラナイツ",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857698066960706",
+   "created": "2026-07-04T06:52:48.547000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "宵闇の路地",
+   "reg": "シノビガミ",
    "reg_is_name": false,
    "dates": [
     {
      "date": "2026-07-18",
-     "start": "9:00",
-     "end": "12:00"
+     "start": "19:00",
+     "end": "21:00"
     }
    ],
-   "open": false,
+   "open": true,
    "suriawase": false,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857557448720506",
-   "created": "2026-07-04T06:52:15.021000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522861610014871683",
+   "created": "2026-07-04T07:08:21.228000+00:00",
    "source": "forum"
   },
   {
-   "scenario": "星継ぎの塔",
-   "reg": "ミスリルクレスト",
-   "reg_is_name": false,
-   "dates": [],
-   "open": true,
-   "suriawase": true,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857688705400832",
-   "created": "2026-07-04T06:52:46.315000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "小さな麦畑の大事件",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [],
-   "open": true,
-   "suriawase": true,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857689984663635",
-   "created": "2026-07-04T06:52:46.620000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "蒼海の残響",
-   "reg": "SW2.5",
-   "reg_is_name": false,
-   "dates": [],
-   "open": true,
-   "suriawase": true,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857690890764339",
-   "created": "2026-07-04T06:52:46.836000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "黄昏図書館の忘れ物",
+   "scenario": "深夜検死局",
    "reg": "CoC",
    "reg_is_name": false,
-   "dates": [],
-   "open": false,
-   "suriawase": true,
+   "dates": [
+    {
+     "date": "2026-07-10",
+     "start": "25:00",
+     "end": "27:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857692476211220",
-   "created": "2026-07-04T06:52:47.214000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522867186878779514",
+   "created": "2026-07-04T07:30:30.856000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "煌日の姫と冴月の王子",
+   "reg": "SW2.5",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-20",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786384530768023",
+   "created": "2026-07-04T02:09:26.075000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "丑三つレネゲイド",
+   "reg": "DX3rd",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-26",
+     "start": "25:00",
+     "end": "28:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867200309067796",
+   "created": "2026-07-04T07:30:34.058000+00:00",
    "source": "forum"
   },
   {
@@ -323,6 +192,72 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522857693856010280",
    "created": "2026-07-04T06:52:47.543000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "悪意の人形劇",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [],
+   "open": true,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786370588905634",
+   "created": "2026-07-04T02:09:22.751000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "終わった卓（開催済表示の検証）",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-01",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786412242534541",
+   "created": "2026-07-04T02:09:32.682000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "花壇の誓い",
+   "reg": "ステラナイツ",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-24",
+     "start": "14:00",
+     "end": "18:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867196789784688",
+   "created": "2026-07-04T07:30:33.219000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "朝練クエスト",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-16",
+     "start": "9:00",
+     "end": "12:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867192935223356",
+   "created": "2026-07-04T07:30:32.300000+00:00",
    "source": "forum"
   },
   {
@@ -350,15 +285,51 @@
    "source": "forum"
   },
   {
-   "scenario": "花のブーケと誓い",
-   "reg": "ステラナイツ",
+   "scenario": "朝のダンジョンは健康にいい",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-22",
+     "start": "9:00",
+     "end": null
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786399466815619",
+   "created": "2026-07-04T02:09:29.636000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "グルメ卓",
+   "reg": null,
+   "reg_is_name": true,
+   "dates": [
+    {
+     "date": "2026-07-08",
+     "start": "22:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786392025858078",
+   "created": "2026-07-04T02:09:27.862000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "陽だまりへ連れ出して",
+   "reg": "アンコールを流星に",
    "reg_is_name": false,
    "dates": [],
-   "open": false,
+   "open": true,
    "suriawase": true,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857698066960706",
-   "created": "2026-07-04T06:52:48.547000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522786377735999608",
+   "created": "2026-07-04T02:09:24.455000+00:00",
    "source": "forum"
   },
   {
@@ -374,33 +345,80 @@
    "source": "forum"
   },
   {
-   "scenario": "ジャームレポート#7",
-   "reg": "DX3rd",
-   "reg_is_name": false,
-   "dates": [],
-   "open": false,
-   "suriawase": true,
-   "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522857700701114490",
-   "created": "2026-07-04T06:52:49.175000+00:00",
-   "source": "forum"
-  },
-  {
-   "scenario": "宵闇の路地",
+   "scenario": "昼行灯の任",
    "reg": "シノビガミ",
    "reg_is_name": false,
    "dates": [
     {
-     "date": "2026-07-18",
-     "start": "19:00",
-     "end": "21:00"
+     "date": "2026-07-26",
+     "start": "13:00",
+     "end": "17:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867198274568252",
+   "created": "2026-07-04T07:30:33.573000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "連続卓テスト",
+   "reg": "賽は投げられた",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-16",
+     "start": "21:00",
+     "end": "24:00"
+    },
+    {
+     "date": "2026-07-17",
+     "start": "21:00",
+     "end": "24:00"
     }
    ],
    "open": true,
    "suriawase": false,
    "gm": "甲殻飛行魔獣ポリステス",
-   "url": "https://discord.com/channels/1023884809774305301/1522861610014871683",
-   "created": "2026-07-04T07:08:21.228000+00:00",
+   "url": "https://discord.com/channels/1023884809774305301/1522786364113031218",
+   "created": "2026-07-04T02:09:21.207000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "夜のダンジョンは体に悪い",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-22",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867191479931001",
+   "created": "2026-07-04T07:30:31.953000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "神智に狂いし者",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-10",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786344101871820",
+   "created": "2026-07-04T02:09:16.436000+00:00",
    "source": "forum"
   },
   {
@@ -419,6 +437,150 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522861611612635246",
    "created": "2026-07-04T07:08:21.609000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "蒼海の残響",
+   "reg": "SW2.5",
+   "reg_is_name": false,
+   "dates": [],
+   "open": true,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857690890764339",
+   "created": "2026-07-04T06:52:46.836000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "昼下がりの依頼板",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": "14:00",
+     "end": "18:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857553858400359",
+   "created": "2026-07-04T06:52:14.165000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "ジャームレポート#7",
+   "reg": "DX3rd",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857700701114490",
+   "created": "2026-07-04T06:52:49.175000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "散華(初心者歓迎卓)",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-13",
+     "start": "14:00",
+     "end": "18:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786357293092925",
+   "created": "2026-07-04T02:09:19.581000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "朝霧の館",
+   "reg": "CoC",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": "9:00",
+     "end": "12:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857557448720506",
+   "created": "2026-07-04T06:52:15.021000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "月光の剣舞",
+   "reg": "SW2.5",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-13",
+     "start": "21:00",
+     "end": "24:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522867189084979240",
+   "created": "2026-07-04T07:30:31.382000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "星継ぎの塔",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [],
+   "open": true,
+   "suriawase": true,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522857688705400832",
+   "created": "2026-07-04T06:52:46.315000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "ランダムダンジョン",
+   "reg": null,
+   "reg_is_name": true,
+   "dates": [
+    {
+     "date": "2026-07-26",
+     "start": "19:00",
+     "end": "23:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786418840174685",
+   "created": "2026-07-04T02:09:34.255000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "全角数字テスト",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-24",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1522786405854613614",
+   "created": "2026-07-04T02:09:31.159000+00:00",
    "source": "forum"
   }
  ],
