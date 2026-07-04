@@ -16,18 +16,23 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 BG = "#181b1e"; CARD = "#23262b"; CARD_HI = "#2a2e34"; TX = "#e8e5de"; MUT = "#a09a8e"
 GRN = "#a8cbb2"; GRN_DEEP = "#33603f"; GRN2 = "#4f8160"; CLN = "#3a3e45"
 SUN = "#e08f83"; SAT = "#96b7e4"; TER = "#e09a6e"; GOLD = "#d8b56a"
+AR2E_DEPRECATED_COLOR = "#b9806c"
 
 # ---- システム色分け（index.htmlのSYS_DEFSと同期） ----
 AR2E_REGS = {"ミスリルクレスト", "ミスリルクエスト", "氷原開拓団", "フツウノアリアン", "イジョウナアリアン",
-             "ピースメイカー", "アンコールを流星に", "さちあれ", "賽は投げられた", "ダンジョン・トラベラーズ",
+             "ピースメイカー", "アンコールを流星に", "さちあれ", "さちあれ色", "さちあれ空", "賽は投げられた", "ダンジョン・トラベラーズ",
              "ネームドエネミー討伐RTA!!", "勇者の首を晒せ", "グルメ卓",
              "この素晴らしいエリンにフェイトを！", "アリアンストラテジー"}
+AR2E_REGS_DEPRECATED = {"フツウノアリアン", "賽は投げられた", "グルメ卓"}
 # その他システムのレギュ→システム（レギュ一覧-その他システムより・index.htmlと同期）
 REG2SYS = {"JAIL HOUSE": "サタスペ", "カルティックサタデーナイトスペシャル": "サタスペ",
            "スクランブルサタデーナイトスペシャル": "サタスペ", "デッドマン・ウォーキング": "シノビガミ",
            "辺境村スタンダード": "SW2.5", "ドロップアウト・アーカイブ": "ブルアカ", "アオハルライフ": "ブルアカ"}
 def _norm(t):
     return re.sub(r"[\s　]+", "", str(t or "")).lower()
+def _reg_in(reg, regs):
+    n = _norm(reg)
+    return any(n == _norm(k) or _norm(k) in n for k in regs)
 REG2SYS_N = {_norm(k): v for k, v in REG2SYS.items()}
 SYS_DEFS = [
     ("アリアンロッド2E", "#6fae82", re.compile(r"アリアンロッド|AR2E", re.I)),
@@ -47,7 +52,9 @@ SYS_COLOR_BY_NAME = {n: c for n, c, _ in SYS_DEFS}
 def sys_color(s):
     r = (s.get("reg") or "") + " " + (s.get("scenario") or "")
     reg = s.get("reg") or ""
-    if reg in AR2E_REGS or any(k in reg for k in AR2E_REGS):
+    if _reg_in(reg, AR2E_REGS_DEPRECATED):
+        return AR2E_DEPRECATED_COLOR
+    if _reg_in(reg, AR2E_REGS):
         return SYS_DEFS[0][1]
     g = REG2SYS_N.get(_norm(reg))
     if g:

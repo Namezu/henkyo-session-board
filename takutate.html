@@ -69,6 +69,7 @@ textarea{min-height:74px;resize:vertical}
 .mini.warn{color:#e08f83}
 .dayrow{display:flex;gap:6px;align-items:center;margin:6px 0}
 .dayrow input[type=date]{flex:1.5}.dayrow select{flex:1;padding:11px 6px}
+.dayrow select.time-conflict{border-color:#e08f83;color:#ffd3cc;background:rgba(224,143,131,.15);box-shadow:0 0 0 2px rgba(224,143,131,.12),inset 0 1px 0 rgba(255,255,255,.08)}
 .dayrow .del{border:none;background:none;color:#e08f83;font-size:1.2em;cursor:pointer;padding:4px 6px}
 .genbar{position:sticky;bottom:12px;display:flex;gap:10px;align-items:stretch;z-index:20}
 .gen{flex:2.2;display:flex;align-items:center;justify-content:center;padding:14px 8px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(176,106,63,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;font-size:1.1em;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:var(--glass-in),0 10px 28px rgba(0,0,0,.45)}
@@ -321,16 +322,21 @@ function mdWrap(ta,mark){ // 囲み系（太字/コード枠）＝選択範囲�
 // ---- 複数日程（時刻は30分刻みセレクト・9:00〜28:30＝深夜25時表記対応） ----
 let TIMES=[];for(let h=6;h<=28;h++)for(const m of["00","30"])TIMES.push(`${h}:${m}`);  // 6:00〜28:30（早起き勢〜深夜勢）
 const timeOpts=v=>`<option value=""${!v?" selected":""}>--:--</option>`+TIMES.map(t=>`<option${t===v?" selected":""}>${t}</option>`).join("");
+const timeMins=v=>{const m=String(v||"").match(/^(\d+):(\d+)$/);return m?(+m[1])*60+(+m[2]):null};
 const WDJ=["日","月","火","水","木","金","土"];
 function addDayRow(d,s,e){
  if(s===undefined)s="21:00";
  const div=document.createElement("div");div.className="dayrow";
  div.innerHTML=`<input type="date" value="${d||""}"><span class="wd"></span><select class="st">${timeOpts(s)}</select><span style="color:var(--mut)">〜</span><select class="en">${timeOpts(e||"")}</select><button class="del" type="button" title="この日を削除">✕</button>`;
+ const stSel=div.querySelector(".st"),enSel=div.querySelector(".en");
+ const markTime=()=>{const bad=timeMins(stSel.value)!==null&&timeMins(enSel.value)!==null&&timeMins(enSel.value)<=timeMins(stSel.value);
+  [stSel,enSel].forEach(x=>{x.classList.toggle("time-conflict",bad);x.title=bad?"終了時刻が開始時刻以前になっています":""})};
  const upd=()=>{const v=div.querySelector("input[type=date]").value;
   const w=div.querySelector(".wd");
   if(v){const t=new Date(v+"T00:00");w.textContent=`(${WDJ[t.getDay()]})`;w.style.color=t.getDay()===0?"var(--sun,#e08f83)":t.getDay()===6?"var(--sat,#96b7e4)":"var(--mut)"}
   else w.textContent="";};
  div.querySelector("input[type=date]").addEventListener("change",upd);upd();
+ stSel.addEventListener("change",markTime);enSel.addEventListener("change",markTime);markTime();
  div.querySelector(".del").addEventListener("click",()=>{if(document.querySelectorAll(".dayrow").length>1)div.remove()});
  $("days").appendChild(div);
 }
