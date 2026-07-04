@@ -421,9 +421,9 @@ $("genBtn").addEventListener("click",()=>{
  }
  if($("aiUse").checked)lines.push(`> **この卓では生成AIを使用しています。**`);
  if($("warning").value.trim()){
-  // 引用内・行ごと太字＝複数行でも崩れない形式（お気に入り募集文準拠・後輩くん選択 2026-07-04）
-  lines.push(`> 注意事項：`);
-  $("warning").value.trim().split("\n").forEach(x=>lines.push(x.trim()?`> **${x.trim()}**`:`> `));
+  // 独立セクション（後輩くん最終決定 2026-07-04＝一度引用内に戻したが再検討でこちらに確定）
+  lines.push("",`### ⚠️ 注意事項`);
+  $("warning").value.trim().split("\n").forEach(x=>lines.push(x.trim()?`**${x.trim()}**`:""));
  }
  const pitaUrl=$("pitaUrl").value.trim();
  // URLは見出しにせず通常行（生URL=招待カードの展開は維持）。使い方は掲示板の説明へマスクリンク誘導
