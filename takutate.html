@@ -212,6 +212,8 @@ textarea{min-height:74px;resize:vertical}
 <fieldset>
 <legend>今回予告（任意・別投稿になる）</legend>
 <textarea id="trailer" placeholder="空欄なら予告投稿は生成しません"></textarea>
+<label>宣伝ひとことキャッチコピー（任意・卓募集宣伝チャンネル用⑥に載る1行）</label>
+<input type="text" id="adCatch" placeholder="例: 空中海洋魚類を絶滅寸前まで追い込む大災厄、血の回廊との戦い。">
 </fieldset>
 
 <div class="tprev">
@@ -283,7 +285,7 @@ addDayRow();
 function durOf(s,e){if(!s||!e)return"";const[a,b]=s.split(":").map(Number),[c,d]=e.split(":").map(Number);let m=(c*60+d)-(a*60+b);if(m<=0)return"";const h=Math.floor(m/60);return m%60===0?`${h}時間`:m%60===30?`${h}時間半`:`${h}時間${m%60}分`}
 
 // ---- フォーム状態の収集/復元（マイセット＆自動保存の共通機構） ----
-const FIELDS=["duration","scenario","regFree","regFreeUrl","cl","battles","guild","players","invite","senkou","deadline","format","houseFree","warning","gmName","pitaUrl","trailer"];
+const FIELDS=["duration","scenario","regFree","regFreeUrl","cl","battles","guild","players","invite","senkou","deadline","format","houseFree","warning","gmName","pitaUrl","trailer","adCatch"];
 function collect(){
  return{f:Object.fromEntries(FIELDS.map(k=>[k,$(k).value])),
   reg:sel.value, dateMode:dateMode.get(),
@@ -424,12 +426,15 @@ $("genBtn").addEventListener("click",()=>{
  const pitaMemo=pitaUrl?[`卓ピタに入力する内容：`,`・卓名：${scen}`,
   state.dateMode==="fixed"&&days.length?`・日時：${days.map(x=>`${mdw(x.d)} ${x.s}${x.e?"〜"+x.e:""}`).join(" / ")}`:`・日時：未定（すり合わせ機能で調整）`,
   `・締切：${$("deadline").value.trim()||"未設定"}`,`・発行した招待URLを募集要項の〔卓ピタURL〕欄に貼る`,`・村内共有卓ピタカレンダーへの反映を確認`].join("\n"):null;
- // 宣伝文（卓募集宣伝チャンネルの定番3行構成＝ロールメンション/トピックリンク/一言。実例395/500件準拠）
+ // 宣伝文（後輩くんの型 2026-07-04＝ロール/##見出し/引用内にデカいトピックチップ+キャッチコピー/挨拶）
  const AR2E_PL_ROLE="<@&1186325405628649504>"; // アリアン卓のPL募集メンションロール（自由入力システムでは付けない）
  const clv=$("cl").value.trim();
- const adInfo=[state.dateMode==="fixed"&&days.length?`${days.map(x=>mdw(x.d)).join("・")}${sameTime&&days[0].s?` ${days[0].s}〜`:""}`:"日程すり合わせ",
-  clv?(/cl/i.test(clv)?clv:`CL${clv}`):""].filter(Boolean).join("、");
- const adText=[isFree?null:AR2E_PL_ROLE,"〔トピックを立てたらリンクをここに〕",`${adInfo}の卓です。よろしくお願いします！`].filter(Boolean).join("\n");
+ const adCatch=$("adCatch").value.trim();
+ const adText=[isFree?null:AR2E_PL_ROLE,
+  `## ${reg}/${scen}${clv?`(${/cl/i.test(clv)?clv:`CL${clv}`}向け)`:""}`,
+  `> # 〔ここに #トピック（半角#を打ってトピック名を選ぶ）〕`,
+  adCatch?`> ${adCatch}`:null,
+  `よろしくお願いします！`].filter(Boolean).join("\n");
 
  const R=$("results");R.innerHTML="";
  function out(t,body,noteTxt){
@@ -459,7 +464,7 @@ $("genBtn").addEventListener("click",()=>{
  if(trailer)out("③ 今回予告（別投稿）",trailer);
  out("④ 卓予定リスト行（シートに貼る用）",sheetRow,"タブ区切り＝行に貼ると各セルへ分かれます。リンク列はトピックを立てた後に");
  if(pitaMemo)out("⑤ 卓ピタ入力メモ",pitaMemo);
- out("⑥ 宣伝文（卓募集宣伝チャンネル用）",adText,"トピックを立てたら2行目をそのリンクに差し替えて投稿（一言は好きに書き換えてOK）");
+ out("⑥ 宣伝文（卓募集宣伝チャンネル用）",adText,"トピックを立てたら〔ここに #トピック…〕を差し替えて投稿＝半角#を打つとトピック名の候補から選べます");
  R.scrollIntoView({behavior:"smooth",block:"start"});
 });
 })();
