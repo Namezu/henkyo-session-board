@@ -117,6 +117,8 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 /* レギュ/GM絞り込みプルダウン */
 .fsel{border:1px solid var(--glass-brd);background:rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);border-radius:20px;padding:7px 10px;font-size:.85em;font-family:inherit;color:var(--mut);max-width:44vw;cursor:pointer;transition:border-color .18s,box-shadow .18s}
 .fsel:hover{border-color:var(--grn2);box-shadow:var(--shadow)}
+.fsel:disabled{opacity:.4;cursor:not-allowed}
+.fsel:disabled:hover{border-color:var(--glass-brd);box-shadow:none}
 .fsel.on{border-color:var(--grn);color:var(--grn);font-weight:700}
 /* 絞り込み非該当＝グレーアウト（場所は残す。〆切=彩度薄め/開催済=かなり薄めとは別の「完全モノクロ」） */
 .sch.dim{opacity:.25;filter:grayscale(1)}
@@ -403,7 +405,7 @@ function stOf(s){
 function dimOf(s,st){
  if(FILTER==="open"&&st!=="open")return true;
  if(SYSF&&sysGroup(s)!==SYSF)return true;
- if(REGF&&(s.reg||"")!==REGF)return true;
+ if(REGF&&normReg(s.reg||"")!==normReg(REGF))return true;
  if(GMF&&(s.gm||"")!==GMF)return true;
  return false;
 }
@@ -555,7 +557,7 @@ function renderDay(){
 }
 function renderSuri(){
  // すり合わせ卓は「募集中だけ」では薄くしない（従来から表示対象）＝システム/レギュ/GM絞り込みのみdim
- const suriDim=s=>(SYSF&&sysGroup(s)!==SYSF)||(REGF&&(s.reg||"")!==REGF)||(GMF&&(s.gm||"")!==GMF);
+ const suriDim=s=>(SYSF&&sysGroup(s)!==SYSF)||(REGF&&normReg(s.reg||"")!==normReg(REGF))||(GMF&&(s.gm||"")!==GMF);
  const list=(DATA.sessions||[]).map(s=>({s,st:stOf(s)})).filter(x=>x.st==="suri").map(x=>({...x,dim:suriDim(x.s)}));
  const el=$("suriSec");
  if(!list.length){el.innerHTML="";return}
@@ -668,13 +670,40 @@ $("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else{curM++;if(
 $("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="month";renderAll();kbReact()});
 $("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="month"?"year":"month");selDate=null;renderAll();kbReact()});
 // レギュ/GM絞り込みプルダウン（データ読込後に選択肢を作る・非該当はグレーアウト）
-// レギュ欄＝選択中システムのレギュだけに絞る（アリアン/SW/サタスペ…各システムにレギュがある前提の設計）
+// 村の公認レギュ台帳（チャルタヴォラ採集のレギュ一覧-ar2e/-その他システムより 2026-07-04）
+// ＝卓が立っていなくても全レギュが選択肢に出る。新レギュが増えたらここに追記。
+const KNOWN_REGS={
+ "アリアンロッド2E":["ミスリルクレスト","フツウノアリアン","イジョウナアリアン","ピースメイカー","アンコールを流星に","さちあれ","賽は投げられた","ダンジョン・トラベラーズ","ネームドエネミー討伐RTA!!","勇者の首を晒せ","氷原開拓団","この素晴らしいエリンにフェイトを！","アリアンストラテジー"],
+ "サタスペ":["JAIL HOUSE","カルティックサタデーナイトスペシャル","スクランブルサタデーナイトスペシャル"],
+ "シノビガミ":["デッドマン・ウォーキング"],
+ "SW2.5":["辺境村スタンダード"],
+ "ブルアカ":["ドロップアウト・アーカイブ","アオハルライフ"],
+ "アークナイツTRPG":["スキルシステム採用"],
+};
+function isSystemNameReg(reg,g){const def=SYS_DEFS.find(x=>x[0]===g);return!!(def&&def[2].test(reg)&&g!=="アリアンロッド2E")}
+// レギュ欄＝台帳（選択中システムぶん）＋実データの未知レギュ。【サタスペ】等のシステム名は出さない
+// システム未選択の間はロック（全システムのレギュを混ぜて出さない＝後輩くん指定）
 function updateRegOptions(){
- const regs=new Set();
- (DATA.sessions||[]).forEach(s=>{if(s.reg&&!s.reg_is_name&&(!SYSF||sysGroup(s)===SYSF))regs.add(s.reg)});
+ const sel=$("regSel");
+ if(!SYSF){
+  REGF=null;sel.classList.remove("on");
+  sel.disabled=true;sel.innerHTML=`<option value="">レギュ: まずシステムを選択</option>`;
+  return;
+ }
+ sel.disabled=false;
+ const regs=[];
+ for(const[g,list]of Object.entries(KNOWN_REGS))if(g===SYSF)list.forEach(r=>regs.push(r));
+ (DATA.sessions||[]).forEach(s=>{
+  if(!s.reg||s.reg_is_name)return;
+  const g=sysGroup(s);
+  if(g!==SYSF)return;
+  if(isSystemNameReg(s.reg,g))return;
+  if(!regs.some(r=>normReg(r)===normReg(s.reg)))regs.push(s.reg);
+ });
  const cur=REGF;
- $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+[...regs].sort().map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
- if(cur&&regs.has(cur)){$("regSel").value=cur}
+ $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+regs.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+ const hit=cur&&regs.find(r=>normReg(r)===normReg(cur));
+ if(hit){REGF=hit;$("regSel").value=hit}
  else{REGF=null;$("regSel").classList.remove("on")}
 }
 function syncSysSel(){
@@ -689,8 +718,10 @@ function fillFilterSelects(){
   const g=sysGroup(s);syss.set(g,(syss.get(g)||0)+1);
  });
  const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
- $("sysSel").innerHTML=`<option value="">システム: 全て</option>`+
-  [...syss.entries()].sort((a,b)=>b[1]-a[1]).map(([k])=>opt(k)).join("");
+ // 卓がある順→残りの公認システムも常載（卓ゼロでも選べる＝レギュ台帳と対）
+ const sysList=[...syss.entries()].sort((a,b)=>b[1]-a[1]).map(([k])=>k);
+ SYS_DEFS.forEach(([n])=>{if(!sysList.includes(n))sysList.push(n)});
+ $("sysSel").innerHTML=`<option value="">システム: 全て</option>`+sysList.map(opt).join("");
  $("gmSel").innerHTML=`<option value="">GM: 全て</option>`+[...gms].sort().map(opt).join("");
  updateRegOptions();
 }
