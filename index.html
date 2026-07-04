@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="セッションボード — 辺境TRPG村">
+<meta property="og:description" content="卓部屋から自動で集まる、村の卓予定カレンダー。15分ごとに更新・正本はDiscordのトピック。">
+<meta property="og:url" content="https://namezu.github.io/henkyo-session-board/">
+<meta property="og:image" content="https://namezu.github.io/henkyo-session-board/ogp_board.png">
+<meta name="twitter:card" content="summary_large_image">
 <title>セッションボード — 辺境TRPG村</title>
 <style>
 :root{--bg:#fbf7f0;--card:#fff;--tx:#3b3a36;--mut:#8a857c;--grn:#33603f;--grn2:#4f8160;--ter:#c86c3e;--cln:#e6ded2;--gold:#b98a2f;--sun:#b0483a;--sat:#3a5f8a}
@@ -220,6 +226,13 @@ function sysGroup(s){
 }
 function sysColor(s){return SYS_COLORS[sysGroup(s)]||"#9a948a"}
 function tint(c){return c+"22"}
+// カレンダーのチップは開始時刻を「朝/昼/夜」に短縮（シナリオ名の見える幅を稼ぐ・正確な時刻はホバー/クリックで）
+// 朝=5〜11時開始／昼=12〜17時開始／夜=18〜4時開始（25時=翌1時などの24+表記も夜に落ちる）
+function timeBand(st){
+ const h=parseInt(st,10);if(isNaN(h))return"";
+ const n=((h%24)+24)%24;
+ return n>=5&&n<=11?"朝":n>=12&&n<=17?"昼":"夜";
+}
 const now=new Date();let curY=now.getFullYear(),curM=now.getMonth(); // 0-based
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
@@ -317,7 +330,8 @@ function renderCal(){
    const ch=document.createElement("span");ch.className=`sch ${x.st}`;
    const c=sysColor(x.s);
    ch.style.setProperty("--rc",c);ch.style.setProperty("--rc-bg",tint(c));
-   ch.textContent=`${x.d.start||""} ${x.s.scenario}`;
+   const bd=timeBand(x.d.start);
+   ch.textContent=`${bd?bd+" ":""}${x.s.scenario}`;
    attachTip(ch,x);
    cell.appendChild(ch);
   });
