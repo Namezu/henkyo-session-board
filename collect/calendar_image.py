@@ -20,7 +20,15 @@ SUN = "#e08f83"; SAT = "#96b7e4"; TER = "#e09a6e"; GOLD = "#d8b56a"
 # ---- システム色分け（index.htmlのSYS_DEFSと同期） ----
 AR2E_REGS = {"ミスリルクレスト", "ミスリルクエスト", "氷原開拓団", "フツウノアリアン", "イジョウナアリアン",
              "ピースメイカー", "アンコールを流星に", "さちあれ", "賽は投げられた", "ダンジョン・トラベラーズ",
-             "ネームドエネミー討伐RTA!!", "勇者の首を晒せ", "グルメ卓"}
+             "ネームドエネミー討伐RTA!!", "勇者の首を晒せ", "グルメ卓",
+             "この素晴らしいエリンにフェイトを！", "アリアンストラテジー"}
+# その他システムのレギュ→システム（レギュ一覧-その他システムより・index.htmlと同期）
+REG2SYS = {"JAIL HOUSE": "サタスペ", "カルティックサタデーナイトスペシャル": "サタスペ",
+           "スクランブルサタデーナイトスペシャル": "サタスペ", "デッドマン・ウォーキング": "シノビガミ",
+           "辺境村スタンダード": "SW2.5", "ドロップアウト・アーカイブ": "ブルアカ", "アオハルライフ": "ブルアカ"}
+def _norm(t):
+    return re.sub(r"[\s　]+", "", str(t or "")).lower()
+REG2SYS_N = {_norm(k): v for k, v in REG2SYS.items()}
 SYS_DEFS = [
     ("アリアンロッド2E", "#6fae82", re.compile(r"アリアンロッド|AR2E", re.I)),
     ("SW2.5",           "#7ca4d8", re.compile(r"SW2\.?5|ソードワールド", re.I)),
@@ -32,14 +40,19 @@ SYS_DEFS = [
     ("ステラナイツ",     "#d8b56a", re.compile(r"ステラナイツ")),
     ("D&D",             "#c87878", re.compile(r"D&D|DnD|ダンジョンズ", re.I)),
     ("Needle",          "#7ab8b4", re.compile(r"Needle|ニードル", re.I)),
+    ("アークナイツTRPG", "#7f9bb0", re.compile(r"アークナイツ")),
 ]
 OTHER = "#9a948a"
+SYS_COLOR_BY_NAME = {n: c for n, c, _ in SYS_DEFS}
 
 def sys_color(s):
     r = (s.get("reg") or "") + " " + (s.get("scenario") or "")
     reg = s.get("reg") or ""
     if reg in AR2E_REGS or any(k in reg for k in AR2E_REGS):
         return SYS_DEFS[0][1]
+    g = REG2SYS_N.get(_norm(reg))
+    if g:
+        return SYS_COLOR_BY_NAME.get(g, OTHER)
     for _, c, pat in SYS_DEFS:
         if pat.search(r):
             return c
