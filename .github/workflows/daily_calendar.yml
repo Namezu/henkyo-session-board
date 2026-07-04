@@ -1,0 +1,48 @@
+name: カレンダー画像の日次投稿（毎朝9時JST）
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # UTC 0:00 = JST 9:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-calendar
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 日本語フォントと依存
+        run: |
+          sudo apt-get install -y -q fonts-noto-cjk > /dev/null
+          pip install -q pillow python-dotenv
+
+      - name: カレンダー画像を生成してwebhook投稿（前日の投稿は削除）
+        env:
+          BOARD_WEBHOOK_URL: ${{ secrets.BOARD_WEBHOOK_URL }}
+          BOARD_SESSIONS: sessions.json
+          BOARD_STATE: collect/.calendar_msg_state.json
+        run: python collect/post_calendar.py
+
+      - name: 投稿メッセージIDを保存
+        run: |
+          if git diff --quiet -- collect/.calendar_msg_state.json 2>/dev/null && git ls-files --error-unmatch collect/.calendar_msg_state.json > /dev/null 2>&1; then
+            echo "変化なし"
+          else
+            git config user.name "polistes-board"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add collect/.calendar_msg_state.json
+            git commit -m "🐝 カレンダー投稿ID更新"
+            git push
+          fi
