@@ -50,6 +50,20 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.4em;color:var(--g
 #tip .t-name{font-family:'Shippori Mincho',serif;font-size:1.08em;color:var(--grn);font-weight:700}
 #tip .t-meta{color:var(--mut)}
 #tip .t-st{font-weight:700}
+/* ---- クリック詳細モーダル ---- */
+#mback{position:fixed;inset:0;background:rgba(30,25,18,.45);z-index:60;display:none}
+#mback.show{display:block}
+#modal{position:fixed;z-index:61;left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,92vw);background:var(--card);border:1px solid var(--cln);border-left:6px solid var(--grn2);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.3);padding:16px 18px;display:none}
+#modal.show{display:block}
+#modal .m-name{font-family:'Shippori Mincho',serif;font-size:1.25em;color:var(--grn);font-weight:700;margin-right:24px}
+#modal .m-meta{color:var(--mut);font-size:.9em;margin:4px 0}
+#modal .m-st{font-weight:700;margin:6px 0 12px}
+#modal .m-btns{display:flex;gap:8px;flex-wrap:wrap}
+#modal .mb{flex:1;min-width:120px;text-align:center;border:none;border-radius:10px;padding:11px 10px;font-size:.9em;font-weight:700;font-family:inherit;cursor:pointer;text-decoration:none}
+#modal .mb.link{background:var(--grn);color:#fff}
+#modal .mb.fix{background:#f4efe6;color:var(--grn);border:1.5px solid var(--cln)}
+#modal .m-close{position:absolute;top:8px;right:12px;border:none;background:none;font-size:1.3em;color:var(--mut);cursor:pointer}
+#modal .m-hint{font-size:.72em;color:var(--mut);margin-top:8px}
 /* ---- 選択日の詳細・すり合わせ・リスト ---- */
 .section{font-family:'Shippori Mincho',serif;color:var(--grn);font-size:1.05em;margin:20px 4px 6px;border-bottom:2px solid var(--cln);padding-bottom:3px}
 .card{display:block;background:var(--card);border:1px solid var(--cln);border-left:5px solid var(--grn2);border-radius:12px;padding:11px 13px;margin:7px 0;text-decoration:none;color:var(--tx);position:relative;transition:transform .15s,box-shadow .15s}
@@ -154,6 +168,34 @@ function attachTip(el,x){
   tip.classList.add("show");
  });
  el.addEventListener("mouseleave",()=>tip.classList.remove("show"));
+ el.addEventListener("click",ev=>{ev.stopPropagation();openDetail(x)});   // チップクリック＝その卓の詳細
+}
+// ---- クリック詳細モーダル ----
+const mback=document.createElement("div");mback.id="mback";document.body.appendChild(mback);
+const modal=document.createElement("div");modal.id="modal";document.body.appendChild(modal);
+function closeModal(){modal.classList.remove("show");mback.classList.remove("show")}
+mback.addEventListener("click",closeModal);
+function openDetail(x){
+ tip.classList.remove("show");
+ const s=x.s;
+ const when=x.st==="suri"?"日程すり合わせ中":(s.dates||[]).map(dd=>{const t=jd(dd.date);return`${t.getMonth()+1}/${t.getDate()}(${WD[t.getDay()]}) ${dd.start||""}${dd.end?"-"+dd.end:""}`}).join(" ／ ");
+ // 修正用の1行（手動スレッドに貼ると次回更新で上書きされる）
+ const fixLine=`修正 ${s.url||"(トピックURL)"} ${(s.dates&&s.dates[0])?`${jd(s.dates[0].date).getMonth()+1}/${jd(s.dates[0].date).getDate()} ${s.dates[0].start||""}${s.dates[0].end?"-"+s.dates[0].end:""}`:"すり合わせ"}【${s.reg||""}】${s.scenario}${s.gm?` GM:${s.gm}`:""}`;
+ modal.innerHTML=`<button class="m-close">✕</button>
+  <div class="m-name">${esc(s.scenario)}</div>
+  <div class="m-meta">${when}</div>
+  <div class="m-meta">${s.reg&&!s.reg_is_name?`【${esc(s.reg)}】`:""}${s.gm?`　GM: ${esc(s.gm)}`:""}${s.source==="manual"?"　✍手動掲載":""}</div>
+  <div class="m-st">${ST_LABEL[x.st]||""}</div>
+  <div class="m-btns">
+   ${s.url?`<a class="mb link" href="${s.url}" target="_blank" rel="noopener">💬 Discordで開く</a>`:""}
+   <button class="mb fix" id="fixBtn">✍ 修正行をコピー</button>
+  </div>
+  <div class="m-hint">「修正行」を手動掲載スレッドに貼って日時等を書き換えると、次回の自動更新でこの卓の表示が上書きされます（＝ボード上の編集）。</div>`;
+ modal.querySelector(".m-close").addEventListener("click",closeModal);
+ modal.querySelector("#fixBtn").addEventListener("click",function(){
+  (navigator.clipboard?navigator.clipboard.writeText(fixLine):Promise.reject()).then(()=>{this.textContent="コピーした！"}).catch(()=>{prompt("この行をコピーしてね",fixLine)});
+ });
+ mback.classList.add("show");modal.classList.add("show");
 }
 function renderCal(){
  const map=dayMap();
