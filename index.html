@@ -890,8 +890,8 @@ function kbTouch(){
  kbTouchCount++;
  const now=Date.now();
  kbTouchHits=kbTouchHits.filter(t=>now-t<10000);kbTouchHits.push(now);
+ if(kbTouchCount%20===0){kbTouchHits=[];kbAngry(`もう${kbTouchCount}回も私のこと触ってるんだけど……`);return} // 通算20回の節目を先に判定＝連打中でも到達できる（てんさんPRのネタ）
  if(kbTouchHits.length>=5){kbTouchHits=[];kbAngry("もう、くすぐったいってば！そんなに連打しないの……");return} // 10秒5連打で怒る（後輩くん 2026-07-05）
- if(kbTouchCount%20===0){kbAngry(`もう${kbTouchCount}回も私のこと触ってるんだけど……`);return} // 通算20回ネタはてんさんPRのまま残す
  kbRestoreOutfit();kbSay();
 }
 function kbToggleLinde(){
