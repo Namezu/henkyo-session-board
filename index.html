@@ -47,16 +47,16 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opac
 /* 天の飾り帯＝深緑に金の糸 */
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:4px;z-index:6;
  background:linear-gradient(90deg,var(--grn) 0%,#4f8160 42%,var(--gold) 50%,#4f8160 58%,var(--grn) 100%)}
-.wrap{max-width:880px;margin:0 auto;padding:26px 14px 70px}
+.wrap{max-width:880px;margin:0 auto;padding:14px 14px 70px}
 header{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .hleft{display:flex;align-items:center;gap:16px}
-.brandmark{height:86px;width:auto;flex:none;filter:drop-shadow(0 5px 12px rgba(0,0,0,.45))}
+.brandmark{height:64px;width:auto;flex:none;filter:drop-shadow(0 5px 12px rgba(0,0,0,.45))}
 @media(max-width:560px){.brandmark{height:64px}}
 .brand{font-size:.72em;letter-spacing:.35em;color:var(--ter);font-weight:700;margin-bottom:2px}
 h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spacing:.06em;color:var(--grn);margin:0;line-height:1.25}
 .tagline{font-size:.76em;color:var(--mut);margin-top:3px;letter-spacing:.04em}
 .fresh{font-size:.72em;color:var(--mut);text-align:right}
-.toolrow{display:flex;gap:7px;margin:16px 0 6px;flex-wrap:wrap;align-items:center;
+.toolrow{display:flex;gap:7px;margin:10px 0 6px;flex-wrap:wrap;align-items:center;
  position:sticky;top:10px;z-index:30;padding:9px 10px;border-radius:20px;
  background:var(--glass);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
  border:1px solid var(--glass-brd);box-shadow:var(--glass-in),var(--shadow)}
@@ -255,7 +255,6 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
   <div>
    <div class="brand">辺境TRPG村</div>
    <h1>セッションボード</h1>
-   <div class="tagline">村の卓が、ひと目でわかる。</div>
   </div>
  </div>
  <div class="fresh" id="fresh">読込中…</div>
@@ -267,11 +266,11 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <select class="fsel" id="sysSel"><option value="">システム: 全て</option></select>
  <select class="fsel" id="regSel"><option value="">レギュ: 全て</option></select>
  <select class="fsel" id="gmSel"><option value="">GM: 全て</option></select>
- <a class="tolink" href="takutate.html">🛠 セッション作成マイセット（アリアンロッド用）→</a>
  <span class="bandrow"><span class="bandlab">時間帯ソート：</span>
   <button class="f bf" data-band="asa" type="button">朝</button>
   <button class="f bf" data-band="hiru" type="button">昼</button>
   <button class="f bf" data-band="yoru" type="button">夜</button>
+  <a class="tolink" href="takutate.html">🛠 セッション作成マイセット（アリアンロッド用）→</a>
  </span>
 </div>
 
