@@ -33,10 +33,12 @@ textarea{min-height:74px;resize:vertical}
 .dayrow{display:flex;gap:6px;align-items:center;margin:6px 0}
 .dayrow input[type=date]{flex:1.5}.dayrow select{flex:1;padding:11px 6px}
 .dayrow .del{border:none;background:none;color:#a04628;font-size:1.2em;cursor:pointer;padding:4px 6px}
-.genbar{position:sticky;bottom:12px;display:flex;gap:10px}
-.gen{flex:2.2;padding:15px;border:none;border-radius:14px;background:var(--ter);color:#fff;font-size:1.1em;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.22)}
-.gen.save{flex:1;background:var(--grn);font-size:.95em}
+.genbar{position:sticky;bottom:12px;display:flex;gap:10px;align-items:stretch}
+.gen{flex:2.2;display:flex;align-items:center;justify-content:center;padding:14px 8px;border:none;border-radius:14px;background:var(--ter);color:#fff;font-size:1.1em;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.22)}
+.gen.save{flex:1.2;background:var(--grn);font-size:.92em;white-space:nowrap}
 .gen:active{transform:translateY(1px)}
+.lbl-short{display:none}
+@media(max-width:560px){.lbl-full{display:none}.lbl-short{display:inline}.gen{font-size:1em}.gen.save{font-size:.88em}}
 .out{border:1px solid var(--cln);border-radius:14px;background:var(--card);margin:14px 0;overflow:hidden}
 .out h3{margin:0;padding:10px 14px;background:#f4efe6;font-size:.92em;color:var(--grn);display:flex;justify-content:space-between;align-items:center}
 .out pre{margin:0;padding:12px 14px;white-space:pre-wrap;word-break:break-word;font-family:inherit;font-size:.92em;max-height:300px;overflow:auto}
@@ -180,7 +182,7 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 
 <div class="genbar">
  <button class="gen" id="genBtn">✨ 生成する</button>
- <button class="gen save" id="setSave2">💾 マイセット保存</button>
+ <button class="gen save" id="setSave2">💾 <span class="lbl-full">マイセット保存</span><span class="lbl-short">保存</span></button>
 </div>
 <div id="results"></div>
 </div>
