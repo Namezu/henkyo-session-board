@@ -700,7 +700,7 @@ function kbLines(){
   "卓の詳細は、チップを押すとDiscordに飛べるよ",
   "スカラバエウス？ あの子は勝手に転がしてくるだけ。わたしは受け取って貼るだけだよ",
   "カメさんの言葉？ わかんないよ？ ……なんとなく、こう言ってる気がするだけ",
-  "村の外に出たらチャルタヴォラがいてびっくりした！",
+  "村の外に出たらチャルタヴォラがすっごくたくさん居てびっくりした！",
   "来てくれてうれしいな",
   "どの卓に参加する？　それとも、卓を立ててくれる！？"];
  if(!DATA)return L;
@@ -744,14 +744,19 @@ function kbPreload(src){return new Promise(r=>{const i=new Image();i.onload=()=>
 kbPreload("girl/greet.png").then(s=>kbGreet=s);
 kbPreload("girl/bye.png").then(s=>kbBye=s);
 function kbShown(){return localStorage.getItem(KB_KEY)==="on"||(localStorage.getItem(KB_KEY)!=="off"&&!kbCalVisible)}
-// スクロールで自然に現れた時の挨拶（呼ばれた時とは別＝後輩くん指定）
-const KB_AUTO_GREETS=["いらっしゃい、受付はこちらだよ","最後まで見てくれてありがと。なにか手伝おうか？","おつかれさま。気になる卓、あった？"];
+// スクロールで自然に現れた時の挨拶＝時間帯であいさつが変わる（呼ばれた時とは別セリフ・後輩くん指定）
+function kbAutoGreet(){
+ const h=new Date().getHours();
+ const g=(h>=5&&h<11)?"おはよっ！":(h>=11&&h<18)?"えへへっ、こんにちは！":"こんばんは！";
+ const tails=["受付はこちらだよ","気になる卓、あった？","なにか手伝おうか？"];
+ return g+"　"+tails[Math.floor(Math.random()*tails.length)];
+}
 let kbWasShown=false;
 function kbApply(){
  if(kbBroken)return;
  const show=kbShown();
  if(!kbAnim)$("kanban").hidden=!show;
- if(show&&!kbWasShown)kbSay(KB_AUTO_GREETS[Math.floor(Math.random()*KB_AUTO_GREETS.length)]);
+ if(show&&!kbWasShown)kbSay(kbAutoGreet());
  kbWasShown=show;
  // タブは常設のトグル＝いる時は「帰す」・いない時は「呼ぶ」
  $("kbShow").hidden=false;
