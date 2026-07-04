@@ -729,8 +729,11 @@ function kbLines(){
  }}));
  if(nearest&&nearest.t.getTime()===t0.getTime())
   L.push(`今日は卓の日だよ！　${nearest.dd.start||""}から『${nearest.s.scenario}』！`);
- else
-  L.push("今日は卓がないみたい。どうする？　立てちゃう〜？");
+ else{
+  const hh=new Date().getHours();
+  // 21時以降は営業せず労い（深夜0〜4時も夜帯扱い）・朝〜20時台は立卓のお誘い
+  L.push(hh>=21||hh<5?"今日の村は静かだったね。いっぱい休めた？":"今日は卓がないみたい。どうする？　立てちゃう〜？");
+ }
  if(nearestOpen)
   L.push(`募集中でいちばん日程が近いのは${nearestOpen.t.getMonth()+1}/${nearestOpen.t.getDate()}の『${nearestOpen.s.scenario}』だよ。気になったら急いで！`);
  if(nearest&&!nearest.s.open&&nearest.t.getTime()!==t0.getTime())
