@@ -179,22 +179,16 @@ function openDetail(x){
  tip.classList.remove("show");
  const s=x.s;
  const when=x.st==="suri"?"日程すり合わせ中":(s.dates||[]).map(dd=>{const t=jd(dd.date);return`${t.getMonth()+1}/${t.getDate()}(${WD[t.getDay()]}) ${dd.start||""}${dd.end?"-"+dd.end:""}`}).join(" ／ ");
- // 修正用の1行（手動スレッドに貼ると次回更新で上書きされる）
- const fixLine=`修正 ${s.url||"(トピックURL)"} ${(s.dates&&s.dates[0])?`${jd(s.dates[0].date).getMonth()+1}/${jd(s.dates[0].date).getDate()} ${s.dates[0].start||""}${s.dates[0].end?"-"+s.dates[0].end:""}`:"すり合わせ"}【${s.reg||""}】${s.scenario}${s.gm?` GM:${s.gm}`:""}`;
  modal.innerHTML=`<button class="m-close">✕</button>
   <div class="m-name">${esc(s.scenario)}</div>
   <div class="m-meta">${when}</div>
   <div class="m-meta">${s.reg&&!s.reg_is_name?`【${esc(s.reg)}】`:""}${s.gm?`　GM: ${esc(s.gm)}`:""}${s.source==="manual"?"　✍手動掲載":""}</div>
   <div class="m-st">${ST_LABEL[x.st]||""}</div>
   <div class="m-btns">
-   ${s.url?`<a class="mb link" href="${s.url}" target="_blank" rel="noopener">💬 Discordで開く</a>`:""}
-   <button class="mb fix" id="fixBtn">✍ 修正行をコピー</button>
+   ${s.url?`<a class="mb link" href="${s.url}" target="_blank" rel="noopener">💬 Discordで開く（募集詳細・参加表明）</a>`:""}
   </div>
-  <div class="m-hint">「修正行」を手動掲載スレッドに貼って日時等を書き換えると、次回の自動更新でこの卓の表示が上書きされます（＝ボード上の編集）。</div>`;
+  <div class="m-hint">日時や内容の変更はDiscord側でトピックを直せばOK＝次の自動更新（15分毎）でこのボードも追従します。</div>`;
  modal.querySelector(".m-close").addEventListener("click",closeModal);
- modal.querySelector("#fixBtn").addEventListener("click",function(){
-  (navigator.clipboard?navigator.clipboard.writeText(fixLine):Promise.reject()).then(()=>{this.textContent="コピーした！"}).catch(()=>{prompt("この行をコピーしてね",fixLine)});
- });
  mback.classList.add("show");modal.classList.add("show");
 }
 function renderCal(){
