@@ -720,15 +720,19 @@ function kbLines(){
  const wd=[0,0,0,0,0,0,0];mine.forEach(s=>(s.dates||[]).forEach(d=>{const t=jd(d.date);if(t.getFullYear()===curY&&t.getMonth()===curM)wd[t.getDay()]++}));
  const emptyWd=wd.indexOf(0);
  if(mine.length&&emptyWd>=0)L.push(`今月は${WD[emptyWd]}曜日が空き気味だね〜？`);
- // 今日の卓・直近の卓（実データ連動）
+ // 今日の卓・直近の卓（実データ連動・おすすめは募集中優先＝後輩くん指定）
  const t0=new Date();t0.setHours(0,0,0,0);
- let nearest=null;
- ses.forEach(s=>(s.dates||[]).forEach(dd=>{const t=jd(dd.date);if(t>=t0&&(!nearest||t<nearest.t))nearest={t,dd,s}}));
- if(nearest){
-  const same=nearest.t.getTime()===t0.getTime();
-  L.push(same?`今日は卓の日だよ！　${nearest.dd.start||""}から『${nearest.s.scenario}』！`
-            :`いちばん近い卓は${nearest.t.getMonth()+1}/${nearest.t.getDate()}の『${nearest.s.scenario}』だよ`);
- }
+ let nearest=null,nearestOpen=null;
+ ses.forEach(s=>(s.dates||[]).forEach(dd=>{const t=jd(dd.date);if(t>=t0){
+  if(!nearest||t<nearest.t)nearest={t,dd,s};
+  if(s.open&&(!nearestOpen||t<nearestOpen.t))nearestOpen={t,dd,s};
+ }}));
+ if(nearest&&nearest.t.getTime()===t0.getTime())
+  L.push(`今日は卓の日だよ！　${nearest.dd.start||""}から『${nearest.s.scenario}』！`);
+ if(nearestOpen)
+  L.push(`募集中でいちばん日程が近いのは${nearestOpen.t.getMonth()+1}/${nearestOpen.t.getDate()}の『${nearestOpen.s.scenario}』だよ。気になったら急いで！`);
+ if(nearest&&!nearest.s.open&&nearest.t.getTime()!==t0.getTime())
+  L.push(`いちばん近い卓は${nearest.t.getMonth()+1}/${nearest.t.getDate()}の『${nearest.s.scenario}』。こっちはもう募集締切だけどね`);
  // ---- カレンダー連動の観察セリフ ----
  if(VIEW==="year")L.push("一年分をながめてるの？　壮観だよねえ");
  if(SYSF)L.push(`いまは${SYSF}の卓だけ表示中だよ`);
