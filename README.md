@@ -1,5 +1,6 @@
 # 辺境TRPG村 セッションボード
 
-GM向けツール置き場（卓立てジェネレータ／卓予定リスト[準備中]）。
+村のGM/PL向けツール置き場。
 
-- 卓立てジェネレータ: https://namezu.github.io/henkyo-session-board/takutate.html
+- **セッションボード（卓予定カレンダー）**: https://namezu.github.io/henkyo-session-board/
+- **AR2EGM用セッション作成マイセット**: https://namezu.github.io/henkyo-session-board/takutate.html
