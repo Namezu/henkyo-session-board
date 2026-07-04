@@ -529,7 +529,7 @@ function buildOutputs(state){
  }
  const pitaUrl=$("pitaUrl").value.trim();
  // URLは見出しにせず通常行（生URL=招待カードの展開は維持）。使い方は掲示板の説明へマスクリンク誘導
- if(pitaUrl){lines.push("",`**当卓では日程・出欠管理に卓ピタを利用します。下記URLからご参加ください。**`,pitaUrl,`使い方が分からない場合は[こちらの掲示板の説明](<${PITA_GUIDE_URL}>)か、DM・当トピック内でお気軽にどうぞ。`)}
+ if(pitaUrl){lines.push("",`📅 **当卓では日程・出欠管理に卓ピタを利用します。下記URLからご参加ください。**`,pitaUrl,`使い方が分からない場合は[こちらの掲示板の説明](<${PITA_GUIDE_URL}>)か、DM・当トピック内でお気軽にどうぞ。`)}
  if($("footerFree").value.trim())lines.push("",$("footerFree").value.trim());
  const post1=lines.join("\n");
  // 予告
