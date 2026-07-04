@@ -126,36 +126,34 @@ def render(data, year, month, out):
             except Exception:
                 continue
             if dt.year == year and dt.month == month:
-                bydate.setdefault(dt.day, []).append((d.get("start") or "", d.get("end") or "", s))
+                bydate.setdefault(dt.day, []).append((d.get("start") or "", s))
     for v in bydate.values():
         v.sort(key=lambda x: x[0])
     suri = [s for s in sessions if s.get("suriawase")]
     today = datetime.date.today()
 
-    # ---- 縦長レイアウト採寸 ----
-    W = 1080; PAD = 46
-    f_title = font(50, serif=True); f_sub = font(24)
-    f_mini_d = font(22, True); f_mini_c = font(20, True); f_dow = font(22, True)
-    f_dayh = font(34, True); f_name = font(31, True); f_meta = font(24); f_badge = font(21, True)
-    f_foot = font(22)
+    # ---- 縦長カレンダー採寸（マスが主役・チップを直接読めるサイズに） ----
+    W = 1080; PAD = 34
+    f_title = font(48, serif=True); f_sub = font(23)
+    f_dow = font(22, True); f_day = font(24, True)
+    f_name = font(20, True); f_time = font(16); f_more = font(17, True)
+    f_meta = font(23); f_badge = font(20, True); f_foot = font(22)
 
     first = datetime.date(year, month, 1)
     ndays = (datetime.date(year + (month == 12), month % 12 + 1, 1) - first).days
     lead = (first.weekday() + 1) % 7  # 日曜始まり
     weeks = -(-(lead + ndays) // 7)
 
-    mini_cell = (W - PAD * 2 - 6 * 6) // 7
-    mini_h = 34 + weeks * (mini_cell + 6) + 18
-    head_h = 118
-    ses_row = 96; day_head = 56; day_gap = 14
-    agenda_h = sum(day_head + len(v) * (ses_row + 8) + day_gap for v in bydate.values())
-    suri_h = (64 + len(suri) * (ses_row + 8)) if suri else 0
-    foot_h = 76
-    H = head_h + mini_h + 30 + agenda_h + suri_h + foot_h
+    cell_w = (W - PAD * 2 - 6 * 6) // 7
+    maxchips = min(max([len(v) for v in bydate.values()] + [1]), 3)
+    chip_h = 56
+    cell_h = max(120, 38 + maxchips * (chip_h + 5) + 8)
+    head_h = 108; dow_h = 38
+    suri_h = (64 + len(suri) * 66) if suri else 0
+    foot_h = 74
+    H = head_h + dow_h + weeks * (cell_h + 7) + suri_h + foot_h
 
     img = Image.new("RGB", (W, H), BG)
-    dr = ImageDraw.Draw(img)
-    # 色むら＋天の飾り帯
     ov = Image.new("RGB", (W, H), BG)
     od = ImageDraw.Draw(ov)
     od.ellipse([-300, -260, 560, 380], fill="#1d2422")
@@ -167,46 +165,135 @@ def render(data, year, month, out):
         dr.line([(x, 0), (x, 5)], fill=(GOLD if t < .04 else (GRN2 if t < .35 else GRN_DEEP)))
 
     # ---- ヘッダ ----
-    dr.text((PAD, 28), f"{month}月の卓予定", font=f_title, fill=GRN)
+    dr.text((PAD, 26), f"{month}月の卓予定", font=f_title, fill=GRN)
     right = f"{data.get('guild','')}　{data.get('updated','')}更新"
-    dr.text((W - PAD - dr.textlength(right, font=f_sub), 52), right, font=f_sub, fill=MUT)
+    dr.text((W - PAD - dr.textlength(right, font=f_sub), 48), right, font=f_sub, fill=MUT)
 
-    # ---- ミニ月間（こみぐあい） ----
+    # ---- 曜日 ----
     y0 = head_h
     for i, w in enumerate(["日", "月", "火", "水", "木", "金", "土"]):
-        x = PAD + i * (mini_cell + 6)
+        x = PAD + i * (cell_w + 6)
         c = SUN if i == 0 else SAT if i == 6 else MUT
-        dr.text((x + mini_cell / 2 - dr.textlength(w, font=f_dow) / 2, y0), w, font=f_dow, fill=c)
-    y0 += 34
+        dr.text((x + cell_w / 2 - dr.textlength(w, font=f_dow) / 2, y0), w, font=f_dow, fill=c)
+    y0 += dow_h
+
+    # ---- マス（大きめ・チップ直読み） ----
     for day in range(1, ndays + 1):
         idx = lead + day - 1
         r, c = divmod(idx, 7)
-        x = PAD + c * (mini_cell + 6); y = y0 + r * (mini_cell + 6)
-        n = len(bydate.get(day, []))
-        fill = CARD if n == 0 else tint("#6fae82", min(.16 + .18 * n, .7))
+        x = PAD + c * (cell_w + 6); y = y0 + r * (cell_h + 7)
+        chips = bydate.get(day, [])
         is_today = (today.year, today.month, today.day) == (year, month, day)
-        dr.rounded_rectangle([x, y, x + mini_cell, y + mini_cell], 10, fill=fill,
+        past = datetime.date(year, month, day) < today
+        fill = CARD_HI if chips and not past else CARD
+        dr.rounded_rectangle([x, y, x + cell_w, y + cell_h], 12, fill=fill,
                              outline=TER if is_today else CLN, width=3 if is_today else 1)
-        dc = SUN if c == 0 else SAT if c == 6 else (TX if n else MUT)
-        dr.text((x + 8, y + 5), str(day), font=f_mini_d, fill=dc)
-        if n:
-            label = f"{n}卓"
-            dr.text((x + mini_cell - 10 - dr.textlength(label, font=f_mini_c), y + mini_cell - 30),
-                    label, font=f_mini_c, fill=GRN)
+        dc = SUN if c == 0 else SAT if c == 6 else (TX if chips else MUT)
+        if past:
+            dc = MUT if chips else CLN
+        dr.text((x + 9, y + 6), str(day), font=f_day, fill=dc)
+        if is_today:
+            dr.rounded_rectangle([x + cell_w - 62, y + 8, x + cell_w - 8, y + 34], 7, fill=TER)
+            dr.text((x + cell_w - 54, y + 10), "今日", font=f_badge, fill="#1a1410")
+        cy = y + 38
+        for i, (st, s) in enumerate(chips[:3]):
+            if i == 2 and len(chips) > 3:
+                dr.text((x + 10, cy + 4), f"…他{len(chips) - 2}卓", font=f_more, fill=TER)
+                break
+            col = sys_color(s)
+            row_bg = tint(col, .22) if not past else CARD
+            dr.rounded_rectangle([x + 5, cy, x + cell_w - 5, cy + chip_h], 9, fill=row_bg)
+            dr.rounded_rectangle([x + 5, cy, x + 9, cy + chip_h], 3, fill=col if not past else CLN)
+            bd = time_band(st)
+            nx = x + 14
+            if bd:
+                draw_time_icon(dr, bd, nx, cy + 5, 18, row_bg)
+                nx += 24
+            dr.text((nx, cy + 4), ellipsis(dr, s.get("scenario") or "？", f_name, x + cell_w - 9 - nx),
+                    font=f_name, fill=TX if not past else MUT)
+            tline = st + ("　募集中" if s.get("open") and not past else "")
+            dr.text((x + 14, cy + 33), ellipsis(dr, tline, f_time, cell_w - 24),
+                    font=f_time, fill=GRN if (s.get("open") and not past) else MUT)
+            cy += chip_h + 5
 
-    # ---- アジェンダ（日付ごとの卓リスト） ----
-    yy = y0 + weeks * (mini_cell + 6) + 18 + 30
+    # ---- すり合わせ（コンパクト行） ----
+    yy = y0 + weeks * (cell_h + 7) + 10
+    if suri:
+        dr.rectangle([PAD, yy + 6, PAD + 13, yy + 24], fill="#d8b47e")
+        dr.text((PAD + 22, yy), "日程すり合わせ中", font=font(28, True), fill="#d8b47e")
+        yy += 52
+        for s in suri:
+            col = sys_color(s)
+            dr.rounded_rectangle([PAD, yy, W - PAD, yy + 56], 12, fill=CARD, outline="#5c4f35", width=1)
+            dr.rounded_rectangle([PAD, yy, PAD + 6, yy + 56], 3, fill=col)
+            line = (s.get("scenario") or "？") + ("　GM: " + s["gm"] if s.get("gm") else "") + ("　募集中" if s.get("open") else "")
+            dr.text((PAD + 20, yy + 13), ellipsis(dr, line, f_meta, W - PAD * 2 - 40), font=f_meta, fill=TX)
+            yy += 66
+
+    # ---- フッタ ----
+    n_open = sum(1 for s in sessions if s.get("open"))
+    foot = f"掲載 {len(sessions)}卓（募集中 {n_open}）／詳細はボードへ"
+    dr.text((PAD, yy + 18), foot, font=f_foot, fill=MUT)
+    url = "namezu.github.io/henkyo-session-board"
+    dr.text((W - PAD - dr.textlength(url, font=f_foot), yy + 18), url, font=f_foot, fill=GRN)
+
+    img.save(out)
+    print(f"🖼 カレンダー画像: {out} ({W}x{H})")
+    return out
+
+
+def render_agenda(data, year, month, out):
+    """2枚目＝日付ごとの大きな文字の卓リスト（カレンダーの詳細版）"""
+    sessions = data.get("sessions", [])
+    bydate = {}
+    for s in sessions:
+        for d in s.get("dates", []):
+            try:
+                dt = datetime.date.fromisoformat(d["date"])
+            except Exception:
+                continue
+            if dt.year == year and dt.month == month:
+                bydate.setdefault(dt.day, []).append((d.get("start") or "", d.get("end") or "", s))
+    for v in bydate.values():
+        v.sort(key=lambda x: x[0])
+    suri = [s for s in sessions if s.get("suriawase")]
+    today = datetime.date.today()
+
+    W = 1080; PAD = 46
+    f_title = font(46, serif=True); f_sub = font(23)
+    f_dayh = font(33, True); f_name = font(30, True); f_meta = font(23); f_badge = font(20, True)
+    f_foot = font(22)
+    ses_row = 92; day_head = 54; day_gap = 12
+    head_h = 104
+    agenda_h = sum(day_head + len(v) * (ses_row + 8) + day_gap for v in bydate.values())
+    suri_h = (60 + len(suri) * (ses_row + 8)) if suri else 0
+    H = head_h + agenda_h + suri_h + 70
+
+    img = Image.new("RGB", (W, H), BG)
+    ov = Image.new("RGB", (W, H), BG)
+    od = ImageDraw.Draw(ov)
+    od.ellipse([-300, -260, 560, 380], fill="#1d2422")
+    od.ellipse([W - 420, H - 500, W + 300, H + 200], fill="#20201c")
+    img = Image.blend(img, ov, 0.5)
+    dr = ImageDraw.Draw(img)
+    for x in range(W):
+        t = abs(x / W - .5)
+        dr.line([(x, 0), (x, 5)], fill=(GOLD if t < .04 else (GRN2 if t < .35 else GRN_DEEP)))
+
+    dr.text((PAD, 26), f"{month}月の卓リスト", font=f_title, fill=GRN)
+    right = "タップで拡大・参加はDiscordの卓部屋へ"
+    dr.text((W - PAD - dr.textlength(right, font=f_sub), 48), right, font=f_sub, fill=MUT)
+
+    yy = head_h
     for day in sorted(bydate):
         dt = datetime.date(year, month, day)
         past = dt < today
-        wd = WD[dt.weekday()]
-        hcol = wd_color(dt)
-        label = f"{month}/{day}（{wd}）"
-        dr.text((PAD, yy + 8), label, font=f_dayh, fill=hcol if not past else CLN)
+        label = f"{month}/{day}（{WD[dt.weekday()]}）"
+        dr.text((PAD, yy + 6), label, font=f_dayh, fill=wd_color(dt) if not past else CLN)
         if (today.year, today.month, today.day) == (year, month, day):
             bx = PAD + dr.textlength(label, font=f_dayh) + 14
-            dr.rounded_rectangle([bx, yy + 14, bx + 76, yy + 46], 8, fill=TER)
-            dr.text((bx + 12, yy + 17), "今日", font=f_badge, fill="#1a1410")
+            dr.rounded_rectangle([bx, yy + 10, bx + 74, yy + 42], 8, fill=TER)
+            dr.text((bx + 12, yy + 13), "今日", font=f_badge, fill="#1a1410")
         yy += day_head
         for st, en, s in bydate[day]:
             col = sys_color(s)
@@ -217,53 +304,40 @@ def render(data, year, month, out):
             bd = time_band(st)
             nx = PAD + 24
             if bd:
-                draw_time_icon(dr, bd, nx, yy + 16, 26, row_bg)
+                draw_time_icon(dr, bd, nx, yy + 14, 26, row_bg)
                 nx += 38
             name_w = W - PAD - nx - 150
-            dr.text((nx, yy + 8), ellipsis(dr, s.get("scenario") or "？", f_name, name_w), font=f_name, fill=tx)
+            dr.text((nx, yy + 7), ellipsis(dr, s.get("scenario") or "？", f_name, name_w), font=f_name, fill=tx)
             meta = f"{st}{'-' + en if en else ''}"
             if s.get("reg") and not s.get("reg_is_name"):
                 meta += f"　【{s['reg']}】"
             if s.get("gm"):
                 meta += f"　GM: {s['gm']}"
-            dr.text((nx, yy + 54), ellipsis(dr, meta, f_meta, name_w + 130), font=f_meta, fill=MUT)
+            dr.text((nx, yy + 52), ellipsis(dr, meta, f_meta, name_w + 130), font=f_meta, fill=MUT)
             if s.get("open") and not past:
-                bw = 110
-                dr.rounded_rectangle([W - PAD - bw - 14, yy + 12, W - PAD - 14, yy + 46], 10,
-                                     fill=tint("#6fae82", .3))
-                dr.text((W - PAD - bw + 2, yy + 16), "募集中", font=f_badge, fill=GRN)
+                dr.rounded_rectangle([W - PAD - 124, yy + 12, W - PAD - 14, yy + 44], 10, fill=tint("#6fae82", .3))
+                dr.text((W - PAD - 112, yy + 16), "募集中", font=f_badge, fill=GRN)
             yy += ses_row + 8
         yy += day_gap
 
-    # ---- すり合わせ ----
     if suri:
-        dr.rectangle([PAD, yy + 8, PAD + 14, yy + 26], fill="#d8b47e")
-        dr.text((PAD + 24, yy), "日程すり合わせ中", font=f_dayh, fill="#d8b47e")
-        yy += 64
+        dr.rectangle([PAD, yy + 6, PAD + 13, yy + 24], fill="#d8b47e")
+        dr.text((PAD + 22, yy), "日程すり合わせ中", font=f_dayh, fill="#d8b47e")
+        yy += 60
         for s in suri:
             col = sys_color(s)
             dr.rounded_rectangle([PAD, yy, W - PAD, yy + ses_row], 14, fill=CARD, outline="#5c4f35", width=1)
             dr.rounded_rectangle([PAD, yy, PAD + 7, yy + ses_row], 3, fill=col)
-            dr.text((PAD + 24, yy + 8), ellipsis(dr, s.get("scenario") or "？", f_name, W - PAD * 2 - 190),
-                    font=f_name, fill=TX)
+            dr.text((PAD + 24, yy + 7), ellipsis(dr, s.get("scenario") or "？", f_name, W - PAD * 2 - 190), font=f_name, fill=TX)
             meta = "日付はこれから" + (f"　GM: {s['gm']}" if s.get("gm") else "")
-            dr.text((PAD + 24, yy + 54), ellipsis(dr, meta, f_meta, W - PAD * 2 - 60), font=f_meta, fill=MUT)
+            dr.text((PAD + 24, yy + 52), ellipsis(dr, meta, f_meta, W - PAD * 2 - 60), font=f_meta, fill=MUT)
             if s.get("open"):
-                bw = 110
-                dr.rounded_rectangle([W - PAD - bw - 14, yy + 12, W - PAD - 14, yy + 46], 10,
-                                     fill=tint("#6fae82", .3))
-                dr.text((W - PAD - bw + 2, yy + 16), "募集中", font=f_badge, fill=GRN)
+                dr.rounded_rectangle([W - PAD - 124, yy + 12, W - PAD - 14, yy + 44], 10, fill=tint("#6fae82", .3))
+                dr.text((W - PAD - 112, yy + 16), "募集中", font=f_badge, fill=GRN)
             yy += ses_row + 8
 
-    # ---- フッタ ----
-    n_open = sum(1 for s in sessions if s.get("open"))
-    foot = f"掲載 {len(sessions)}卓（募集中 {n_open}）／詳細・最新はボードへ"
-    dr.text((PAD, yy + 20), foot, font=f_foot, fill=MUT)
-    url = "namezu.github.io/henkyo-session-board"
-    dr.text((W - PAD - dr.textlength(url, font=f_foot), yy + 20), url, font=f_foot, fill=GRN)
-
     img.save(out)
-    print(f"🖼 カレンダー画像: {out} ({W}x{H})")
+    print(f"🖼 アジェンダ画像: {out} ({W}x{H})")
     return out
 
 if __name__ == "__main__":
@@ -277,3 +351,4 @@ if __name__ == "__main__":
     with open(a.i, encoding="utf-8") as f:
         data = json.load(f)
     render(data, a.y, a.m, a.o)
+    render_agenda(data, a.y, a.m, a.o.replace("calendar", "agenda") if "calendar" in a.o else a.o + ".agenda.png")
