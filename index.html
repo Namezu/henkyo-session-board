@@ -885,9 +885,13 @@ function kbAngry(line,forceShow=false){
  img.src="girl/angri.png";kbSay(line);
  kbAngryTimer=setTimeout(()=>{if(!$("kanban").hidden)$("kbGirl").src=kbOutfit().src;kbAngryTimer=null},2600);
 }
+let kbTouchHits=[];
 function kbTouch(){
  kbTouchCount++;
- if(kbTouchCount%20===0){kbAngry(`もう${kbTouchCount}回も私のこと触ってるんだけど……`);return}
+ const now=Date.now();
+ kbTouchHits=kbTouchHits.filter(t=>now-t<10000);kbTouchHits.push(now);
+ if(kbTouchHits.length>=5){kbTouchHits=[];kbAngry("もう、くすぐったいってば！そんなに連打しないの……");return} // 10秒5連打で怒る（後輩くん 2026-07-05）
+ if(kbTouchCount%20===0){kbAngry(`もう${kbTouchCount}回も私のこと触ってるんだけど……`);return} // 通算20回ネタはてんさんPRのまま残す
  kbRestoreOutfit();kbSay();
 }
 function kbToggleLinde(){
