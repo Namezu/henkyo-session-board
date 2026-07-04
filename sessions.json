@@ -1,5 +1,5 @@
 {
- "updated": "2026/07/04 17:06",
+ "updated": "2026/07/04 10:54",
  "guild": "LODGE",
  "sessions": [
   {
@@ -30,6 +30,18 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522857692476211220",
    "created": "2026-07-04T06:52:47.214000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "血の回廊事件･再臨",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "gm": "カテナドルグ",
+   "url": "https://discord.com/channels/1023884809774305301/1522907095144599673",
+   "created": "2026-07-04T10:09:05.728000+00:00",
    "source": "forum"
   },
   {
