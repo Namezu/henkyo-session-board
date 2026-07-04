@@ -1,8 +1,9 @@
-name: カレンダー画像の日次投稿（毎朝9時JST）
+name: カレンダー画像の投稿（朝9時・夕方18時JST）
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # UTC 0:00 = JST 9:00
+    - cron: "0 0 * * *"   # UTC 0:00 = JST 9:00（朝の官報）
+    - cron: "0 9 * * *"   # UTC 9:00 = JST 18:00（夕方便＝夜卓前に最新化）
   workflow_dispatch:
 
 permissions:
