@@ -79,7 +79,6 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 /* 朝昼夜トグル（アイコン色を活かすためON時は薄緑地） */
 .f.bf .tb{width:12px;height:12px;vertical-align:-2px;margin-right:2px}
 .f.bf.on{background:#e4eee6;border-color:var(--grn);color:var(--grn);font-weight:700}
-[data-theme=dark] .f.bf.on{background:#2e3b32;border-color:var(--grn);color:var(--grn)}
 /* レギュ/GM絞り込みプルダウン */
 .fsel{border:1.5px solid var(--cln);background:#fffdf9;border-radius:20px;padding:7px 10px;font-size:.85em;font-family:inherit;color:var(--mut);max-width:44vw;cursor:pointer;transition:border-color .18s,box-shadow .18s}
 .fsel:hover{border-color:var(--grn2);box-shadow:var(--shadow)}
@@ -176,51 +175,26 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 .unp b{color:#8a6a1f}
 .unp a{color:var(--ter);text-decoration:none;font-weight:700}
 .unp li{margin:3px 0}
-[data-theme=dark] .unp{background:#2e2a1e;border-color:#8a6a1f}
+/* ---- 看板娘（案内人＝ただの村娘） ---- */
+#kanban{position:fixed;right:12px;bottom:8px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;pointer-events:none}
+#kanban[hidden]{display:none}
+.kb-bubble{pointer-events:auto;max-width:240px;background:var(--card);border:1px solid var(--cln);border-radius:14px 14px 3px 14px;box-shadow:var(--shadow);padding:9px 13px;font-size:.8em;line-height:1.55;margin:0 8px 8px 0;cursor:pointer;animation:kbpop .25s ease}
+.kb-bubble::after{content:"";position:absolute;right:26px;bottom:-7px;border:7px solid transparent;border-top-color:var(--card)}
+.kb-bubble{position:relative}
+@keyframes kbpop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.kb-girl{width:132px;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 6px 14px rgba(94,68,34,.25));transition:transform .2s}
+.kb-girl:hover{transform:translateY(-4px)}
+.kb-close{pointer-events:auto;position:absolute;top:-6px;right:0;width:22px;height:22px;border-radius:50%;border:1px solid var(--cln);background:var(--card);color:var(--mut);font-size:.75em;cursor:pointer;line-height:1;box-shadow:var(--shadow)}
+#kbShow{position:fixed;right:0;bottom:90px;z-index:40;writing-mode:vertical-rl;border:1px solid var(--cln);border-right:none;background:var(--card);color:var(--grn);font-family:'Shippori Mincho',serif;font-size:.74em;letter-spacing:.2em;padding:12px 6px;border-radius:10px 0 0 10px;cursor:pointer;box-shadow:var(--shadow)}
+#kbShow[hidden]{display:none}
+@media(max-width:560px){.kb-girl{width:96px}.kb-bubble{max-width:190px;font-size:.74em}}
 footer{margin-top:34px;font-size:.72em;color:var(--mut);text-align:center;letter-spacing:.08em;display:flex;align-items:center;justify-content:center;gap:14px}
 footer::before,footer::after{content:"";height:1px;width:min(90px,18vw);background:linear-gradient(90deg,transparent,var(--cln));display:block}
 footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
 
-/* ---- ダークモード ---- */
-[data-theme=dark]{--bg:#17181b;--card:#232529;--tx:#d8dade;--mut:#8f8a81;--cln:#3a3d42;--grn:#8fbc9b;--grn2:#6a9c78;--ter:#d98a5f;--gold:#cfa54a;--sun:#d76c5e;--sat:#7ea2cf;
- --shadow:0 6px 18px rgba(0,0,0,.4);--shadow-lg:0 14px 40px rgba(0,0,0,.55);--grain:.07}
-[data-theme=dark] body{background:radial-gradient(1100px 500px at 15% -8%,rgba(106,156,120,.07),transparent 60%),
- radial-gradient(900px 480px at 100% 0%,rgba(217,138,95,.05),transparent 55%),
- radial-gradient(1200px 700px at 50% 115%,rgba(207,165,74,.04),transparent 60%),var(--bg)}
-[data-theme=dark] .cell{box-shadow:0 1px 3px rgba(0,0,0,.3)}
-[data-theme=dark] .cell:hover{border-color:#4a4e55}
-[data-theme=dark] .card{box-shadow:0 1px 3px rgba(0,0,0,.3)}
-[data-theme=dark] .f:hover{color:var(--grn)}
-[data-theme=dark] .f,[data-theme=dark] .nav,[data-theme=dark] .lg,[data-theme=dark] .fsel{background:var(--card)}
-[data-theme=dark] .fsel.on{border-color:var(--grn);color:var(--grn)}
-[data-theme=dark] .sch.dim,[data-theme=dark] .card.dim,[data-theme=dark] .ticket.dim{opacity:.3}
-[data-theme=dark] .f.on{background:#3f6c4c;border-color:#3f6c4c;color:#fff}
-[data-theme=dark] .sch{color:#e6e3dc}
-[data-theme=dark] .ymd{background:#2c2e33}
-[data-theme=dark] .ymd.c1{background:#3a4c40}[data-theme=dark] .ymd.c2{background:#46664f}[data-theme=dark] .ymd.c3{background:#568563}
-[data-theme=dark] .suriband{background:linear-gradient(180deg,#2c2820,#282318);border-color:#4a4231}
-[data-theme=dark] .suriband .sb-h{color:#d8b47e}
-[data-theme=dark] .ticket{background:#2e2a22;box-shadow:2px 3px 8px rgba(0,0,0,.4)}
-[data-theme=dark] .manual{background:var(--card)}
-[data-theme=dark] .manual code{background:#33353a}
-[data-theme=dark] .b-open{background:#2e3b32;color:#9fc7aa}
-[data-theme=dark] .b-closed,[data-theme=dark] .b-done{background:#33353a;color:#8f8a81}
-[data-theme=dark] .b-suri{background:#3b2f24;color:#d98a5f}
-[data-theme=dark] #modal .mb.link{background:#3f6c4c}
-[data-theme=dark] #modal .mb.fix{background:#33353a;color:#a8c4ae}
 </style>
 </head>
 <body>
-<script>
-(function(){try{if(localStorage.getItem("sb_theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}
-window.sbToggleTheme=function(){const d=document.documentElement;const dark=d.getAttribute("data-theme")==="dark";
- if(dark)d.removeAttribute("data-theme");else d.setAttribute("data-theme","dark");
- try{localStorage.setItem("sb_theme",dark?"light":"dark")}catch(e){}
- document.querySelectorAll(".themeBtn").forEach(b=>b.textContent=dark?"\u{1F319} ダーク":"\u2600\uFE0F ライト");};
-window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElement.getAttribute("data-theme")==="dark";
- document.querySelectorAll(".themeBtn").forEach(b=>{b.textContent=dark?"\u2600\uFE0F ライト":"\u{1F319} ダーク";b.addEventListener("click",window.sbToggleTheme)})});
-})();
-</script>
 <div class="wrap">
 <header>
  <div>
@@ -241,7 +215,6 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
  <button class="f bf" data-band="yoru" type="button">夜</button>
  <span class="tooldiv"></span>
  <button class="f" id="rowBtn" type="button">レギュ名も表示</button>
- <button class="f themeBtn" type="button">🌙 ダーク</button>
  <a class="tolink" href="takutate.html">🛠 セッション作成マイセット →</a>
 </div>
 
@@ -272,6 +245,13 @@ window.addEventListener("DOMContentLoaded",()=>{const dark=document.documentElem
 <div id="unparsedSec"></div>
 <footer>辺境TRPG村 セッションボード（プロトタイプ）／時刻はすべて日本時間</footer>
 </div>
+
+<div id="kanban" hidden>
+ <div class="kb-bubble" id="kbBubble">こんにちは！</div>
+ <img class="kb-girl" id="kbGirl" src="girl/base.png" alt="案内人の村娘">
+ <button class="kb-close" id="kbClose" aria-label="案内人を隠す" title="隠す（右端のタブで呼び戻せます）">✕</button>
+</div>
+<button id="kbShow" hidden>案内人を呼ぶ</button>
 
 <script>
 (function(){
@@ -468,6 +448,7 @@ function renderDay(){
  const d=jd(selDate);
  el.innerHTML=`<div class="section">📌 ${d.getMonth()+1}/${d.getDate()}(${WD[d.getDay()]}) の卓</div>`+
   (list.length?list.map(card).join(""):`<div class="empty">この日の卓はありません（＝空いてる！卓を立てるチャンス）</div>`);
+ if(!list.length&&typeof kbSay==="function")kbSay(`${d.getMonth()+1}/${d.getDate()}は空いてるよ。卓、立てちゃう？`);
  el.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 function renderSuri(){
@@ -570,8 +551,52 @@ document.querySelectorAll(".toolrow .f[data-f]").forEach(b=>b.addEventListener("
  const next=(b.classList.contains("on")&&b.dataset.f!=="all")?"all":b.dataset.f;
  document.querySelectorAll(".toolrow .f[data-f]").forEach(x=>x.classList.toggle("on",x.dataset.f===next));
  FILTER=next;renderAll()}));
+// ---- 看板娘（案内人）＝ただの村娘。衣装が何であれ本人は村娘（魔法使いの格好=マネっこ）----
+const KB_OUTFITS={ // 月(1-12)→衣装差分。無い月はbase。noteは衣装への一言（マネっこ設定を守る）
+ // 例: 10:{src:"girl/10_witch.png",note:"この帽子？魔法使いさんの真似っこだよ。わたしはただの村娘"},
+};
+const KB_KEY="sb_kanban";
+function kbOutfit(){const o=KB_OUTFITS[curM+1]||{};return{src:o.src||"girl/base.png",note:o.note||null}}
+function kbLines(){
+ const L=["わたし？ただの村娘だよ。この掲示板の番をしてるの","卓の詳細は、チップを押すとDiscordに飛べるよ"];
+ if(!DATA)return L;
+ const ses=DATA.sessions||[];
+ const mine=ses.filter(s=>(s.dates||[]).some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM}));
+ if(mine.length)L.push(`今月は${mine.length}卓！にぎやかで嬉しいなあ`);
+ const open=ses.filter(s=>s.open).length;
+ if(open)L.push(`いま募集中の卓が${open}つあるよ。気になるのあった？`);
+ const suri=ses.filter(s=>s.suriawase).length;
+ if(suri)L.push(`日程すり合わせ中の貼り紙が${suri}枚。下の貼り紙コーナーを見てね`);
+ if((DATA.unparsed||[]).length)L.push(`タイトルが読めなかった卓が${DATA.unparsed.length}件…直してくれたら次の更新で載るからね`);
+ // 今月まだ卓がない曜日をひとつ拾う
+ const wd=[0,0,0,0,0,0,0];mine.forEach(s=>(s.dates||[]).forEach(d=>{const t=jd(d.date);if(t.getFullYear()===curY&&t.getMonth()===curM)wd[t.getDay()]++}));
+ const emptyWd=wd.indexOf(0);
+ if(mine.length&&emptyWd>=0)L.push(`今月、${WD[emptyWd]}曜日はまだ空いてるよ。卓を立てるならチャンスかも`);
+ const note=kbOutfit().note;if(note)L.push(note);
+ return L;
+}
+let kbLast="";
+function kbSay(text){
+ const b=$("kbBubble");if(!b)return;
+ if(!text){const L=kbLines().filter(x=>x!==kbLast);text=L[Math.floor(Math.random()*L.length)]||"…"}
+ kbLast=text;
+ b.style.animation="none";void b.offsetWidth;b.style.animation="";
+ b.textContent=text;
+}
+function kbInit(){
+ const box=$("kanban"),img=$("kbGirl");
+ img.addEventListener("error",()=>{box.hidden=true;$("kbShow").hidden=true}); // 画像未配備なら丸ごと非表示
+ const off=localStorage.getItem(KB_KEY)==="off";
+ img.src=kbOutfit().src;
+ box.hidden=off;$("kbShow").hidden=!off;
+ const next=()=>kbSay();
+ img.addEventListener("click",next);$("kbBubble").addEventListener("click",next);
+ $("kbClose").addEventListener("click",()=>{box.hidden=true;$("kbShow").hidden=false;localStorage.setItem(KB_KEY,"off")});
+ $("kbShow").addEventListener("click",()=>{box.hidden=false;$("kbShow").hidden=true;localStorage.setItem(KB_KEY,"on");kbSay()});
+ kbSay();
+}
 fetch("sessions.json?t="+Date.now()).then(r=>r.json()).then(d=>{
- DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;fillFilterSelects();renderAll();
+ DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;fillFilterSelects();renderAll();kbInit();
 }).catch(()=>{$("cal").innerHTML="";$("calSum").textContent="データの読込に失敗しました"});
 })();
 </script>
