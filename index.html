@@ -610,7 +610,7 @@ const kbVis=new Map();
 const kbIO=("IntersectionObserver"in window)?new IntersectionObserver(es=>{
  es.forEach(e=>kbVis.set(e.target,e.isIntersecting));
  kbCalVisible=[...kbVis.values()].some(v=>v);kbApply();
-},{threshold:0}):null;
+},{threshold:0,rootMargin:"-45% 0px 0px 0px"}):null; // 上45%は圏外扱い＝カレンダー下端が画面上半分へ入ったら（見終わり際に）もう登場
 function kbApply(){
  if(kbBroken)return;
  $("kanban").hidden=!(!kbDismissed&&!kbCalVisible);
