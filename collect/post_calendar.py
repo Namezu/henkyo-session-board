@@ -50,14 +50,17 @@ def main():
         except Exception as e:
             print(f"⚠ 前回削除スキップ({e})")
 
-    # multipart/form-data で画像＋一言を投稿
-    boundary = "----polistes-board-boundary"
+    # multipart/form-data で画像＋一言を投稿（投稿者はリンデ＝webhookの名前/アイコンを投稿ごとに上書き）
+    boundary = "----linde-board-boundary"
     content = (
-        f"📅 **{today.month}月の卓予定**（毎日この投稿だけ更新・詳細はボードへ）\n"
+        f"📌 **{today.month}月の卓予定**だよ。毎日この貼り紙だけ差し替えてるからね（詳しくはボードへ）\n"
         f"https://namezu.github.io/henkyo-session-board/"
     )
-    payload = {"content": content, "attachments": [{"id": 0, "filename": "calendar.png"},
-                                                   {"id": 1, "filename": "agenda.png"}]}
+    payload = {"content": content,
+               "username": "リンデ",
+               "avatar_url": "https://namezu.github.io/henkyo-session-board/girl/linde_avatar.png",
+               "attachments": [{"id": 0, "filename": "calendar.png"},
+                               {"id": 1, "filename": "agenda.png"}]}
     body = b""
     body += (f"--{boundary}\r\nContent-Disposition: form-data; name=\"payload_json\"\r\n"
              f"Content-Type: application/json\r\n\r\n{json.dumps(payload, ensure_ascii=False)}\r\n").encode()
