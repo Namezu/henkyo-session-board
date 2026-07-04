@@ -205,7 +205,7 @@ textarea{min-height:74px;resize:vertical}
 
 <fieldset>
 <legend>卓ピタ（使う人だけ）</legend>
-<label>卓ピタ招待URL（貼れば募集要項に卓ピタ案内＋入力メモが付く・空欄なら何も出ない）</label>
+<label>卓ピタ招待URL（貼れば募集要項に卓ピタ案内＋入力メモが付く・空欄なら何も出ない。「すり合わせ」選択時はタイトルが「卓ピタ調整【…】」になります）</label>
 <input type="url" id="pitaUrl" placeholder="https://takupita.com/join/...">
 </fieldset>
 
@@ -359,7 +359,9 @@ function buildTitle(state){
   const tstr=sameTime?` ${days[0].s}${days[0].e?"-"+days[0].e:"～"}`:"";
   return`${dstr}${tstr}【${reg}】${scen}`;
  }
- return`日程すり合わせ【${reg}】${scen}`;
+ // 卓ピタURLあり×すり合わせ＝卓ピタの調整機能で決める卓（parse_title.pyのSURI対応済み表記）
+ const head=$("pitaUrl").value.trim()?"卓ピタ調整":"日程すり合わせ";
+ return`${head}【${reg}】${scen}`;
 }
 // ライブプレビュー（入力のたび、いま生成されるタイトルを表示）
 function updPrev(){try{$("tprevText").textContent=buildTitle(collect())}catch(e){}}
