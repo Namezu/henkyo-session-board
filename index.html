@@ -36,6 +36,17 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.4em;color:var(--g
 .sch{display:block;border-radius:6px;padding:1px 5px;margin-top:2px;font-size:.68em;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:var(--rc-bg,#e4eee6);color:#37352e;border-left:3px solid var(--rc,#4f8160)}
 .sch.closed{filter:saturate(.25);opacity:.75}
 .sch.done{filter:saturate(.1);opacity:.45}
+/* 年表示 */
+.ycal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:6px}
+.ym{background:var(--card);border:1px solid var(--cln);border-radius:12px;padding:10px 11px;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.ym:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.08)}
+.ym h4{margin:0 0 4px;font-family:'Shippori Mincho',serif;color:var(--grn);font-size:1em;display:flex;justify-content:space-between;align-items:baseline}
+.ym h4 small{font-weight:400;color:var(--mut);font-size:.75em}
+.ymg{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.ymd{aspect-ratio:1;border-radius:3px;background:#f1ece2;position:relative}
+.ymd.o{background:transparent}
+.ymd.t{outline:2px solid var(--ter);outline-offset:-1px}
+.ymd.c1{background:#cfe2d4}.ymd.c2{background:#9cc4a7}.ymd.c3{background:#5f9a70;}
 /* レギュ凡例（タップで絞り込み） */
 .legend{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
 .lg{display:flex;align-items:center;gap:5px;border:1.5px solid var(--cln);background:#fffdf9;border-radius:16px;padding:4px 11px;font-size:.76em;cursor:pointer;color:var(--tx)}
@@ -110,6 +121,7 @@ footer{margin-top:24px;font-size:.72em;color:var(--mut);text-align:center}
  <h2 id="calTitle">…</h2>
  <button class="nav" id="next">▶</button>
  <button class="nav today-btn" id="todayBtn">今月</button>
+ <button class="nav today-btn" id="viewBtn">年表示</button>
 </div>
 <div class="calsum" id="calSum"></div>
 <div class="cal" id="cal"></div>
@@ -294,10 +306,46 @@ function renderMonth(){
  items.sort((a,b)=>a.s.dates[0].date<b.s.dates[0].date?-1:1);
  $("monthSec").innerHTML=items.length?`<div class="section">🗒 ${curM+1}月の卓一覧</div>`+items.map(card).join(""):"";
 }
-function renderAll(){renderCal();renderLegend();renderSuri();renderDay();renderMonth()}
-$("prev").addEventListener("click",()=>{curM--;if(curM<0){curM=11;curY--}selDate=null;renderAll()});
-$("next").addEventListener("click",()=>{curM++;if(curM>11){curM=0;curY++}selDate=null;renderAll()});
-$("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;renderAll()});
+let VIEW="month";
+function renderYear(){
+ $("calTitle").textContent=`${curY}年`;
+ const map=dayMap();
+ const cal=$("cal");cal.innerHTML="";cal.style.display="none";
+ let y=$("ycal");if(!y){y=document.createElement("div");y.id="ycal";y.className="ycal";cal.after(y)}
+ y.style.display="";y.innerHTML="";
+ const todayK=key(now.getFullYear(),now.getMonth(),now.getDate());
+ let total=0;
+ for(let m=0;m<12;m++){
+  const days=new Date(curY,m+1,0).getDate(),first=new Date(curY,m,1).getDay();
+  let cnt=0,cells="";
+  for(let i=0;i<first;i++)cells+=`<span class="ymd o"></span>`;
+  for(let d=1;d<=days;d++){
+   const k=key(curY,m,d),n=(map[k]||[]).length;cnt+=n;
+   const cl=n>=3?"c3":n===2?"c2":n===1?"c1":"";
+   cells+=`<span class="ymd ${cl}${k===todayK?" t":""}" title="${m+1}/${d}${n?`：${n}卓`:""}"></span>`;
+  }
+  total+=cnt;
+  const card=document.createElement("div");card.className="ym";
+  card.innerHTML=`<h4>${m+1}月 <small>${cnt?cnt+"卓":""}</small></h4><div class="ymg">${cells}</div>`;
+  card.addEventListener("click",()=>{curM=m;VIEW="month";selDate=null;renderAll()});
+  y.appendChild(card);
+ }
+ $("calSum").textContent=`${curY}年の卓：${total}件（濃いマス＝卓が多い日）`;
+}
+function renderAll(){
+ const isThisMonth=(curY===now.getFullYear()&&curM===now.getMonth());
+ $("todayBtn").style.display=(VIEW==="month"&&isThisMonth)?"none":"";
+ $("viewBtn").textContent=VIEW==="month"?"年表示":"月表示";
+ const y=$("ycal");
+ if(VIEW==="year"){renderYear();renderLegend();$("suriSec").innerHTML="";$("daySec").innerHTML="";$("monthSec").innerHTML="";return}
+ if(y)y.style.display="none";
+ $("cal").style.display="";
+ renderCal();renderLegend();renderSuri();renderDay();renderMonth();
+}
+$("prev").addEventListener("click",()=>{if(VIEW==="year"){curY--}else{curM--;if(curM<0){curM=11;curY--}}selDate=null;renderAll()});
+$("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else{curM++;if(curM>11){curM=0;curY++}}selDate=null;renderAll()});
+$("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="month";renderAll()});
+$("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="month"?"year":"month");selDate=null;renderAll()});
 document.querySelectorAll(".toolrow .f").forEach(b=>b.addEventListener("click",()=>{
  document.querySelectorAll(".toolrow .f").forEach(x=>x.classList.remove("on"));b.classList.add("on");FILTER=b.dataset.f;renderAll()}));
 fetch("sessions.json?t="+Date.now()).then(r=>r.json()).then(d=>{
