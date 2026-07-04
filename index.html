@@ -256,8 +256,8 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <div class="fresh" id="fresh">読込中…</div>
 </header>
 <div class="toolrow">
- <button class="f on" data-f="all">すべて</button>
- <button class="f" data-f="open">募集中だけ</button>
+ <button class="f" data-f="all">すべて</button>
+ <button class="f on" data-f="open">募集中だけ</button>
  <span class="tooldiv"></span>
  <select class="fsel" id="sysSel"><option value="">システム: 全て</option></select>
  <select class="fsel" id="regSel"><option value="">レギュ: 全て</option></select>
@@ -265,8 +265,6 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <button class="f bf" data-band="asa" type="button">朝</button>
  <button class="f bf" data-band="hiru" type="button">昼</button>
  <button class="f bf" data-band="yoru" type="button">夜</button>
- <span class="tooldiv"></span>
- <button class="f" id="rowBtn" type="button">レギュ名も表示</button>
  <a class="tolink" href="takutate.html">🛠 セッション作成マイセット（アリアンロッド用）→</a>
 </div>
 
@@ -309,8 +307,8 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
 <script>
 (function(){
 const WD=["日","月","火","水","木","金","土"];
-let DATA=null,FILTER="all",selDate=null,SYSF=null;   // SYSF=システム絞り込み
-let TWO=localStorage.getItem("board_two_v2")!=="0";  // 2行表示（シナリオ名＋レギュ名）＝既定ON（キーv2=旧OFF保存をリセットして全員ONから）
+let DATA=null,FILTER="open",selDate=null,SYSF=null;  // 既定=募集中のみ表示（すべては切替・後輩くん指定）
+const TWO=true;                                      // 2行表示（シナリオ名＋レギュ名）＝常時ON（トグル廃止）
 let REGF=null,GMF=null;                              // レギュ/GM絞り込み（非該当はdim＝グレーアウトで残す）
 const BANDS=new Set();                               // 朝昼夜絞り込み（複数選択可・空=全て）
 // 色分け＝システム単位（アリアンロッド2E＝村の主流＝緑／その他システム＝青）
@@ -648,10 +646,6 @@ $("prev").addEventListener("click",()=>{if(VIEW==="year"){curY--}else{curM--;if(
 $("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else{curM++;if(curM>11){curM=0;curY++}}selDate=null;renderAll()});
 $("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="month";renderAll()});
 $("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="month"?"year":"month");selDate=null;renderAll()});
-const rowBtn=$("rowBtn");
-function syncRowBtn(){rowBtn.classList.toggle("on",TWO)}
-rowBtn.addEventListener("click",()=>{TWO=!TWO;localStorage.setItem("board_two_v2",TWO?"1":"0");syncRowBtn();renderAll()});
-syncRowBtn();
 // レギュ/GM絞り込みプルダウン（データ読込後に選択肢を作る・非該当はグレーアウト）
 // レギュ欄＝選択中システムのレギュだけに絞る（アリアン/SW/サタスペ…各システムにレギュがある前提の設計）
 function updateRegOptions(){
@@ -705,7 +699,10 @@ function kbLines(){
  const L=["わたし？リンデ。ただの村娘だよ。この掲示板の番をしてるの",
   "卓の詳細は、チップを押すとDiscordに飛べるよ",
   "スカラバエウス？ あの子は勝手に転がしてくるだけ。わたしは受け取って貼るだけだよ",
-  "カメさんの言葉？ わかんないよ？ ……なんとなく、こう言ってる気がするだけ"];
+  "カメさんの言葉？ わかんないよ？ ……なんとなく、こう言ってる気がするだけ",
+  "村の外に出たらチャルタヴォラがいてびっくりした！",
+  "来てくれてうれしいな",
+  "どの卓に参加する？　それとも、卓を立ててくれる！？"];
  if(!DATA)return L;
  const ses=DATA.sessions||[];
  const mine=ses.filter(s=>(s.dates||[]).some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM}));
@@ -747,20 +744,27 @@ function kbPreload(src){return new Promise(r=>{const i=new Image();i.onload=()=>
 kbPreload("girl/greet.png").then(s=>kbGreet=s);
 kbPreload("girl/bye.png").then(s=>kbBye=s);
 function kbShown(){return localStorage.getItem(KB_KEY)==="on"||(localStorage.getItem(KB_KEY)!=="off"&&!kbCalVisible)}
+// スクロールで自然に現れた時の挨拶（呼ばれた時とは別＝後輩くん指定）
+const KB_AUTO_GREETS=["いらっしゃい、受付はこちらだよ","最後まで見てくれてありがと。なにか手伝おうか？","おつかれさま。気になる卓、あった？"];
+let kbWasShown=false;
 function kbApply(){
  if(kbBroken)return;
- if(!kbAnim)$("kanban").hidden=!kbShown();
+ const show=kbShown();
+ if(!kbAnim)$("kanban").hidden=!show;
+ if(show&&!kbWasShown)kbSay(KB_AUTO_GREETS[Math.floor(Math.random()*KB_AUTO_GREETS.length)]);
+ kbWasShown=show;
  // タブは常設のトグル＝いる時は「帰す」・いない時は「呼ぶ」
  $("kbShow").hidden=false;
- $("kbShow").textContent=kbShown()?"リンデを帰す":"リンデを呼ぶ";
+ $("kbShow").textContent=show?"リンデを帰す":"リンデを呼ぶ";
 }
 function kbSummon(){
  localStorage.setItem(KB_KEY,"on");
  const box=$("kanban"),img=$("kbGirl");
+ kbWasShown=true; // 呼ばれた時は自動挨拶でなく専用セリフを言う
  kbApply();
  box.classList.remove("kb-out");box.classList.add("kb-in");
  if(kbGreet){img.src=kbGreet;setTimeout(()=>{img.src=kbOutfit().src},1100)}
- kbSay("はい、受付です。呼んでくれてありがと！");
+ kbSay("はい、受付のリンデです！　呼んでくれてうれしいな");
  setTimeout(()=>box.classList.remove("kb-in"),700);
 }
 function kbFarewell(){
