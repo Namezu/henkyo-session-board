@@ -111,7 +111,7 @@ textarea{min-height:74px;resize:vertical}
 <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:10px">
  <button class="mini warn" id="clearAll" title="入力内容をぜんぶ消して最初から">🧹 白紙にする</button>
 </div>
-<div class="sub">アリアンロッド2EのGM向け。穴埋め→「タイトル・募集要項・予定リスト行・卓ピタメモ」を一括生成。<b>シリーズ卓の定型は「マイセット」に保存して、次から数タップ。</b></div>
+<div class="sub">アリアンロッド2EのGM向け。穴埋め→「タイトル・募集要項・卓ピタメモ・宣伝文」を一括生成。<b>シリーズ卓の定型は「マイセット」に保存して、次から数タップ。</b></div>
 
 <fieldset>
 <legend>💾 マイセット（定型の保存・呼び出し）</legend>
@@ -419,9 +419,6 @@ $("genBtn").addEventListener("click",()=>{
  // 予告
  // 予告は入力文そのまま（自動フッター付与は後輩くん希望で廃止 2026-07-04）
  const trailer=$("trailer").value.trim()?`# 今回予告\n${$("trailer").value.trim()}`:null;
- // シート行
- const firstTime=state.dateMode==="fixed"&&days.length?days[0].s:"すり合わせ";
- const sheetRow=[reg,`「${scen}」${$("gmName").value.trim()||"（GM名）"}`,"（トピックを立てたらリンクをここに）","募集中",firstTime].join("\t");
  // 卓ピタメモ
  const pitaMemo=pitaUrl?[`卓ピタに入力する内容：`,`・卓名：${scen}`,
   state.dateMode==="fixed"&&days.length?`・日時：${days.map(x=>`${mdw(x.d)} ${x.s}${x.e?"〜"+x.e:""}`).join(" / ")}`:`・日時：未定（すり合わせ機能で調整）`,
@@ -449,9 +446,8 @@ $("genBtn").addEventListener("click",()=>{
  // まとめてコピー（全部を見出し付きで1回のコピーに）
  const parts=[["① トピックタイトル",title],["② 募集要項（1投稿目）",post1]];
  if(trailer)parts.push(["③ 今回予告（別投稿）",trailer]);
- parts.push(["④ 卓予定リスト行",sheetRow]);
- if(pitaMemo)parts.push(["⑤ 卓ピタ入力メモ",pitaMemo]);
- parts.push(["⑥ 宣伝文（卓募集宣伝チャンネル用）",adText]);
+ if(pitaMemo)parts.push(["④ 卓ピタ入力メモ",pitaMemo]);
+ parts.push(["⑤ 宣伝文（卓募集宣伝チャンネル用）",adText]);
  const allText=parts.map(([t,b])=>`◆${t}\n${b}`).join("\n\n");
  const bar=document.createElement("div");bar.className="out";
  bar.innerHTML=`<h3>📋 生成結果（${parts.length}点）<button class="copy" id="copyAll">まとめてコピー</button></h3>`;
@@ -462,9 +458,8 @@ $("genBtn").addEventListener("click",()=>{
  out("① トピックタイトル",title,"フォーラム「新しい投稿」のタイトル欄へ（この形式ならセッションボードに自動掲載されます）");
  out("② 募集要項（1投稿目）",post1,"タグ「募集中」を忘れずに");
  if(trailer)out("③ 今回予告（別投稿）",trailer);
- out("④ 卓予定リスト行（シートに貼る用）",sheetRow,"タブ区切り＝行に貼ると各セルへ分かれます。リンク列はトピックを立てた後に");
- if(pitaMemo)out("⑤ 卓ピタ入力メモ",pitaMemo);
- out("⑥ 宣伝文（卓募集宣伝チャンネル用）",adText,"トピックを立てたら〔ここに #トピック…〕を差し替えて投稿＝半角#を打つとトピック名の候補から選べます");
+ if(pitaMemo)out("④ 卓ピタ入力メモ",pitaMemo);
+ out("⑤ 宣伝文（卓募集宣伝チャンネル用）",adText,"トピックを立てたら〔ここに #トピック…〕を差し替えて投稿＝半角#を打つとトピック名の候補から選べます");
  R.scrollIntoView({behavior:"smooth",block:"start"});
 });
 })();
