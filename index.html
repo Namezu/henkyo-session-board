@@ -164,6 +164,7 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 #tip .t-st{font-weight:700}
 /* 駆け引きの選択肢（機嫌直し会話ゲーム 2026-07-05） */
 #kanban .kb-choices{display:flex;flex-direction:column;gap:7px;margin:6px 4px 4px;align-items:flex-end}
+#kanban .kb-choices[hidden]{display:none} /* display:flexがhidden属性に勝ってラベルが居座るバグの修正 */
 #kanban .kb-choices::before{content:"── どう答える？";font-size:.68em;color:var(--ter);margin:0 10px 1px 0;text-shadow:0 1px 4px rgba(0,0,0,.7)}
 .kb-choice{pointer-events:auto;border:1.5px solid rgba(224,154,110,.6);border-radius:14px 14px 14px 3px;background:rgba(44,34,26,.94);color:#f2ddcb;padding:9px 14px;font-size:.84em;font-family:inherit;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,.35);transition:border-color .15s,transform .15s,background .15s}
 .kb-choice::before{content:"▷ ";color:var(--ter);font-weight:700}
