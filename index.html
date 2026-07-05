@@ -1023,7 +1023,7 @@ function kbSummon(){
  box.classList.remove("kb-out");box.classList.add("kb-in");
  if(kbGreet){img.src=kbGreet;setTimeout(()=>{img.src=kbOutfit().src},1100)}
  let stale=false;try{stale=!!localStorage.getItem(KB_MOOD_KEY)&&!kbMoodLeft()}catch(e){}
- if(stale){kbClearLeft();kbOffense=0;kbSay("……昨日はちょっと、言いすぎたかも。あなたも反省した？　……なら、もういいよ")}
+ if(stale){kbClearLeft();kbOffense=0;kbSay("……昨日はちょっと、言いすぎたかも。……ううん、言いすぎた。ごめんね。あなたも反省してくれた？　……なら、仲直り、だよ")}
  else kbSay("はい、受付のリンデです！　呼んでくれてうれしいな");
  setTimeout(()=>box.classList.remove("kb-in"),700);
 }
