@@ -1,5 +1,5 @@
 {
- "updated": "2026/07/05 04:40",
+ "updated": "2026/07/05 08:40",
  "guild": "LODGE",
  "sessions": [
   {
@@ -207,6 +207,47 @@
    "source": "forum"
   },
   {
+   "scenario": "八月最初の卓（月替わり週テスト）",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-02",
+     "start": "21:00",
+     "end": "24:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1523246790453886987",
+   "created": "2026-07-05T08:38:55.401000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "月またぎ連続卓テスト",
+   "reg": "氷原開拓団",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-30",
+     "start": "21:00",
+     "end": "24:00"
+    },
+    {
+     "date": "2026-08-02",
+     "start": "21:00",
+     "end": "24:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1523246796837752881",
+   "created": "2026-07-05T08:38:56.923000+00:00",
+   "source": "forum"
+  },
+  {
    "scenario": "悪意の人形劇",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -234,6 +275,24 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522786412242534541",
    "created": "2026-07-04T02:09:32.682000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "五週窓の最終日テスト",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-08",
+     "start": "13:00",
+     "end": "17:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1523246811148455988",
+   "created": "2026-07-05T08:39:00.335000+00:00",
    "source": "forum"
   },
   {
@@ -416,6 +475,24 @@
    "source": "forum"
   },
   {
+   "scenario": "狂気山脈～邪神の山嶺～ テスト班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-03",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1523246824981532773",
+   "created": "2026-07-05T08:39:03.633000+00:00",
+   "source": "forum"
+  },
+  {
    "scenario": "夜のダンジョンは体に悪い",
    "reg": "ミスリルクレスト",
    "reg_is_name": false,
@@ -593,6 +670,24 @@
    "gm": "甲殻飛行魔獣ポリステス",
    "url": "https://discord.com/channels/1023884809774305301/1522786418840174685",
    "created": "2026-07-04T02:09:34.255000+00:00",
+   "source": "forum"
+  },
+  {
+   "scenario": "窓の外の卓テスト",
+   "reg": "さちあれ",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-15",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "gm": "甲殻飛行魔獣ポリステス",
+   "url": "https://discord.com/channels/1023884809774305301/1523246818153074720",
+   "created": "2026-07-05T08:39:02.005000+00:00",
    "source": "forum"
   },
   {
