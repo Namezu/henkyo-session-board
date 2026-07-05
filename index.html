@@ -1029,8 +1029,8 @@ const KB_MENU={
  lore_p:{say:"ポリステスは工務店の蜂の魔獣。巣づくりの腕は村いちばん。——ここからは真面目な話。あの子は、人を殺せる。脅しじゃなくて、実際に殺すの。魔獣ってそういうものだから。だからお願い。何があっても、絶対に、近づかないで",
   opts:[["他の子のことも","lore"],["ありがとう","bye_warm"]]},
  lore_l:{say:"わたし？　リンデ。ただの村娘だよ。この掲示板の番をしてるの。それ以上でも、それ以下でもないの",
-  opts:[["かわいいと思う","lore_tease"],["ありがとう","bye_warm"]]},
- lore_tease:{say:"…………仕事中なので。次の方、どうぞ",end:true,wait:3600},
+  opts:[["かわいいと思う","lore_cute"],["ありがとう","bye_warm"]]},
+ lore_cute:{say:"……っ。ふ、ふつう、そんな真っ向から言う？　……えへへ、ありがと。仕事中じゃなかったら、もっと喜んだのに",blush:true,end:true,wait:4800}, // 真っ向からの褒めは素直に喜ぶ（謝罪代わりのおべっかとは別物・後輩くん確定）
  chat:{say:()=>{const L=kbLines();return L[Math.floor(Math.random()*L.length)]},opts:[["もっと！","chat"],["ありがとう","bye_warm"]]},
  bye_warm:{say:"うん！　いい卓に出会えますように……！",end:true,wait:3600},
 };
@@ -1048,6 +1048,7 @@ function kbDialog(key){
   return;
  }
  c.hidden=true;
+ if(n.blush){const g=$("kbGirl");g.src="girl/blush.png";setTimeout(()=>{if(!kbGrave)g.src=kbOutfit().src},2600)}
  setTimeout(kbNegoEnd,n.wait||3600);
 }
 // 表示状態＝3モード: "on"=呼んだ(常に表示・カレンダー中でも並べて見たい人向け) / "off"=閉じた(タブのみ) / 未設定=おまかせ(スクロール連動)
