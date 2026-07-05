@@ -887,7 +887,7 @@ function kbSay(text){
  if(!text){const L=kbLines().filter(x=>x!==kbLast);text=L[Math.floor(Math.random()*L.length)]||"…"}
  if(KB_HYPNO&&text&&!kbNegoActive&&!kbGrave){
   text=text.endsWith("♡")?text:text+"♡";
-  if(Math.random()<0.15){const F=["　……あれ？　わたし、いま、何を……","　……ねえ、頭の奥で……カサカサって、羽音が……♡"];text+=F[Math.floor(Math.random()*F.length)]}
+  if(Math.random()<0.15){const F=["　……あれ？　わたし、いま、なにを……","　……そういえばね、さっき、ヘンな蟻さんを見たんだぁ……","　……インフェストアント……だったのかな？　……なんの話だっけ？"];text+=F[Math.floor(Math.random()*F.length)]} // 公式エネミー（蟻型・《魅了》）の匂わせ＝アリアン経験者だけ気づく
  }
  kbLast=text;
  b.style.animation="none";void b.offsetWidth;b.style.animation="";
@@ -1032,7 +1032,7 @@ const KB_MENU={
   opts:[["かわいいと思う","lore_tease"],["ありがとう","bye_warm"]]},
  lore_tease:{say:"…………仕事中なので。次の方、どうぞ",end:true,wait:3600},
  chat:{say:()=>{const L=kbLines();return L[Math.floor(Math.random()*L.length)]},opts:[["もっと！","chat"],["ありがとう","bye_warm"]]},
- bye_warm:{say:"うん。……いい卓と出会えますように、ってね",end:true,wait:3600},
+ bye_warm:{say:"うん！　いい卓に出会えますように……！",end:true,wait:3600},
 };
 function kbDialog(key){
  const n=KB_MENU[key];if(!n)return;
