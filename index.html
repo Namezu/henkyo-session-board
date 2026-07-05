@@ -183,6 +183,9 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 #modal .mb.fix{background:rgba(255,255,255,.08);color:var(--grn);border:1.5px solid var(--cln)}
 #modal .m-close,#daypop .m-close{position:absolute;top:8px;right:12px;border:none;background:none;font-size:1.3em;color:var(--mut);cursor:pointer}
 #modal .m-hint{font-size:.72em;color:var(--mut);margin-top:8px}
+/* これから表示＝月替わりマスの目印（金のアクセント線+月入り日付） */
+.cell.mstart{border-top:2px solid var(--gold)}
+.cell.mstart .dn{color:var(--gold)}
 /* 日付ポップオーバー＝日付タップでその日の卓一覧を浮かせる（下スクロール廃止・村民要望 2026-07-04） */
 #daypop{position:fixed;z-index:61;left:50%;top:50%;transform:translate(-50%,-50%);width:min(480px,94vw);max-height:74vh;overflow-y:auto;background:rgba(24,26,30,.85);backdrop-filter:blur(26px) saturate(1.5);-webkit-backdrop-filter:blur(26px) saturate(1.5);border:1px solid var(--glass-brd);border-radius:18px;box-shadow:var(--glass-in),0 18px 50px rgba(0,0,0,.28);padding:14px 16px 16px;display:none}
 #daypop.show{display:block}
@@ -418,6 +421,7 @@ function timeBand(st){
  return n>=5&&n<=11?"asa":n>=12&&n<=17?"hiru":"yoru";
 }
 const now=new Date();let curY=now.getFullYear(),curM=now.getMonth(); // 0-based
+let flowAnchor=new Date(now.getFullYear(),now.getMonth(),now.getDate()); // これから表示の起点（既定=今日）
 const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
 const key=(y,m,d)=>`${y}-${pad(m+1)}-${pad(d)}`;
@@ -525,7 +529,39 @@ function openDetail(x){
  modal.querySelector(".m-close").addEventListener("click",closeModal);
  mback.classList.add("show");modal.classList.add("show");
 }
-function renderCal(){
+function mkDayCell(yy,mm,dd,map,todayK,t0,dnLabel){ // 月表示/これから表示 共通のマス生成
+ const k=key(yy,mm,dd),list=map[k]||[];
+ const act=list.filter(x=>!x.dim);   // 絞り込み該当分だけ数える
+ const dow=new Date(yy,mm,dd).getDay();
+ const isPast=new Date(yy,mm,dd)<t0;
+ const cell=document.createElement("div");
+ cell.className="cell"+(k===todayK?" today":"")+(k===selDate?" sel":"")+(dow===0?" sunday":dow===6?" saturday":"")+(isPast?" past":"")+(dd===1?" mstart":"");
+ cell.innerHTML=`<span class="dn">${dnLabel||dd}</span>${act.length?`<span class="cnt">${act.length}卓</span>`:""}`;
+ const lim=3; // 3卓までは全部見せる・4卓目から「+n」（後輩くん指定）
+ list.slice(0,lim).forEach(x=>{
+  const ch=document.createElement("span");ch.className=`sch ${x.st}${x.dim?" dim":""}`;
+  const c=sysColor(x.s);
+  ch.style.setProperty("--rc",c);ch.style.setProperty("--rc-bg",tint(c));
+  const bd=timeBand(x.d.start);
+  if(TWO&&x.s.reg){
+   // 2行表示＝1行目:アイコン＋シナリオ名／2行目:「AR2E/レギュ名」式
+   ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
+   const rg=document.createElement("span");rg.className="rg"+(isDeprecatedReg(x.s.reg)?" deprecated":"");
+   rg.innerHTML=chipRegLabel(x.s);ch.appendChild(rg);
+  }else{
+   ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
+  }
+  attachTip(ch,x);
+  ch.addEventListener("mouseleave",()=>showDayTip(cell,`${mm+1}/${dd}（${WD[dow]}）`,list)); // チップを離れたら日一覧へ戻す
+  cell.appendChild(ch);
+ });
+ if(list.length>lim){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-lim}`;cell.appendChild(mo)}
+ cell.addEventListener("mouseenter",()=>showDayTip(cell,`${mm+1}/${dd}（${WD[dow]}）`,list));
+ cell.addEventListener("mouseleave",()=>tip.classList.remove("show"));
+ cell.addEventListener("click",()=>{selDate=(selDate===k?null:k);(VIEW==="flow"?renderFlow:renderCal)();renderDay()});
+ return{cell,act};
+}
+function renderCal(){ // 月表示（従来の紙型＝月を面で見たい人向け）
  const map=dayMap();
  $("calTitle").textContent=`${curY}年 ${curM+1}月`;
  const first=new Date(curY,curM,1),days=new Date(curY,curM+1,0).getDate();
@@ -533,41 +569,35 @@ function renderCal(){
  cal.innerHTML=WD.map((w,i)=>`<div class="dow${i===0?" sun":i===6?" sat":""}">${w}</div>`).join("");
  for(let i=0;i<first.getDay();i++)cal.insertAdjacentHTML("beforeend",`<div class="cell out"></div>`);
  const todayK=key(now.getFullYear(),now.getMonth(),now.getDate());
+ const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
  let monthCount=0,openCount=0;
  for(let d=1;d<=days;d++){
-  const k=key(curY,curM,d),list=map[k]||[];
-  const act=list.filter(x=>!x.dim);   // 絞り込み該当分だけ数える
+  const{cell,act}=mkDayCell(curY,curM,d,map,todayK,t0);
   monthCount+=act.length;openCount+=act.filter(x=>x.st==="open").length;
-  const dow=new Date(curY,curM,d).getDay();
-  const isPast=new Date(curY,curM,d)<new Date(now.getFullYear(),now.getMonth(),now.getDate());
-  const cell=document.createElement("div");
-  cell.className="cell"+(k===todayK?" today":"")+(k===selDate?" sel":"")+(dow===0?" sunday":dow===6?" saturday":"")+(isPast?" past":"");
-  cell.innerHTML=`<span class="dn">${d}</span>${act.length?`<span class="cnt">${act.length}卓</span>`:""}`;
-  const lim=3; // 3卓までは全部見せる・4卓目から「+n」（後輩くん指定）
-  list.slice(0,lim).forEach(x=>{
-   const ch=document.createElement("span");ch.className=`sch ${x.st}${x.dim?" dim":""}`;
-   const c=sysColor(x.s);
-   ch.style.setProperty("--rc",c);ch.style.setProperty("--rc-bg",tint(c));
-   const bd=timeBand(x.d.start);
-   if(TWO&&x.s.reg){
-    // 2行表示＝1行目:アイコン＋シナリオ名／2行目:「AR2E/レギュ名」式
-    ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
-    const rg=document.createElement("span");rg.className="rg"+(isDeprecatedReg(x.s.reg)?" deprecated":"");
-    rg.innerHTML=chipRegLabel(x.s);ch.appendChild(rg);
-   }else{
-    ch.innerHTML=`${bd?TB_ICONS[bd]:""}${esc(x.s.scenario)}`;
-   }
-   attachTip(ch,x);
-   ch.addEventListener("mouseleave",()=>showDayTip(cell,`${curM+1}/${d}（${WD[dow]}）`,list)); // チップを離れたら日一覧へ戻す
-   cell.appendChild(ch);
-  });
-  if(list.length>lim){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-lim}`;cell.appendChild(mo)}
-  cell.addEventListener("mouseenter",()=>showDayTip(cell,`${curM+1}/${d}（${WD[dow]}）`,list));
-  cell.addEventListener("mouseleave",()=>tip.classList.remove("show"));
-  cell.addEventListener("click",()=>{selDate=(selDate===k?null:k);renderCal();renderDay()});
   cal.appendChild(cell);
  }
  $("calSum").textContent=monthCount?`この月の卓：${monthCount}件（うち募集中 ${openCount}件）`:"この月の卓はまだありません";
+}
+let flowStart=null,flowEnd=null;
+function renderFlow(){ // これから表示＝今日の週が常に最上段・翌月が下からせり出す（紙のカレンダーからの解放・後輩くん設計 2026-07-05）
+ const map=dayMap();
+ const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const start=new Date(flowAnchor);start.setDate(start.getDate()-start.getDay()); // 起点週の日曜へ
+ const end=new Date(start);end.setDate(end.getDate()+41);
+ flowStart=new Date(start);flowEnd=new Date(end);flowEnd.setHours(23,59,59,999);
+ $("calTitle").textContent=`${start.getMonth()+1}/${start.getDate()} 〜 ${end.getMonth()+1}/${end.getDate()}`;
+ const cal=$("cal");cal.classList.toggle("two",TWO);
+ cal.innerHTML=WD.map((w,i)=>`<div class="dow${i===0?" sun":i===6?" sat":""}">${w}</div>`).join("");
+ const todayK=key(now.getFullYear(),now.getMonth(),now.getDate());
+ let cnt=0,openCount=0;
+ for(let i=0;i<42;i++){
+  const dt=new Date(start);dt.setDate(start.getDate()+i);
+  const dn=(dt.getDate()===1||i===0)?`${dt.getMonth()+1}/${dt.getDate()}`:null; // 月替わりと先頭マスは「8/1」表記
+  const{cell,act}=mkDayCell(dt.getFullYear(),dt.getMonth(),dt.getDate(),map,todayK,t0,dn);
+  cnt+=act.length;openCount+=act.filter(x=>x.st==="open").length;
+  cal.appendChild(cell);
+ }
+ $("calSum").textContent=cnt?`この6週間の卓：${cnt}件（うち募集中 ${openCount}件）`:"この6週間の卓はまだありません（＝立て放題！）";
 }
 function card({s,st,dim}){
  const isNew=s.created&&(Date.now()-new Date(s.created).getTime())<3*86400000;
@@ -609,13 +639,16 @@ function renderSuri(){
  });
 }
 function renderMonth(){
+ const hit=VIEW==="flow"
+  ?(d=>{const t=jd(d.date);return flowStart&&t>=flowStart&&t<=flowEnd})
+  :(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM});
  const items=(DATA.sessions||[]).map(s=>({s,st:stOf(s)}))
-  .filter(x=>x.s.dates&&x.s.dates.length&&x.s.dates.some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM}))
+  .filter(x=>x.s.dates&&x.s.dates.length&&x.s.dates.some(hit))
   .map(x=>({...x,dim:dimOf(x.s,x.st)||bandDim(x.s)}));
  items.sort((a,b)=>a.s.dates[0].date<b.s.dates[0].date?-1:1);
- $("monthSec").innerHTML=items.length?`<div class="section">🗒 ${curM+1}月の卓一覧</div>`+items.map(card).join(""):"";
+ $("monthSec").innerHTML=items.length?`<div class="section">🗒 ${VIEW==="flow"?"これからの卓一覧":`${curM+1}月の卓一覧`}</div>`+items.map(card).join(""):"";
 }
-let VIEW="month";
+let VIEW="flow"; // 既定=これから表示（今日の週が最上段・後輩くん設計）。"month"=従来の月表示・"year"=年表示
 function renderYear(){
  $("calTitle").textContent=`${curY}年`;
  const map=dayMap();
@@ -681,28 +714,39 @@ function renderAll(){
  const m=curM+1;
  const season=(m>=3&&m<=5?"spring":m>=6&&m<=8?"summer":m>=9&&m<=11?"autumn":"winter");
  document.body.className="season-"+season;  // 色味の下地だけ季節連動（風景画はランダム巡回）
- const isThisMonth=(curY===now.getFullYear()&&curM===now.getMonth());
- $("todayBtn").style.display=(VIEW==="month"&&isThisMonth)?"none":"";
- $("viewBtn").textContent=VIEW==="month"?"年表示":"月表示";
+ const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ const atToday=(VIEW==="flow"&&flowAnchor.getTime()===t0.getTime());
+ $("todayBtn").style.display=atToday?"none":"";
+ $("todayBtn").textContent="今日";
+ $("viewBtn").textContent=VIEW==="flow"?"月表示":VIEW==="month"?"年表示":"これから表示"; // ラベル=次に切り替わる表示
  const y=$("ycal");
  if(VIEW==="year"){renderYear();renderLegend();$("suriSec").innerHTML="";$("daySec").innerHTML="";$("monthSec").innerHTML="";renderUnparsed();renderDay();return}
  if(y)y.style.display="none";
  $("cal").style.display="";
- renderCal();renderLegend();renderSuri();renderDay();renderMonth();renderUnparsed();
+ if(VIEW==="flow")renderFlow();else renderCal();
+ renderLegend();renderSuri();renderDay();renderMonth();renderUnparsed();
 }
 // 月めくり・表示切替に即応するリンデの一言（表示中のみ）
 function kbViewLine(){
  if(VIEW==="year")return"一年分をながめてるの？　壮観だよねえ";
+ if(VIEW==="flow"){
+  const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const d=Math.round((flowAnchor-t0)/86400000);
+  if(d===0)return"いま見えてるのが、村のこれから。……いい眺めでしょ？";
+  if(d>0)return"先の予定をのぞいてるの？　計画的でえらい";
+  return"過ぎた日をたどってるの？　……思い出も、大事だよね";
+ }
  const ry=now.getFullYear(),rm=now.getMonth();
  if(curY>ry||(curY===ry&&curM>rm))return`${curM+1}月の予定を先取り？　計画的でえらい`;
  if(curY<ry||(curY===ry&&curM<rm))return`${curM+1}月のページ……思い出、めくってるの？`;
  return"今月に戻ってきたね。おかえり！";
 }
 function kbReact(){if(typeof kbSay==="function"&&!$("kanban").hidden)kbSay(kbViewLine())}
-$("prev").addEventListener("click",()=>{if(VIEW==="year"){curY--}else{curM--;if(curM<0){curM=11;curY--}}selDate=null;renderAll();kbReact()});
-$("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else{curM++;if(curM>11){curM=0;curY++}}selDate=null;renderAll();kbReact()});
-$("todayBtn").addEventListener("click",()=>{curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="month";renderAll();kbReact()});
-$("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="month"?"year":"month");selDate=null;renderAll();kbReact()});
+function flowStep(days){flowAnchor.setDate(flowAnchor.getDate()+days);curY=flowAnchor.getFullYear();curM=flowAnchor.getMonth()} // 季節/リンデ連動もアンカー月に追従
+$("prev").addEventListener("click",()=>{if(VIEW==="year"){curY--}else if(VIEW==="flow"){flowStep(-14)}else{curM--;if(curM<0){curM=11;curY--}}selDate=null;renderAll();kbReact()});
+$("next").addEventListener("click",()=>{if(VIEW==="year"){curY++}else if(VIEW==="flow"){flowStep(14)}else{curM++;if(curM>11){curM=0;curY++}}selDate=null;renderAll();kbReact()});
+$("todayBtn").addEventListener("click",()=>{flowAnchor=new Date(now.getFullYear(),now.getMonth(),now.getDate());curY=now.getFullYear();curM=now.getMonth();selDate=null;VIEW="flow";renderAll();kbReact()});
+$("viewBtn").addEventListener("click",()=>{VIEW=(VIEW==="flow"?"month":VIEW==="month"?"year":"flow");if(VIEW==="month"){curY=flowAnchor.getFullYear();curM=flowAnchor.getMonth()}selDate=null;renderAll();kbReact()});
 // レギュ/GM絞り込みプルダウン（データ読込後に選択肢を作る・非該当はグレーアウト）
 // 村の公認レギュ台帳（チャルタヴォラ採集のレギュ一覧-ar2e/-その他システムより 2026-07-04）
 // ＝卓が立っていなくても全レギュが選択肢に出る。新レギュが増えたらここに追記。
