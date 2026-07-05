@@ -893,9 +893,9 @@ function kbSay(text,raw){
  const b=$("kbBubble");if(!b)return;
  kbLastAt=Date.now();
  if(!text){const L=kbLines().filter(x=>x!==kbLast);text=L[Math.floor(Math.random()*L.length)]||"…"}
- if(KB_HYPNO&&text&&!raw&&!kbNegoActive&&!kbGrave){
+ if(KB_HYPNO&&text&&!raw&&!kbGrave&&(!kbNegoActive||kbMenuTalk)){
   text=text.endsWith("♡")?text:text+"♡";
-  if(Math.random()<0.15){const F=["　……あれ？　わたし、いま、なにを……","　……そういえばね、さっき、ヘンな蟻さんを見たんだぁ……","　……インフェストアント……だったのかな？　……なんの話だっけ？"];text+=F[Math.floor(Math.random()*F.length)]} // 公式エネミー（蟻型・《魅了》）の匂わせ＝アリアン経験者だけ気づく
+  if(Math.random()<0.15&&!kbNegoActive){const F=["　……あれ？　わたし、いま、なにを……","　……そういえばね、さっき、ヘンな蟻さんを見たんだぁ……","　……インフェストアント……だったのかな？　……なんの話だっけ？"];text+=F[Math.floor(Math.random()*F.length)]} // 公式エネミー（蟻型・《魅了》）の匂わせ＝アリアン経験者だけ気づく
  }
  kbLast=text;
  b.style.animation="none";void b.offsetWidth;b.style.animation="";
@@ -1027,7 +1027,8 @@ function kbNegoNode(key){
   kbApply();
  },5400);
 }
-function kbNegoEnd(){kbNegoActive=false;const c=$("kbChoices");if(c){c.hidden=true;c.innerHTML=""}}
+function kbNegoEnd(){kbNegoActive=false;kbMenuTalk=false;const c=$("kbChoices");if(c){c.hidden=true;c.innerHTML=""}}
+let kbMenuTalk=false; // 会話メニュー中フラグ＝魅了中の♡はメニュー会話にも乗せる（機嫌交渉は素のまま＝魅了が揺らぐcanon）
 // ---- 会話メニュー（吹き出しクリックで開く汎用会話・後輩くん設計 2026-07-05）----
 function kbRecommend(band){ // 時間帯(asa/hiru/yoru/null)に合う募集中の未来卓をランダムに1つ
  const today=new Date();const t0=new Date(today.getFullYear(),today.getMonth(),today.getDate());
@@ -1095,7 +1096,7 @@ const KB_MENU={
 };
 function kbDialog(key){
  const n=KB_MENU[key];if(!n)return;
- kbNegoActive=true;
+ kbNegoActive=true;kbMenuTalk=true;
  kbSay(typeof n.say==="function"?n.say():n.say);
  const c=$("kbChoices");c.innerHTML="";
  if(n.opts){
