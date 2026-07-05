@@ -163,9 +163,11 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 #tip .t-meta{color:var(--mut)}
 #tip .t-st{font-weight:700}
 /* 駆け引きの選択肢（機嫌直し会話ゲーム 2026-07-05） */
-#kanban .kb-choices{display:flex;flex-direction:column;gap:6px;margin:6px 4px 4px;align-items:flex-end}
-.kb-choice{border:1px solid var(--glass-brd);border-radius:12px;background:rgba(24,26,30,.88);color:var(--tx);padding:8px 13px;font-size:.82em;font-family:inherit;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,.3);transition:border-color .15s,color .15s}
-.kb-choice:hover{border-color:var(--grn2);color:var(--grn)}
+#kanban .kb-choices{display:flex;flex-direction:column;gap:7px;margin:6px 4px 4px;align-items:flex-end}
+#kanban .kb-choices::before{content:"── どう答える？";font-size:.68em;color:var(--ter);margin:0 10px 1px 0;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.kb-choice{pointer-events:auto;border:1.5px solid rgba(224,154,110,.6);border-radius:14px 14px 14px 3px;background:rgba(44,34,26,.94);color:#f2ddcb;padding:9px 14px;font-size:.84em;font-family:inherit;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,.35);transition:border-color .15s,transform .15s,background .15s}
+.kb-choice::before{content:"▷ ";color:var(--ter);font-weight:700}
+.kb-choice:hover{border-color:var(--ter);background:rgba(64,46,32,.96);transform:translateX(-2px)}
 /* ---- クリック詳細モーダル ---- */
 #mback{position:fixed;inset:0;background:rgba(30,25,18,.45);backdrop-filter:blur(3px);z-index:60;display:none}
 #mback.show{display:block}
@@ -874,8 +876,10 @@ const KB_FOLLOWUPS=[
  [/^スカラバエウス/,"スカラバエウスはね、大きなタマオシコガネ。集めたものを紙に包んで運ぶ習性があるの。人の言葉は解さないけど、すっごく働き者なんだよ"],
  [/チャルタヴォラが/,"チャルタヴォラっていうのは“紙喰い”の群れのこと。書き付けをぱくぱく読んじゃう不思議な生きものなの。読まれても字は消えないから安心してね"],
 ];
+let kbLastAt=0; // 直近発話時刻＝読む時間を確保（自動回転が早すぎ問題の対策 2026-07-05）
 function kbSay(text){
  const b=$("kbBubble");if(!b)return;
+ kbLastAt=Date.now();
  if(!text){const L=kbLines().filter(x=>x!==kbLast);text=L[Math.floor(Math.random()*L.length)]||"…"}
  kbLast=text;
  b.style.animation="none";void b.offsetWidth;b.style.animation="";
@@ -908,7 +912,7 @@ function kbLecture(){ // 2度目＝刺す正論で説教して勝手に帰る（
  img.src="girl/angri.png";
  kbSay("あのね。わたしはここで、卓を探しに来た人の案内をしてるの。あなたがわたしで遊んでる間も、誰かが一緒に遊ぶ相手を探してるんだよ。——今日はもう、帰るね。");
  kbSetLeft();
- setTimeout(kbLeaveBox,6000); // 説教を読ませてから退場
+ setTimeout(kbLeaveBox,7500); // 説教を読ませてから退場
 }
 function kbTouch(){
  if(kbNegoActive)return; // 交渉中に連打してもノーカン（会話に集中して）
@@ -976,7 +980,7 @@ function kbNegoNode(key){
   if(n.end==="return_soft"){img.src="girl/blush.png";setTimeout(()=>{img.src=kbOutfit().src},2400)} // 一瞬だけ照れる（てんさんの絵の使い所）
   else img.src=kbOutfit().src; // 仕事ルート＝塩のまま復帰
   kbApply();
- },3200);
+ },5400);
 }
 function kbNegoEnd(){kbNegoActive=false;const c=$("kbChoices");if(c){c.hidden=true;c.innerHTML=""}}
 // 表示状態＝3モード: "on"=呼んだ(常に表示・カレンダー中でも並べて見たい人向け) / "off"=閉じた(タブのみ) / 未設定=おまかせ(スクロール連動)
@@ -1048,7 +1052,7 @@ function kbInit(){
  img.addEventListener("click",kbTouch);$("kbBubble").addEventListener("click",next);
  $("kbShow").addEventListener("click",kbToggleLinde);
  kbSay();
- setInterval(()=>{if(!$("kanban").hidden&&!kbNegoActive)kbSay()},10000); // 10秒ごとに自動でおしゃべり（交渉中は黙る）
+ setInterval(()=>{if(!$("kanban").hidden&&!kbNegoActive&&Date.now()-kbLastAt>8500)kbSay()},10000); // 自動おしゃべり＝直近の発話から8.5秒は待つ（交渉中は黙る）
 }
 fetch("sessions.json?t="+Date.now()).then(r=>r.json()).then(d=>{
  DATA=d;$("fresh").innerHTML=`最終更新: ${d.updated||"?"}　<span style="opacity:.7">（15分ごとに自動更新）</span>`;fillFilterSelects();renderAll();kbInit();
