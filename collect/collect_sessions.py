@@ -69,7 +69,9 @@ def parse_iso_date_jst(s):
         return None
 
 
-_CP_RE = re.compile(r"CP|キャンペーン|継続|連載|長期|第[0-9０-９一二三四五六七八九十]+話")
+# CP名らしさ＝「CP」「キャンペーン」だが直後がひらがな(＝動詞句『キャンペーンやる』等)は除外／第n話は継続もの。
+# 例: 「一期一会CP」「○○キャンペーン」「キャンペーンⅡ」=名前→○ ／「キャンペーンやる」「CPやる」=動詞句→×
+_CP_RE = re.compile(r"(?:CP|キャンペーン)(?![ぁ-ゟ])|第[0-9０-９一二三四五六七八九十]+話")
 def is_ongoing_cp(title, scenario, all_dates_past, year_explicit,
                   created_date, last_active_date, today,
                   created_min_age=90, active_within=45):
