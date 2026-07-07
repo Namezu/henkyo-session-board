@@ -31,6 +31,7 @@ jobs:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           BOARD_GUILD_ID: ${{ vars.BOARD_GUILD_ID || '1023884809774305301' }}
           BOARD_FORUMS: ${{ vars.BOARD_FORUMS || '🏡卓部屋一覧-test' }}
+          LIMIN_ROLE_ID: ${{ vars.LIMIN_ROLE_ID || '1001840163724464270' }}  # 辺境TRPG村「領民」ロール（後輩くん確認済み2026-07-08）＝GM在籍判定に使用。ロール再作成でIDが変わったらrepo VariablesでLIMIN_ROLE_IDを上書き
           BOARD_OUT: sessions.json
         run: python collect/collect_sessions.py
 
