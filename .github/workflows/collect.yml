@@ -43,5 +43,11 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add sessions.json
             git commit -m "🐝 卓予定を自動更新"
-            git push
+            # push競合(手動push/他run/daily_calendarと重なると非fast-forwardで弾かれる)対策＝rebaseして最大5回リトライ
+            for i in 1 2 3 4 5; do
+              if git pull --rebase --autostash && git push; then
+                echo "push成功（試行 $i）"; break
+              fi
+              echo "⚠ push競合→rebaseリトライ $i/5"; sleep 3
+            done
           fi
