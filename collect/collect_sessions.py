@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""セッションボード収集係（読み取り専用・チャルタヴォラのトークンで動く）
+"""セッションカレンダー収集係（読み取り専用・チャルタヴォラのトークンで動く）
 ==================================================================
 卓部屋フォーラムのトピックを読み、parse_title（実測99.1%）でタイトルを解析して
 sessions.json を生成する。ボードはこのJSONを表示するだけ＝正本はDiscordのトピック。
@@ -41,10 +41,16 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
-async def read_forum(guild, name, sessions, unparsed):
-    forum = discord.utils.get(guild.forums, name=name)
+async def read_forum(guild, key, sessions, unparsed):
+    # key＝フォーラム名 or チャンネルID（数字）。IDのほうが絵文字/改名に強く確実
+    if key.isdigit():
+        forum = guild.get_channel(int(key))
+        if not isinstance(forum, discord.ForumChannel):
+            forum = None
+    else:
+        forum = discord.utils.get(guild.forums, name=key)
     if forum is None:
-        print(f"⚠ フォーラム「{name}」が見つからない/見えない"); return
+        print(f"⚠ フォーラム「{key}」が見つからない/見えない"); return
     ths = list(forum.threads)
     try:
         async for th in forum.archived_threads(limit=None):
