@@ -72,20 +72,23 @@ def parse_iso_date_jst(s):
 # CPらしさ＝CP/キャンペーン/第n話（dabdab例で判明＝casualな『キャンペーンやる』も実CPなので名前で外さない）。
 # 継続か否かは名前でなく「最終投稿の近さ(last_active)＋募集中」で判別する＝is_ongoing_cp側で。
 _CP_RE = re.compile(r"CP|キャンペーン|第[0-9０-９一二三四五六七八九十]+話|継続")
-def is_ongoing_cp(title, scenario, all_dates_past, year_explicit,
+def is_ongoing_cp(title, scenario, all_dates_past, year_explicit, recruiting,
                   created_date, last_active_date, today,
-                  created_min_age=90, active_within=45):
+                  created_min_age=60, active_within=30):
     """「タイトルが初回日付のまま進行中のCP」を検出（純関数＝テスト可能）。
     去年の"死んだ"卓を今年に湧かせないため、次の全条件を満たす時だけ継続中とみなす：
     ・パース済みの日付が全部過去（＝タイトルが古い）／年が明記されていない
     ・トピック作成が十分古い（created_min_age日以上前＝最近の単発ではない）
-    ・最終活動が最近（active_within日以内＝まだ生きている。死んだ卓は無活動で除外）
+    ・まだ生きている＝【最終投稿が最近(active_within日以内)】or【PL募集中】
+      （実測: taku一期一会CP=最終投稿1日前→継続／dabdab=42日前で募集も無し→dormant除外。
+       募集中なら投稿が古くても募集してる＝生きてる扱い＝後輩くん指定）
     ・タイトル/シナリオがCP・キャンペーン・第n話等の"継続もの"らしい"""
     if not all_dates_past or year_explicit:
         return False
     if created_date is None or (today - created_date).days < created_min_age:
         return False
-    if last_active_date is None or (today - last_active_date).days > active_within:
+    alive = bool(recruiting) or (last_active_date is not None and (today - last_active_date).days <= active_within)
+    if not alive:
         return False
     return bool(_CP_RE.search((title or "") + " " + (scenario or "")))
 
@@ -223,7 +226,7 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
             last_active = discord.utils.snowflake_time(th.last_message_id).astimezone(JST).date() if th.last_message_id else base_dt
         except Exception:
             last_active = base_dt
-        ongoing = is_ongoing_cp(th.name, r["scenario"], all_past, r.get("year_explicit"),
+        ongoing = is_ongoing_cp(th.name, r["scenario"], all_past, r.get("year_explicit"), recruiting,
                                 base_dt, last_active, today)
         if ongoing:
             dates = []   # 古い初回日付は出さず「継続中」として日付なしで載せる（＝すり合わせ帯に表示）
