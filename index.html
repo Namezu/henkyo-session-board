@@ -780,13 +780,8 @@ function updateRegOptions(){
  sel.disabled=false;
  const regs=[];
  for(const[g,list]of Object.entries(KNOWN_REGS))if(g===SYSF)list.forEach(r=>regs.push(r));
- (DATA.sessions||[]).forEach(s=>{
-  if(!s.reg||s.reg_is_name)return;
-  const g=sysGroup(s);
-  if(g!==SYSF)return;
-  if(isSystemNameReg(s.reg,g))return;
-  if(!regs.some(r=>normReg(r)===normReg(s.reg)))regs.push(s.reg);
- });
+ // ※実データからのreg追加は廃止（過去卓の変な【】＝レギュでない副題/注意書き・非現行レギュ・他システムのレギュ混入を防ぐ）。
+ //   レギュ選択肢は現行台帳KNOWN_REGSのみ＝新レギュが増えたらKNOWN_REGSに追記する運用（保守ハンドブック§3-A）。
  const cur=REGF;
  $("regSel").innerHTML=`<option value="">レギュ: 全て</option>`+regs.map(v=>`<option value="${esc(v)}">${SYSF==="アリアンロッド2E"?regDisplayName(v):esc(v)}</option>`).join("");
  const hit=cur&&regs.find(r=>normReg(r)===normReg(cur));
@@ -800,9 +795,13 @@ function syncSysSel(){
 }
 function fillFilterSelects(){
  const gms=new Set(),syss=new Map();
+ const t0f=new Date(now.getFullYear(),now.getMonth(),now.getDate());
  (DATA.sessions||[]).forEach(s=>{
-  if(s.gm)gms.add(s.gm);
   const g=sysGroup(s);syss.set(g,(syss.get(g)||0)+1);
+  // GMソートは「これから開催／すり合わせ中」の卓のGMだけ＝もうサーバーに居ない人・過去だけの人を除外。
+  //   さらに削除済みアカウント（Deleted User）名も弾く。卓そのものの表示にはGM名は残す。
+  const upcoming=s.suriawase||(s.dates||[]).some(d=>jd(d.date)>=t0f);
+  if(s.gm&&upcoming&&!/^deleted.?user/i.test(s.gm))gms.add(s.gm);
  });
  const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
  // 卓がある順→残りの公認システムも常載（卓ゼロでも選べる＝レギュ台帳と対）
