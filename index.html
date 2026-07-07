@@ -879,6 +879,7 @@ function kbLines(){
   "時々ね、話題別GM相談フォーラムも読ませてもらってるの。みんなの工夫、勉強になるなぁ",
   "セッションが立った時に通知が欲しい人は、亀さんからシステム別ロールをもらってきてね",
   "困ったことがあったら騎士さんや執政官さんに声をかけてね",
+  "意見箱と匿名意見箱は上手に使い分けたほうがいいかも！",
   "/bumpするとこのサーバーがDISBOARDで一時的に優先的に表示されるんだよ！",
   "どの卓に参加する？　それとも、卓を立ててくれる！？"];
  if(!DATA)return L;
@@ -1120,27 +1121,32 @@ function kbNegoNode(key){
 function kbNegoEnd(){kbNegoActive=false;kbMenuTalk=false;const c=$("kbChoices");if(c){c.hidden=true;c.innerHTML=""}}
 let kbMenuTalk=false; // 会話メニュー中フラグ＝魅了中の♡はメニュー会話にも乗せる（機嫌交渉は素のまま＝魅了が揺らぐcanon）
 // ---- 会話メニュー（吹き出しクリックで開く汎用会話・後輩くん設計 2026-07-05）----
+let kbLastReco=null; // 直前におすすめした卓＝「他にはない？」で別の卓を出すため
 function kbRecommend(band){ // 時間帯(asa/hiru/yoru/null)に合う募集中の未来卓をランダムに1つ
  const today=new Date();const t0=new Date(today.getFullYear(),today.getMonth(),today.getDate());
- const cands=((DATA&&DATA.sessions)||[]).filter(x=>x.open&&(x.dates||[]).some(d=>{
+ let cands=((DATA&&DATA.sessions)||[]).filter(x=>x.open&&(x.dates||[]).some(d=>{
   const t=jd(d.date);return t>=t0&&(!band||timeBand(d.start)===band)}));
- return cands.length?cands[Math.floor(Math.random()*cands.length)]:null;
+ if(cands.length>1&&kbLastReco){const f=cands.filter(x=>x!==kbLastReco);if(f.length)cands=f;} // 直前と別の卓を優先（候補が2つ以上なら）
+ const pick=cands.length?cands[Math.floor(Math.random()*cands.length)]:null;
+ kbLastReco=pick;
+ return pick;
 }
 function kbRecLine(band){
  const s=kbRecommend(band);
  if(!s)return band?"うーん、いまその時間帯の募集は無いみたい。……つまり、あなたが立てたら一人勝ちってことだよ？":"いまは募集中の卓が無いみたいだね。……立てるなら、わたし、応援するよ";
  const dd=(s.dates||[]).map(d=>({d,t:jd(d.date)})).filter(x=>x.t>=new Date()).sort((a,b)=>a.t-b.t)[0]||{d:(s.dates||[])[0],t:jd(s.dates[0].date)};
- return `${dd.t.getMonth()+1}/${dd.t.getDate()}${dd.d.start?" "+dd.d.start+"〜":""}の『${s.scenario}』、募集中だよ。どうかな？`;
+ const reg=(s.reg&&!s.reg_is_name)?`【${s.reg}】`:"";  // レギュがあれば卓名の前に添える（後輩くん要望）
+ return `${dd.t.getMonth()+1}/${dd.t.getDate()}${dd.d.start?" "+dd.d.start+"〜":""}の${reg}『${s.scenario}』、募集中だよ。どうかな？`;
 }
 const KB_MENU={
  menu:{say:()=>{const R=["どうしたの？","ん、なあに？","はい、受付です。……なにか御用？","呼んだ？　聞きたいこと、ある？"];return R[Math.floor(Math.random()*R.length)]},
   opts:[["おすすめの卓ってある？","rec"],["セッションってどう参加するの？","howto1"],["村の住人について教えて","lore"],["ううん、おしゃべりしたいだけ","chat"]]},
  rec:{say:"任せて、受付だからね。……遊べる時間帯はいつ？",
   opts:[["朝がいい","rec_asa"],["昼かな","rec_hiru"],["夜だね","rec_yoru"],["いつでも！","rec_any"]]},
- rec_asa:{say:()=>kbRecLine("asa"),opts:[["参加してみようかな","joy_pl"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
- rec_hiru:{say:()=>kbRecLine("hiru"),opts:[["参加してみようかな","joy_pl"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
- rec_yoru:{say:()=>kbRecLine("yoru"),opts:[["参加してみようかな","joy_pl"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
- rec_any:{say:()=>kbRecLine(null),opts:[["参加してみようかな","joy_pl"],["時間帯で選び直す","rec"],["卓を立てるのもアリかも","joy_gm"]]},
+ rec_asa:{say:()=>kbRecLine("asa"),opts:[["参加してみようかな","joy_pl"],["他にはない？","rec_asa"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
+ rec_hiru:{say:()=>kbRecLine("hiru"),opts:[["参加してみようかな","joy_pl"],["他にはない？","rec_hiru"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
+ rec_yoru:{say:()=>kbRecLine("yoru"),opts:[["参加してみようかな","joy_pl"],["他にはない？","rec_yoru"],["他の時間帯は？","rec"],["卓を立てるのもアリかも","joy_gm"]]},
+ rec_any:{say:()=>kbRecLine(null),opts:[["参加してみようかな","joy_pl"],["他にはない？","rec_any"],["時間帯で選び直す","rec"],["卓を立てるのもアリかも","joy_gm"]]},
  joy_pl:{say:"えへへ、いってらっしゃい！　参加表明、応援してるからね。いい卓になりますように、って祈ってる！",end:true,wait:4600},
  joy_gm:{say:"ほんとに！？　……えへへ、うれしいな。あなたの卓、楽しみにしてるね。立てたら、ちゃんとここに載せるから！",end:true,wait:4600},
  howto1:{say:"基本はかんたん。卓部屋の募集トピックを読んで、気になったらそのトピックの中で参加表明するの。募集人数も期限も注意事項も、ぜんぶそこに書いてあるよ",
