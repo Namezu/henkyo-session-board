@@ -229,8 +229,20 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
         ongoing = is_ongoing_cp(th.name, r["scenario"], all_past, r.get("year_explicit"), recruiting,
                                 base_dt, last_active, today)
         if ongoing:
-            dates = []   # 古い初回日付は出さず「継続中」として日付なしで載せる（＝すり合わせ帯に表示）
-        is_suri = bool((r["suriawase"] and not dates) or ongoing)
+            # 継続CP＝タイトルの月日を「次の開催」へ繰り上げてカレンダー本体に載せる（日付が書いてあるので玉座として日付席に座らせる・後輩くん2026-07-08朝）。
+            # 繰り上げは"今日基準"だが is_ongoing_cp（最近活動＋作成古い＋CPらしい）で守っているので去年の死卓は湧かない。
+            rolled = []
+            for (m, d) in r["dates"]:
+                yy = today.year
+                try:
+                    if datetime.date(yy, m, d) < today:
+                        yy += 1
+                    rolled.append({"date": f"{yy}-{m:02d}-{d:02d}", "start": r["start"], "end": r["end"]})
+                except ValueError:
+                    pass
+            if rolled:
+                dates = rolled
+        is_suri = bool(r["suriawase"] and not dates)
         # 半年以上前 or 終了(アーカイブ済み＆非募集)のすり合わせ卓＝居座るので不掲載（継続CPは除外＝残す）
         if is_suri and not ongoing and ((today - base_dt).days > STALE_DAYS or archived_done):
             print(f"  🗑 終了/流卓とみなし不掲載(すり合わせ): {th.name}"); continue

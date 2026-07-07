@@ -527,7 +527,7 @@ mback.addEventListener("click",()=>{closeModal();closeDayPop()});
 function openDetail(x){
  tip.classList.remove("show");
  const s=x.s;
- const when=s.ongoing?"🔄 継続中（次回日程は卓のトピックで告知）":x.st==="suri"?"日程すり合わせ中":(s.dates||[]).map(dd=>{const t=jd(dd.date);return`${t.getMonth()+1}/${t.getDate()}(${WD[t.getDay()]}) ${dd.start||""}${dd.end?"-"+dd.end:""}`}).join(" ／ ");
+ const when=x.st==="suri"?"日程すり合わせ中":(s.dates||[]).map(dd=>{const t=jd(dd.date);return`${t.getMonth()+1}/${t.getDate()}(${WD[t.getDay()]}) ${dd.start||""}${dd.end?"-"+dd.end:""}`}).join(" ／ ");
  modal.innerHTML=`<button class="m-close">✕</button>
   <div class="m-name">${esc(s.scenario)}</div>
   <div class="m-meta">${when}</div>
@@ -635,13 +635,13 @@ function renderSuri(){
  const list=(DATA.sessions||[]).map(s=>({s,st:stOf(s)})).filter(x=>x.st==="suri").map(x=>({...x,dim:suriDim(x.s)}));
  const el=$("suriSec");
  if(!list.length){el.innerHTML="";return}
- el.innerHTML=`<div class="suriband"><div class="sb-h">📌 日程すり合わせ中・継続中の貼り紙</div>
-  <div class="sb-sub">まだ日付が決まっていない卓や、進行中のキャンペーン（🔄）。日程が決まるとカレンダーへ引っ越します（貼り紙をタップで詳細）</div>
+ el.innerHTML=`<div class="suriband"><div class="sb-h">📌 日程すり合わせ中の貼り紙</div>
+  <div class="sb-sub">まだ日付が決まっていない卓。日程が決まるとカレンダーへ引っ越します（貼り紙をタップで詳細）</div>
   <div class="suriwrap"></div></div>`;
  const wrap=el.querySelector(".suriwrap");
  list.forEach(x=>{
   const t=document.createElement("div");t.className="ticket"+(x.dim?" dim":"");
-  t.innerHTML=`<span class="tk-pin">${x.s.ongoing?"🔄":"📍"}</span><div class="tk-name">${esc(x.s.scenario)}${x.s.ongoing?' <span style="font-size:.72em;color:var(--grn);font-family:sans-serif">継続中</span>':''}</div>
+  t.innerHTML=`<span class="tk-pin">📍</span><div class="tk-name">${esc(x.s.scenario)}</div>
    <div class="tk-meta"><span class="tk-dot" style="background:#c2ab6a"></span>${x.s.reg&&!x.s.reg_is_name?regLabel(x.s):esc(sysGroup(x.s))}</div>
    ${x.s.gm?`<div class="tk-meta">GM: ${esc(x.s.gm)}</div>`:""}`;
   t.addEventListener("click",()=>openDetail(x));
