@@ -137,6 +137,7 @@ select option:checked{background:#3f6c4c;color:#fff}
 .ymd.o{background:transparent}
 .ymd.t{outline:2px solid var(--ter);outline-offset:-1px}
 .ymd.c1{background:#3a4c40}.ymd.c2{background:#46664f}.ymd.c3{background:#5f9a70}
+.ymd.p1{background:#333d47}.ymd.p2{background:#3f4a57}.ymd.p3{background:#516072}
 /* レギュ凡例（タップで絞り込み） */
 .legend{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
 .lg{display:flex;align-items:center;gap:5px;border:1px solid var(--glass-brd);background:rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);border-radius:16px;padding:4px 11px;font-size:.76em;cursor:pointer;color:var(--tx);transition:border-color .18s,transform .18s,box-shadow .18s}
@@ -220,10 +221,10 @@ a.ticket{display:block;text-decoration:none;color:inherit}
  #monthSec{display:grid;grid-template-columns:1fr 1fr;gap:0 12px;align-items:start}
  #monthSec .section{grid-column:1/-1}
 }
-.card{display:block;background:rgba(255,255,255,.06);border:1px solid var(--glass-brd);border-left:5px solid var(--grn2);border-radius:16px;padding:12px 14px;margin:8px 0;text-decoration:none;color:var(--tx);position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 1px 4px rgba(0,0,0,.25);transition:transform .18s,box-shadow .18s,background .18s}
+.card{display:block;background:rgba(255,255,255,.21);border:1px solid var(--glass-brd);border-left:5px solid var(--grn2);border-radius:16px;padding:12px 14px;margin:8px 0;text-decoration:none;color:var(--tx);position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 1px 4px rgba(0,0,0,.25);transition:transform .18s,box-shadow .18s,background .18s}
 .card:hover{transform:translateY(-2px);background:rgba(255,255,255,.1);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),var(--shadow)}
-.card.closed{border-left-color:#b9b2a6;opacity:.78}
-.card.done{border-left-color:#cfc8bb;opacity:.55}
+.card.closed{border-left-color:#b9b2a6;opacity:.93}
+.card.done{border-left-color:#cfc8bb;opacity:.70}
 .card .when{font-weight:700;font-size:.98em}
 .card .when .wd{color:var(--mut);font-weight:400;font-size:.9em}
 .card .name{font-family:'Shippori Mincho',serif;font-size:1.1em;margin:1px 0}
@@ -469,8 +470,9 @@ function dayMap(){
 function renderLegend(){
  // 今月の凡例＝システム単位（タップで絞り込みトグル）
  const g={};
+ const yearMode=(VIEW==="year");  // 年表示＝その年の全システム内訳／月・これから表示＝その月
  (DATA.sessions||[]).forEach(s=>{
-  if(!(s.dates||[]).some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&t.getMonth()===curM}))return;
+  if(!(s.dates||[]).some(d=>{const t=jd(d.date);return t.getFullYear()===curY&&(yearMode||t.getMonth()===curM)}))return;
   const k=sysGroup(s);g[k]=(g[k]||0)+1;});
  const el=$("legend");
  el.innerHTML=Object.entries(g).sort((a,b)=>b[1]-a[1]).map(([k,n])=>{
@@ -648,7 +650,11 @@ function renderMonth(){
  const items=(DATA.sessions||[]).map(s=>({s,st:stOf(s)}))
   .filter(x=>x.s.dates&&x.s.dates.length&&x.s.dates.some(hit))
   .map(x=>({...x,dim:dimOf(x.s,x.st)||bandDim(x.s)}));
- items.sort((a,b)=>a.s.dates[0].date<b.s.dates[0].date?-1:1);
+ items.sort((a,b)=>{
+  const ao=a.st==="open"?0:1,bo=b.st==="open"?0:1;
+  if(ao!==bo)return ao-bo;                           // 募集中の卓を上部に優先表示（後輩くん要望）
+  return a.s.dates[0].date<b.s.dates[0].date?-1:1;   // 同グループ内は日付の早い順
+ });
  $("monthSec").innerHTML=items.length?`<div class="section">🗒 ${VIEW==="flow"?"これからの卓一覧":`${curM+1}月の卓一覧`}</div>`+items.map(card).join(""):"";
 }
 let VIEW="flow"; // 既定=これから表示（今日の週が最上段・後輩くん設計）。"month"=従来の月表示・"year"=年表示
@@ -665,8 +671,17 @@ function renderYear(){
   let cnt=0,cells="";
   for(let i=0;i<first;i++)cells+=`<span class="ymd o"></span>`;
   for(let d=1;d<=days;d++){
-   const k=key(curY,m,d),n=(map[k]||[]).filter(x=>!x.dim).length;cnt+=n;
-   const cl=n>=3?"c3":n===2?"c2":n===1?"c1":"";
+   // 年表示は「その年の全卓（過去含む）の頻度」を見せる＝募集状態フィルタは無視。システム/レギュ/GM絞り込みだけ効かせる
+   const k=key(curY,m,d),items=(map[k]||[]).filter(x=>{const s=x.s;
+     if(SYSF&&sysGroup(s)!==SYSF)return false;
+     if(REGF&&normReg(s.reg||"")!==normReg(REGF))return false;
+     if(GMF&&(s.gm||"")!==GMF)return false;
+     return true;});
+   const n=items.length;cnt+=n;
+   // 色分け：募集中の卓を含む日＝緑(c)／過去・募集終了のみの日＝落ち着いた青灰(p)＝村の歴史とこれからを区別
+   const hasOpen=items.some(x=>x.st==="open");
+   const lvl=n>=3?3:n===2?2:n===1?1:0;
+   const cl=lvl?(hasOpen?"c":"p")+lvl:"";
    cells+=`<span class="ymd ${cl}${k===todayK?" t":""}" title="${m+1}/${d}${n?`：${n}卓`:""}"></span>`;
   }
   total+=cnt;
@@ -795,13 +810,11 @@ function syncSysSel(){
 }
 function fillFilterSelects(){
  const gms=new Set(),syss=new Map();
- const t0f=new Date(now.getFullYear(),now.getMonth(),now.getDate());
  (DATA.sessions||[]).forEach(s=>{
   const g=sysGroup(s);syss.set(g,(syss.get(g)||0)+1);
-  // GMソートは「これから開催／すり合わせ中」の卓のGMだけ＝もうサーバーに居ない人・過去だけの人を除外。
-  //   さらに削除済みアカウント（Deleted User）名も弾く。卓そのものの表示にはGM名は残す。
-  const upcoming=s.suriawase||(s.dates||[]).some(d=>jd(d.date)>=t0f);
-  if(s.gm&&upcoming&&!/^deleted.?user/i.test(s.gm))gms.add(s.gm);
+  // GMソートは「サーバーに在籍中のGM」だけ＝退会・アカウント削除は収集時に gm_active=false で判定して除外
+  //  （未来卓の有無は問わない＝現役GMは過去卓しか無くても出す）。gm_active未設定の旧データ／判定不能は出す（現役GMを誤って隠さない）。削除名も念のため弾く。
+  if(s.gm&&s.gm_active!==false&&!/^deleted.?user/i.test(s.gm))gms.add(s.gm);
  });
  const opt=(v)=>`<option value="${esc(v)}">${esc(v)}</option>`;
  // 卓がある順→残りの公認システムも常載（卓ゼロでも選べる＝レギュ台帳と対）

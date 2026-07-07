@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 from parse_title import parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+JST = datetime.timezone(datetime.timedelta(hours=9))   # GitHub ActionsはUTCで動く＝時刻/日付は日本時間で記録・判定する
 # トークン＝チャルタヴォラ（読み取り専用bot）を流用。ローカルは.env、Actionsは環境変数（.envが無ければ素通り）
 _envfile = os.environ.get("COLLECT_ENV", os.path.join(HERE, "..", "chartavora_bot", ".env"))
 if os.path.exists(_envfile):
@@ -43,6 +44,31 @@ def infer_year(month, day, base):
             return None
     return y
 
+_gm_active_cache = {}
+async def gm_is_active(guild, author):
+    """GM（トピック起票者）がまだサーバーに在籍しているか。退会・アカウント削除ならFalse。
+    fetch_member（API）で判定＝members intent不要。同一GMはキャッシュで1回だけ問い合わせる。
+    判定不能（一時エラー等）はTrue寄せ＝消しすぎ防止（現役GMを誤って隠さない）。"""
+    if author is None:
+        return True
+    aid = getattr(author, "id", None)
+    if aid is None:
+        return True
+    if aid in _gm_active_cache:
+        return _gm_active_cache[aid]
+    m = guild.get_member(aid)
+    if m is None:
+        try:
+            m = await guild.fetch_member(aid)
+        except discord.NotFound:
+            m = None              # サーバーに居ない＝退会 or アカウント削除
+        except Exception:
+            _gm_active_cache[aid] = True   # 一時エラーはキャッシュせずTrue（次回再判定）
+            return True
+    active = m is not None
+    _gm_active_cache[aid] = active
+    return active
+
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
@@ -63,7 +89,7 @@ async def read_forum(guild, key, sessions, unparsed):
             ths.append(th)
     except Exception as e:
         print(f"⚠ {name}: アーカイブ取得で一部失敗({e})")
-    today = datetime.date.today()
+    today = datetime.datetime.now(JST).date()
     STALE_DAYS = 180   # 半年以上前に立てたトピックは流卓/終了とみなす
     for th in ths:
         url = f"https://discord.com/channels/{guild.id}/{th.id}"
@@ -97,6 +123,7 @@ async def read_forum(guild, key, sessions, unparsed):
         gm = None
         if starter and starter.author:
             gm = starter.author.display_name
+        gm_active = await gm_is_active(guild, starter.author if starter else None)
         sessions.append({
             "scenario": r["scenario"],
             "reg": None if r.get("reg_is_name") else r["reg"],
@@ -104,7 +131,7 @@ async def read_forum(guild, key, sessions, unparsed):
             "dates": dates,
             "open": "募集中" in tags,
             "suriawase": is_suri,
-            "gm": gm, "url": url,
+            "gm": gm, "gm_active": gm_active, "url": url,
             "created": th.created_at.isoformat() if th.created_at else None,
             "source": "forum",
         })
@@ -120,7 +147,7 @@ async def on_ready():
         for name in FORUM_NAMES:
             await read_forum(guild, name, sessions, unparsed)
         data = {
-            "updated": datetime.datetime.now().strftime("%Y/%m/%d %H:%M"),
+            "updated": datetime.datetime.now(JST).strftime("%Y/%m/%d %H:%M"),
             "guild": guild.name,
             "sessions": sessions,
             "unparsed": unparsed,
