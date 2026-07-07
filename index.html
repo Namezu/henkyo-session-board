@@ -155,12 +155,30 @@ select option:checked{background:#3f6c4c;color:#fff}
  .tooldiv{display:none}
  .toolrow{position:static}  /* スマホは折返しで背が高くなるためstickyにしない */
  h1{font-size:1.45em}
- .cell{height:62px;padding:3px 3px 2px}
+ /* フィルタ＝システムは1行独占・レギュ+GMを1行にまとめる（後輩くん2026-07-08） */
+ .fsel{max-width:none}
+ #sysSel{flex:1 1 100%}
+ #regSel,#gmSel{flex:1 1 0;min-width:0;max-width:48%}
+ /* カレンダーヘッダーが枠から左右にはみ出す対策＝タイトルで1行目を満たし、表示切替ボタンは次行へ折返し（縦text化も防ぐ） */
+ .calhead{gap:6px;flex-wrap:wrap;margin:8px 0 6px}
+ .calhead h2{font-size:1.2em;min-width:0;flex:1 1 auto;white-space:nowrap}
+ #prev,#next{padding:6px 11px;font-size:.95em;flex:0 0 auto}
+ .today-btn{font-size:.72em;padding:6px 9px;white-space:nowrap}
+ /* セル＝横棒が自然に入る高さに。4卓以上は右下カウントを赤バッジ化・「+n」バッジは出さない（後輩くん2026-07-08） */
+ .cell{height:74px;padding:3px 3px 2px}
  .sch{font-size:0;padding:0;height:7px;margin-top:3px;border-left:none}
  .sch .rg{display:none}
  .sch .tb{display:none}
- .cal.two .cell{height:62px}
+ .cal.two .cell{height:74px}
  .cnt{position:absolute;bottom:3px;right:5px;font-size:.72em;font-weight:700;color:var(--grn)}
+ .cnt.many{background:#f00;color:#fff;border-radius:9px;padding:1px 6px;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+ .more{display:none}
+}
+/* 横画面スマホ＝背が低い＝リンデの吹き出しが上に見切れる対策（立ち絵を縮めて収める・PCは無関係） */
+@media(orientation:landscape) and (max-height:560px){
+ .kb-girl{height:150px;margin-right:-28px}
+ .kb-bubble{max-width:210px;font-size:.72em}
+ #kanban{bottom:4px}
 }
 .cnt{display:none}
 @media(max-width:560px){.cnt{display:block}}
@@ -547,8 +565,9 @@ function mkDayCell(yy,mm,dd,map,todayK,t0,dnLabel){ // 月表示/これから表
  const isPast=new Date(yy,mm,dd)<t0;
  const cell=document.createElement("div");
  cell.className="cell"+(k===todayK?" today":"")+(k===selDate?" sel":"")+(dow===0?" sunday":dow===6?" saturday":"")+(isPast?" past":"")+(dd===1?" mstart":"");
- cell.innerHTML=`<span class="dn">${dnLabel||dd}</span>${act.length?`<span class="cnt">${act.length}卓</span>`:""}`;
- const lim=3; // 3卓までは全部見せる・4卓目から「+n」（後輩くん指定）
+ const _isMob=matchMedia("(max-width:560px)").matches;   // スマホ簡略表示か
+ cell.innerHTML=`<span class="dn">${dnLabel||dd}</span>${act.length?`<span class="cnt${act.length>=4?" many":""}">${act.length}卓</span>`:""}`;  // 4卓以上は右下カウントを赤バッジ化(モバイル)
+ const lim=_isMob?Math.min(list.length,6):3; // スマホは棒が自然に入る数だけ(最大6・セルがclip)／PCは3卓まで＋4卓目から「+n」
  list.slice(0,lim).forEach(x=>{
   const ch=document.createElement("span");ch.className=`sch ${x.st}${x.dim?" dim":""}`;
   // システム別の色分けは廃止（ソート/絞り込みで代替・後輩くん要望2026-07-07）＝配色はステータス（募集中=緑／〆切・終了=ホワイトアウト）のみ
@@ -565,7 +584,7 @@ function mkDayCell(yy,mm,dd,map,todayK,t0,dnLabel){ // 月表示/これから表
   ch.addEventListener("mouseleave",()=>showDayTip(cell,`${mm+1}/${dd}（${WD[dow]}）`,list)); // チップを離れたら日一覧へ戻す
   cell.appendChild(ch);
  });
- if(list.length>lim){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-lim}`;cell.appendChild(mo)}
+ if(!_isMob&&list.length>lim){const mo=document.createElement("span");mo.className="more";mo.textContent=`+${list.length-lim}`;cell.appendChild(mo)}  // 「+n」バッジはPCのみ（スマホは右下カウントで代替）
  cell.addEventListener("mouseenter",()=>showDayTip(cell,`${mm+1}/${dd}（${WD[dow]}）`,list));
  cell.addEventListener("mouseleave",()=>tip.classList.remove("show"));
  cell.addEventListener("click",()=>{selDate=(selDate===k?null:k);renderAll();renderDay()});
