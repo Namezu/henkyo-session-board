@@ -219,7 +219,7 @@ textarea{min-height:74px;resize:vertical}
 <textarea id="houseFree" placeholder="独自ルールがあれば（複数行で書けます）"></textarea>
 <label>注意事項・地雷警告（任意）</label>
 <textarea id="warning" placeholder="例: 残虐描写・死体描写があります。地雷がある方は事前にDMにて申告してください。"></textarea>
-<div class="chips"><label class="chip"><input type="checkbox" id="aiUse">🤖 生成AIを使用する卓（チェックでお断り文を自動挿入）</label></div>
+<div class="chips"><label class="chip"><input type="checkbox" id="aiUse">🤖 生成AIを使用する卓（チェックで注意事項に自動挿入）</label><label class="chip"><input type="checkbox" id="spectate">👀 見学可能なセッション</label></div>
 <label>GM名（署名・シート用）</label>
 <input type="text" id="gmName" placeholder="例: カテナドルグ">
 </fieldset>
@@ -285,6 +285,7 @@ function seg(id,onChange){const el=$(id);el.querySelectorAll("button").forEach(b
 const dateMode=seg("dateMode",v=>{$("fixedBox").classList.toggle("hidden",v!=="fixed");$("durBox").classList.toggle("hidden",v==="fixed")});
 document.querySelectorAll("#optChips .chip input").forEach(c=>c.addEventListener("change",()=>c.closest(".chip").classList.toggle("on",c.checked)));
 $("aiUse").addEventListener("change",()=>$("aiUse").closest(".chip").classList.toggle("on",$("aiUse").checked));
+$("spectate").addEventListener("change",()=>$("spectate").closest(".chip").classList.toggle("on",$("spectate").checked));
 document.querySelectorAll("#senkouBtns .mini").forEach(b=>b.addEventListener("click",()=>{$("senkou").value=($("senkou").value+b.dataset.t).replace(/^ ?⇒ ?/,"")}));
 
 // ---- Markdown整形ミニツールバー（選択行の見出し化・太字など。もう一度押すと解除＝トグル） ----
@@ -358,7 +359,7 @@ function durOf(s,e){if(!s||!e)return"";const[a,b]=s.split(":").map(Number),[c,d]
 const FIELDS=["duration","scenario","regFree","regFreeUrl","cl","battles","guild","players","invite","senkou","deadline","format","houseFree","warning","gmName","pitaUrl","footerFree","trailer","adCatch"];
 function collect(){
  return{f:Object.fromEntries(FIELDS.map(k=>[k,$(k).value])),
-  reg:sel.value, dateMode:dateMode.get(), ai:$("aiUse").checked,
+  reg:sel.value, dateMode:dateMode.get(), ai:$("aiUse").checked, spectate:$("spectate").checked,
   opts:[...document.querySelectorAll("#optChips input:checked")].map(c=>c.value),
   days:[...document.querySelectorAll(".dayrow")].map(r=>({d:r.querySelector("input[type=date]").value,s:r.querySelector(".st").value,e:r.querySelector(".en").value}))};
 }
@@ -367,6 +368,7 @@ function restore(o){if(!o)return;
  sel.value=o.reg||"";sel.dispatchEvent(new Event("change"));
  if(o.dateMode)dateMode.set(o.dateMode);
  $("aiUse").checked=!!o.ai;$("aiUse").closest(".chip").classList.toggle("on",!!o.ai);
+ $("spectate").checked=!!o.spectate;$("spectate").closest(".chip").classList.toggle("on",!!o.spectate);
  document.querySelectorAll("#optChips input").forEach(c=>{c.checked=(o.opts||[]).includes(c.value);c.closest(".chip").classList.toggle("on",c.checked)});
  $("days").innerHTML="";(o.days&&o.days.length?o.days:[{}]).forEach(x=>addDayRow(x.d,x.s,x.e));
 }
@@ -524,11 +526,14 @@ function buildOutputs(state){
   if(hl.length===1)lines.push(`> ハウスルール：${hl[0]}`);
   else{lines.push(`> ハウスルール：`);hl.forEach(x=>lines.push(`> ${x}`))}
  }
- if($("aiUse").checked)lines.push(`> 🤖 **この卓では生成AIを使用しています。**`);
- if($("warning").value.trim()){
-  // 独立セクション（後輩くん最終決定 2026-07-04＝一度引用内に戻したが再検討でこちらに確定）
+ if($("spectate").checked)lines.push(`> 👀 **見学可能な卓です。**`);
+ // 注意事項＝生成AI使用のお断り＋手入力warningを統合（独立セクション・AI使用のみでもセクション化＝後輩くん要望2026-07-08）
+ const warnLines=[];
+ if($("aiUse").checked)warnLines.push("🤖 この卓では生成AIを使用しています。");
+ if($("warning").value.trim())$("warning").value.trim().split("\n").forEach(x=>{if(x.trim())warnLines.push(x.trim())});
+ if(warnLines.length){
   lines.push("",`### ⚠️ 注意事項`);
-  $("warning").value.trim().split("\n").forEach(x=>lines.push(x.trim()?`**${x.trim()}**`:""));
+  warnLines.forEach(x=>lines.push(`**${x}**`));
  }
  const pitaUrl=$("pitaUrl").value.trim();
  // URLは見出しにせず通常行（生URL=招待カードの展開は維持）。使い方は掲示板の説明へマスクリンク誘導
