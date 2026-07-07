@@ -119,7 +119,7 @@ h1{font-family:'Shippori Mincho','Yu Mincho',serif;font-size:1.75em;letter-spaci
 .bandlab{font-size:.78em;color:var(--mut);letter-spacing:.06em}
 /* 朝昼夜トグル（アイコン色を活かすためON時は薄緑地） */
 .f.bf .tb{width:12px;height:12px;vertical-align:-2px;margin-right:2px}
-.f.bf.on{background:rgba(143,188,155,.16);border-color:var(--grn);color:var(--grn);font-weight:700}
+.f.bf.on{background:#3f6c4c;border-color:#3f6c4c;color:#fff;font-weight:700}  /* 時間帯ON＝すべて/募集中だけと同じくっきり緑（後輩くん2026-07-08） */
 /* レギュ/GM絞り込みプルダウン */
 .fsel{border:1px solid var(--glass-brd);background:rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);border-radius:20px;padding:7px 10px;font-size:.85em;font-family:inherit;color:var(--mut);max-width:44vw;cursor:pointer;transition:border-color .18s,box-shadow .18s}
 .fsel:hover{border-color:var(--grn2);box-shadow:var(--shadow)}
@@ -314,9 +314,9 @@ footer::after{background:linear-gradient(90deg,var(--cln),transparent)}
  <select class="fsel" id="regSel"><option value="">レギュ: 全て</option></select>
  <select class="fsel" id="gmSel"><option value="">GM: 全て</option></select>
  <span class="bandrow"><span class="bandlab">時間帯ソート：</span>
-  <button class="f bf" data-band="asa" type="button">朝</button>
-  <button class="f bf" data-band="hiru" type="button">昼</button>
-  <button class="f bf" data-band="yoru" type="button">夜</button>
+  <button class="f bf on" data-band="asa" type="button">朝</button>
+  <button class="f bf on" data-band="hiru" type="button">昼</button>
+  <button class="f bf on" data-band="yoru" type="button">夜</button>
   <a class="tolink" href="takutate.html">🛠 セッション作成マイセット（アリアンロッド用）→</a>
  </span>
 </div>
@@ -372,7 +372,7 @@ const WD=["日","月","火","水","木","金","土"];
 let DATA=null,FILTER="all",selDate=null,SYSF=null;  // 既定=すべて表示（募集中だけは切替・後輩くん指定2026-07-07に「募集中のみ」から変更）
 const TWO=true;                                      // 2行表示（シナリオ名＋レギュ名）＝常時ON（トグル廃止）
 let REGF=null,GMF=null;                              // レギュ/GM絞り込み（非該当はdim＝グレーアウトで残す）
-const BANDS=new Set();                               // 朝昼夜絞り込み（複数選択可・空=全て）
+const BANDS=new Set(["asa","hiru","yoru"]);          // 朝昼夜＝デフォルト全部ON（表示する時間帯の集合）。押すと外す＝すべて/募集中だけと同じ発想（後輩くん2026-07-08）。空=何も表示しない
 // 色分け＝システム単位（アリアンロッド2E＝村の主流＝緑／その他システム＝青）
 const AR2E_REGS=new Set(["ミスリルクレスト","ミスリルクエスト","氷原開拓団","さちあれ","フツウノアリアン","イジョウナアリアン","ピースメイカー","アンコールを流星に","賽は投げられた","ダンジョン・トラベラーズ","ネームドエネミー討伐RTA!!","勇者の首を晒せ","グルメ卓"]);
 const AR2E_REGS_DEPRECATED= new Set(["フツウノアリアン","賽は投げられた","グルメ卓"]);
@@ -474,12 +474,11 @@ function dimOf(s,st){
  return false;
 }
 // 朝昼夜絞り込み：日程単位（チップ用）と卓単位（一覧カード用＝どれかの日程が該当すればOK）
-function bandDimDate(d){return BANDS.size>0&&!BANDS.has(timeBand(d.start))}
+function bandDimDate(d){const b=timeBand(d.start);return b!==""&&!BANDS.has(b)}  // 選択中(BANDS)に無い時間帯は薄く。時刻未定("")は分類できない＝常に表示（全3つON=何も薄くならない）
 function bandDim(s){
- if(!BANDS.size)return false;
  const ds=s.dates||[];
  if(!ds.length)return false;  // すり合わせ卓＝時間未定は薄くしない
- return !ds.some(d=>BANDS.has(timeBand(d.start)));
+ return !ds.some(d=>{const b=timeBand(d.start);return b===""||BANDS.has(b)});  // 時刻未定 or 選択中の時間帯を1つでも持てば表示
 }
 // 日付→その日のセッション一覧（該当が先・非該当dimは後ろ）
 function dayMap(){
