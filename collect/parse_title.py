@@ -82,7 +82,8 @@ def parse(title):
     t = z2h(title.strip())
     out = {"raw": title, "reg": None, "scenario": None, "dates": [], "start": None, "end": None,
            "suriawase": False, "episode": None, "ok": False}
-    # 年プレフィックス（2024/4/8等）を除去してから日付を読む
+    # 年プレフィックス（2024/4/8等）を除去してから日付を読む。年が明記されていたか記録（継続CP判定で使う）
+    out["year_explicit"] = bool(re.search(r"20[0-9]{2}\s*[/年]", t))
     t = re.sub(r"20[0-9]{2}\s*[/年]\s*", "", t)
     # 【】群（無ければ『』をタイトル括弧として代用）を分類：話数/レギュ(台帳照合)/メタ
     braces = [(m.start(), m.end(), m.group(1).strip()) for m in re.finditer(r"【([^】]*)】", t)]

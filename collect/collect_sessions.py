@@ -69,6 +69,25 @@ def parse_iso_date_jst(s):
         return None
 
 
+_CP_RE = re.compile(r"CP|キャンペーン|継続|連載|長期|第[0-9０-９一二三四五六七八九十]+話")
+def is_ongoing_cp(title, scenario, all_dates_past, year_explicit,
+                  created_date, last_active_date, today,
+                  created_min_age=90, active_within=45):
+    """「タイトルが初回日付のまま進行中のCP」を検出（純関数＝テスト可能）。
+    去年の"死んだ"卓を今年に湧かせないため、次の全条件を満たす時だけ継続中とみなす：
+    ・パース済みの日付が全部過去（＝タイトルが古い）／年が明記されていない
+    ・トピック作成が十分古い（created_min_age日以上前＝最近の単発ではない）
+    ・最終活動が最近（active_within日以内＝まだ生きている。死んだ卓は無活動で除外）
+    ・タイトル/シナリオがCP・キャンペーン・第n話等の"継続もの"らしい"""
+    if not all_dates_past or year_explicit:
+        return False
+    if created_date is None or (today - created_date).days < created_min_age:
+        return False
+    if last_active_date is None or (today - last_active_date).days > active_within:
+        return False
+    return bool(_CP_RE.search((title or "") + " " + (scenario or "")))
+
+
 def merge_old_sessions(fresh_sessions, processed_urls, old_sessions, cutoff_date):
     """今回フェッチしなかった古い卓（作成がcutoffより前）を前回JSONから引き継ぐ。
     ＝省エネしつつ過去の月/年表示を維持する。processed_urls に居る卓（今回実フェッチ済み）は
@@ -169,8 +188,8 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
         url = f"https://discord.com/channels/{guild.id}/{th.id}"
         cbase = th.created_at or getattr(th, "archive_timestamp", None)   # created_at欠損時はアーカイブ時刻で代替
         base_dt = cbase.astimezone(JST).date() if cbase else today
-        if not FULL_MODE and base_dt < cutoff_date:
-            continue   # 古い卓＝実フェッチせず前回JSONから引き継ぐ（processed_urlsに入れない）
+        if not FULL_MODE and base_dt < cutoff_date and bool(getattr(th, "archived", False)):
+            continue   # 古い"アーカイブ済み"卓＝実フェッチせず前回JSONから引き継ぐ。古くてもアクティブな卓(継続CP/長期すり合わせ)は処理する
         processed_urls.add(url)
         tags = {t.name for t in th.applied_tags}
         recruiting = "募集中" in tags
@@ -194,9 +213,21 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
             y = infer_year(m, d, base_dt)
             if y:
                 dates.append({"date": f"{y}-{m:02d}-{d:02d}", "start": r["start"], "end": r["end"]})
-        is_suri = bool(r["suriawase"] and not dates)
-        # 半年以上前 or 終了(アーカイブ済み＆非募集)のすり合わせ卓＝居座るので不掲載
-        if is_suri and ((today - base_dt).days > STALE_DAYS or archived_done):
+        # 継続CP判定＝タイトルが初回(過去)日付のまま進行中の卓（例:takuさん一期一会CP）。
+        # 去年の死んだ卓を今年に湧かせないため、最終活動が最近＆作成が古い＆CPらしい時だけ。
+        today_iso = today.isoformat()
+        all_past = bool(dates) and all(dd["date"] < today_iso for dd in dates)
+        try:
+            last_active = discord.utils.snowflake_time(th.last_message_id).astimezone(JST).date() if th.last_message_id else base_dt
+        except Exception:
+            last_active = base_dt
+        ongoing = is_ongoing_cp(th.name, r["scenario"], all_past, r.get("year_explicit"),
+                                base_dt, last_active, today)
+        if ongoing:
+            dates = []   # 古い初回日付は出さず「継続中」として日付なしで載せる（＝すり合わせ帯に表示）
+        is_suri = bool((r["suriawase"] and not dates) or ongoing)
+        # 半年以上前 or 終了(アーカイブ済み＆非募集)のすり合わせ卓＝居座るので不掲載（継続CPは除外＝残す）
+        if is_suri and not ongoing and ((today - base_dt).days > STALE_DAYS or archived_done):
             print(f"  🗑 終了/流卓とみなし不掲載(すり合わせ): {th.name}"); continue
         gm = starter.author.display_name if (starter and starter.author) else None
         gm_active = await gm_is_active(guild, starter.author if starter else None)
@@ -207,11 +238,12 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
             "dates": dates,
             "open": recruiting,
             "suriawase": is_suri,
+            "ongoing": ongoing,
             "gm": gm, "gm_active": gm_active, "url": url,
             "created": th.created_at.isoformat() if th.created_at else None,
             "source": "forum",
         })
-        print(f"  ✅ {th.name}")
+        print(f"  {'🔄 継続CP' if ongoing else '✅'} {th.name}")
     return True
 
 
