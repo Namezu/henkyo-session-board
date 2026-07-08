@@ -526,7 +526,7 @@ function buildOutputs(state){
   if(hl.length===1)lines.push(`> ハウスルール：${hl[0]}`);
   else{lines.push(`> ハウスルール：`);hl.forEach(x=>lines.push(`> ${x}`))}
  }
- if($("spectate").checked)lines.push(`> 👀 **見学可能な卓です。**`);
+ if($("spectate").checked)lines.push(`> 👀 **この卓は見学可能な卓とします。**参加される方は、見学者が入る場合があることをあらかじめご承知おきください。`);
  // 注意事項＝生成AI使用のお断り＋手入力warningを統合（独立セクション・AI使用のみでもセクション化＝後輩くん要望2026-07-08）
  const warnLines=[];
  if($("aiUse").checked)warnLines.push("🤖 この卓では生成AIを使用しています。");
