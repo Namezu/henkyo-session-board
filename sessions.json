@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/08 21:16",
- "checked": "2026/07/08 21:16",
+ "updated": "2026/07/08 22:01",
+ "checked": "2026/07/08 22:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -78,7 +78,7 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1498278304875286559",
    "created": "2026-04-27T11:03:04.547000+00:00",
-   "last_active": "2026-07-07",
+   "last_active": "2026-07-08",
    "source": "forum"
   },
   {
@@ -139,7 +139,7 @@
    "source": "forum"
   },
   {
-   "scenario": "五等分のトロウル王",
+   "scenario": "五等分のトロウル王（高難易度）",
    "reg": "ピースメイカー",
    "reg_is_name": false,
    "dates": [
@@ -156,7 +156,7 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1514613554110791880",
    "created": "2026-06-11T12:53:31.459000+00:00",
-   "last_active": "2026-07-02",
+   "last_active": "2026-07-08",
    "source": "forum"
   },
   {
@@ -219,7 +219,7 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1520698991740846091",
    "created": "2026-06-28T07:54:52.852000+00:00",
-   "last_active": "2026-07-02",
+   "last_active": "2026-07-08",
    "source": "forum"
   },
   {
