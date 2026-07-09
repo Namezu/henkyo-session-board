@@ -93,6 +93,26 @@ def is_ongoing_cp(title, scenario, all_dates_past, year_explicit, recruiting,
     return bool(_CP_RE.search((title or "") + " " + (scenario or "")))
 
 
+def merge_date_history(new_dates, prev_dates, today_iso):
+    """流動卓（タイトルの日付を次回へ書き換えていく卓＝狂気山脈カテナ班等）の開催履歴を保全する純関数。
+    前回JSONにあって今回のタイトルから消えた日付のうち「過去日」だけを held=True で残す
+    ＝『日付が当日を過ぎる瞬間までタイトルに書かれていた』ものを開催済みとみなす。
+    未来日の消失はリスケなので引き継がない（正しく消える）。
+    ⚠当日流れ→後日改題のケースは開催済みと誤カウントしうる＝月/年の盛り上がり統計用の割り切り
+    （2026-07-10 後輩くん承認。「中止」「流卓」タイトルは上流で除外済み）。"""
+    seen = {d.get("date") for d in new_dates}
+    kept = list(new_dates)
+    for d in (prev_dates or []):
+        dt = d.get("date")
+        if dt and dt < today_iso and dt not in seen:
+            dd = dict(d)
+            dd["held"] = True              # タイトルからは消えたが、過去に開催された記録
+            kept.append(dd)
+            seen.add(dt)
+    kept.sort(key=lambda x: x.get("date") or "")
+    return kept
+
+
 def merge_old_sessions(fresh_sessions, processed_urls, old_sessions, cutoff_date):
     """今回フェッチしなかった古い卓（作成がcutoffより前）を前回JSONから引き継ぐ。
     ＝省エネしつつ過去の月/年表示を維持する。processed_urls に居る卓（今回実フェッチ済み）は
@@ -160,7 +180,8 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 
-async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
+async def read_forum(guild, key, sessions, unparsed, processed_urls, today, prev_by_url=None):
+    prev_by_url = prev_by_url or {}
     if key.isdigit():
         forum = guild.get_channel(int(key))
         if not isinstance(forum, discord.ForumChannel):
@@ -257,6 +278,8 @@ async def read_forum(guild, key, sessions, unparsed, processed_urls, today):
             print(f"  🗑 終了/流卓とみなし不掲載(すり合わせ): {th.name}"); continue
         gm = starter.author.display_name if (starter and starter.author) else None
         gm_active = await gm_is_active(guild, starter.author if starter else None)
+        # 流動卓の開催履歴を保全＝前回JSONにあって今回消えた「過去日」だけheldで残す（is_suri/継続CP判定の後＝最後に足す）
+        dates = merge_date_history(dates, (prev_by_url.get(url) or {}).get("dates"), today.isoformat())
         sessions.append({
             "scenario": r["scenario"],
             "reg": None if r.get("reg_is_name") else r["reg"],
@@ -282,12 +305,7 @@ async def on_ready():
             print(f"⚠ サーバー {GUILD_ID} が見えない"); return
         today = datetime.datetime.now(JST).date()
         sessions, unparsed, processed_urls = [], [], set()
-        all_forums_ok = True
-        for name in FORUM_NAMES:
-            found = await read_forum(guild, name, sessions, unparsed, processed_urls, today)
-            if not found:
-                all_forums_ok = False
-        # 既存を読む（マージ＋空上書き防止＋変化判定＋ハートビートで共用）
+        # 既存を先に読む（流動卓の履歴保全でread_forumが使う＋マージ＋空上書き防止＋変化判定＋ハートビートで共用）
         old = None
         if os.path.exists(OUT):
             try:
@@ -295,6 +313,12 @@ async def on_ready():
                     old = json.load(f)
             except Exception:
                 old = None
+        prev_by_url = {s.get("url"): s for s in ((old or {}).get("sessions") or []) if s.get("url")}
+        all_forums_ok = True
+        for name in FORUM_NAMES:
+            found = await read_forum(guild, name, sessions, unparsed, processed_urls, today, prev_by_url)
+            if not found:
+                all_forums_ok = False
         # 省エネ＝今回フェッチしなかった古い卓を前回JSONから引き継ぐ（フルモードは全部フェッチ済みなので実質何も足さない）
         if old and not FULL_MODE:
             cutoff_date = today - datetime.timedelta(days=CUTOFF_DAYS)

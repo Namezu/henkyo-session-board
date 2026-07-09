@@ -3495,6 +3495,24 @@
    "reg_is_name": false,
    "dates": [
     {
+     "date": "2026-07-02",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-03",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-06",
+     "start": "21:00",
+     "end": null,
+     "held": true
+    },
+    {
      "date": "2026-07-08",
      "start": "21:00",
      "end": null
