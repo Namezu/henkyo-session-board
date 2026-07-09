@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/09 16:06",
- "checked": "2026/07/09 16:06",
+ "updated": "2026/07/09 16:16",
+ "checked": "2026/07/09 16:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -3430,7 +3430,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": null,
+   "gm": "Nagusa",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1472581316615602357",
    "created": "2026-02-15T13:12:25.119000+00:00",
