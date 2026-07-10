@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/10 12:31",
- "checked": "2026/07/10 15:31",
+ "updated": "2026/07/10 16:31",
+ "checked": "2026/07/10 16:31",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -3490,45 +3490,6 @@
    "source": "forum"
   },
   {
-   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
-   "reg": null,
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-02",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-03",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-06",
-     "start": "21:00",
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-08",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "シドラン",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
-   "created": "2026-04-29T11:38:49.818000+00:00",
-   "last_active": "2026-07-08",
-   "source": "forum"
-  },
-  {
    "scenario": "人を集めてGMを回すキャンペーン",
    "reg": "ライバー＆ラビリンス",
    "reg_is_name": false,
@@ -3723,6 +3684,45 @@
    "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
    "created": "2026-06-26T13:47:06.360000+00:00",
    "last_active": "2026-07-07",
+   "source": "forum"
+  },
+  {
+   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-02",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-03",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-06",
+     "start": "21:00",
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-08",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "シドラン",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
+   "created": "2026-04-29T11:38:49.818000+00:00",
+   "last_active": "2026-07-08",
    "source": "forum"
   },
   {
