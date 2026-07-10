@@ -1,0 +1,32 @@
+name: 月次データレポート（毎月1日 朝9時JSTに前月分を運営chへ）
+
+on:
+  schedule:
+    - cron: "5 0 1 * *"   # UTC 0:05 = JST 9:05（毎月1日）
+  workflow_dispatch:       # 手動発火（任意の月は collect/monthly_report.py 引数で）
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monthly-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # ⚠ REPORT_WEBHOOK_URL は GM名入り集計を含むため運営限定ch（円卓会議/領民議会等）のwebhookのみ設定すること。
+      #   未設定の間はログ印字だけで正常終了する（安全設計）。
+      - name: 前月分レポートを集計して投稿
+        env:
+          REPORT_WEBHOOK_URL: ${{ secrets.REPORT_WEBHOOK_URL }}
+          BOARD_SESSIONS: sessions.json
+        run: python collect/monthly_report.py
