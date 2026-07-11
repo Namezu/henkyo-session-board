@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/12 01:01",
- "checked": "2026/07/12 01:01",
+ "updated": "2026/07/12 02:01",
+ "checked": "2026/07/12 02:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -3639,27 +3639,6 @@
    "source": "forum"
   },
   {
-   "scenario": "SOOPER SIGN/スーパーサイン",
-   "reg": null,
-   "reg_is_name": true,
-   "dates": [
-    {
-     "date": "2026-07-11",
-     "start": "24:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "てん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
-   "created": "2026-06-21T00:52:17.724000+00:00",
-   "last_active": "2026-07-12",
-   "source": "forum"
-  },
-  {
    "scenario": "三つ首の獣",
    "reg": "ELDEN RING NIGHTREIGN TRPG",
    "reg_is_name": false,
@@ -3678,6 +3657,27 @@
    "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
    "created": "2026-06-26T13:47:06.360000+00:00",
    "last_active": "2026-07-07",
+   "source": "forum"
+  },
+  {
+   "scenario": "SOOPER SIGN/スーパーサイン",
+   "reg": null,
+   "reg_is_name": true,
+   "dates": [
+    {
+     "date": "2026-07-11",
+     "start": "24:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "てん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
+   "created": "2026-06-21T00:52:17.724000+00:00",
+   "last_active": "2026-07-12",
    "source": "forum"
   },
   {
