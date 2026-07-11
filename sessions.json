@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/11 20:31",
- "checked": "2026/07/11 20:31",
+ "updated": "2026/07/11 21:29",
+ "checked": "2026/07/11 21:29",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -104,27 +104,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1509558940235727021",
    "created": "2026-05-28T14:08:17.601000+00:00",
    "last_active": "2026-07-08",
-   "source": "forum"
-  },
-  {
-   "scenario": "フェイス:ゴールド",
-   "reg": "ミスリルクレスト",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-10",
-     "start": "21:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カテナドルグ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1512817383650103296",
-   "created": "2026-06-06T13:56:11.050000+00:00",
-   "last_active": "2026-07-11",
    "source": "forum"
   },
   {
@@ -400,6 +379,27 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1525181090208157898",
    "created": "2026-07-10T16:45:08.400000+00:00",
+   "last_active": "2026-07-11",
+   "source": "forum"
+  },
+  {
+   "scenario": "フェイス:ゴールド",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-10",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カテナドルグ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1512817383650103296",
+   "created": "2026-06-06T13:56:11.050000+00:00",
    "last_active": "2026-07-11",
    "source": "forum"
   },
