@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/12 08:56",
- "checked": "2026/07/12 08:56",
+ "updated": "2026/07/12 09:31",
+ "checked": "2026/07/12 09:31",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -389,8 +389,8 @@
    "source": "forum"
   },
   {
-   "scenario": "シナリオ未定",
-   "reg": "調整中",
+   "scenario": "ヨーマの砦",
+   "reg": "ミスリルクレスト",
    "reg_is_name": false,
    "dates": [
     {
@@ -399,7 +399,7 @@
      "end": null
     }
    ],
-   "open": false,
+   "open": true,
    "suriawase": false,
    "ongoing": false,
    "gm": "にゃぎさん",
