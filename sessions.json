@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/12 16:46",
- "checked": "2026/07/12 16:46",
+ "updated": "2026/07/12 17:02",
+ "checked": "2026/07/12 17:02",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -3605,26 +3605,12 @@
     {
      "date": "2026-07-11",
      "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-12",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-14",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-15",
-     "start": null,
-     "end": null
+     "end": null,
+     "held": true
     }
    ],
    "open": false,
-   "suriawase": false,
+   "suriawase": true,
    "ongoing": false,
    "gm": "ユーカ",
    "gm_active": true,
