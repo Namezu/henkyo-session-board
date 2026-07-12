@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/12 17:31",
- "checked": "2026/07/12 17:31",
+ "updated": "2026/07/12 20:31",
+ "checked": "2026/07/12 20:31",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -63,7 +63,7 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1457368264685387826",
    "created": "2026-01-04T13:41:10.894000+00:00",
-   "last_active": "2026-07-11",
+   "last_active": "2026-07-12",
    "source": "forum"
   },
   {
@@ -218,27 +218,6 @@
    "source": "forum"
   },
   {
-   "scenario": "神智に狂いし者",
-   "reg": "ミスリルクレスト",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-12",
-     "start": "14:00",
-     "end": null
-    }
-   ],
-   "open": true,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "dabdab",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1522621486303805590",
-   "created": "2026-07-03T15:14:11.274000+00:00",
-   "last_active": "2026-07-12",
-   "source": "forum"
-  },
-  {
    "scenario": "血の回廊事件･再臨",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -385,6 +364,27 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1525649674223226920",
    "created": "2026-07-11T23:47:07.535000+00:00",
+   "last_active": "2026-07-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "神智に狂いし者",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-12",
+     "start": "14:00",
+     "end": null
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1522621486303805590",
+   "created": "2026-07-03T15:14:11.274000+00:00",
    "last_active": "2026-07-12",
    "source": "forum"
   },
