@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/15 04:28",
- "checked": "2026/07/15 04:28",
+ "updated": "2026/07/15 04:31",
+ "checked": "2026/07/15 04:31",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -806,27 +806,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1508077343489658951",
    "created": "2026-05-24T12:00:57.410000+00:00",
    "last_active": "2026-06-27",
-   "source": "forum"
-  },
-  {
-   "scenario": "流星の冒険者",
-   "reg": "アリアンロッド2E",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-15",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "むむこ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1414530110354100286",
-   "created": "2025-09-08T08:37:39.007000+00:00",
-   "last_active": "2026-06-26",
    "source": "forum"
   },
   {
@@ -1706,32 +1685,6 @@
    "source": "forum"
   },
   {
-   "scenario": "キャンペーンやる",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-25",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-05-26",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "dabdab",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1405512300491968602",
-   "created": "2025-08-14T11:24:05.593000+00:00",
-   "last_active": "2026-05-27",
-   "source": "forum"
-  },
-  {
    "scenario": "月は誰の夢を見る",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -2593,32 +2546,6 @@
    "source": "forum"
   },
   {
-   "scenario": "単発CP 神聖死霊撃滅十字軍、最後の戦い",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-04-22",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-04-23",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "peridotite",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1429510070407790754",
-   "created": "2025-10-19T16:42:39.798000+00:00",
-   "last_active": "2026-04-22",
-   "source": "forum"
-  },
-  {
    "scenario": "Hail to you",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -3464,32 +3391,6 @@
    "source": "forum"
   },
   {
-   "scenario": "ルシフェルCP",
-   "reg": "ピースメイカー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-12",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-03-15",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "Nn(エヌ)",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1447565014545338389",
-   "created": "2025-12-08T12:26:33.925000+00:00",
-   "last_active": "2026-03-12",
-   "source": "forum"
-  },
-  {
    "scenario": "戦え！雪だるマン！氷原の戦闘訓練！",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -3532,27 +3433,6 @@
    "source": "forum"
   },
   {
-   "scenario": "Testify",
-   "reg": "賽は投げられた",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-09",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1461243679523213425",
-   "created": "2026-01-15T06:20:41.793000+00:00",
-   "last_active": "2026-03-09",
-   "source": "forum"
-  },
-  {
    "scenario": "蹄持つ隣人",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -3571,6 +3451,615 @@
    "url": "https://discord.com/channels/1001833522723561593/1472546636373819468",
    "created": "2026-02-15T10:54:36.705000+00:00",
    "last_active": "2026-03-08",
+   "source": "forum"
+  },
+  {
+   "scenario": "異次元ランダムダンジョン",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-04",
+     "start": "21:30",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "peridotite",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1478717273798869083",
+   "created": "2026-03-04T11:34:31.312000+00:00",
+   "last_active": "2026-03-04",
+   "source": "forum"
+  },
+  {
+   "scenario": "ハンターチャンス　Cグループ",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-20",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "水樹",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1474359453867311127",
+   "created": "2026-02-20T10:58:06.076000+00:00",
+   "last_active": "2026-02-20",
+   "source": "forum"
+  },
+  {
+   "scenario": "「A long time wayfarer」",
+   "reg": "アンコールを流星に",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-21",
+     "start": "22:00",
+     "end": "25:00"
+    },
+    {
+     "date": "2026-02-22",
+     "start": "22:00",
+     "end": "25:00"
+    },
+    {
+     "date": "2026-02-22",
+     "start": "22:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "Nagusa",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472581316615602357",
+   "created": "2026-02-15T13:12:25.119000+00:00",
+   "last_active": "2026-02-22",
+   "source": "forum"
+  },
+  {
+   "scenario": "𝐂𝐡𝐨𝐜𝐨𝐥𝐚𝐭𝐞, 𝐒𝐞𝐚𝐬𝐨𝐧𝐞𝐝",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-22",
+     "start": "13:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "てん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472545655116267541",
+   "created": "2026-02-15T10:50:42.755000+00:00",
+   "last_active": "2026-02-22",
+   "source": "forum"
+  },
+  {
+   "scenario": "人を集めてGMを回すキャンペーン",
+   "reg": "ライバー＆ラビリンス",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "豆の塩ゆで",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1509931191262904360",
+   "created": "2026-05-29T14:47:29.162000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "星の吸血鬼にさよならを",
+   "reg": "クトゥルフ神話TRPG7版",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-07-19",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-07-25",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "reiran",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1512783660179525672",
+   "created": "2026-06-06T11:42:10.748000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "火種",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-23",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-07-24",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1512833539090022460",
+   "created": "2026-06-06T15:00:22.807000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "オトギバラシ",
+   "reg": "エモクロアTRPG",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-30",
+     "start": "21:00",
+     "end": "10:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "reiran",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1513111124978044958",
+   "created": "2026-06-07T09:23:24.440000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "煌日の姫と冴月の王子",
+   "reg": "SW2.5",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-11",
+     "start": null,
+     "end": null,
+     "held": true
+    }
+   ],
+   "open": false,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "ユーカ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1513491906686881894",
+   "created": "2026-06-08T10:36:29.874000+00:00",
+   "last_active": "2026-07-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "狂い火",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-14",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-07-15",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1514257239848779949",
+   "created": "2026-06-10T13:17:39.519000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "旅路",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-20",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-08-24",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1526557321449312257",
+   "created": "2026-07-14T11:53:47.497000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "三つ首の獣",
+   "reg": "ELDEN RING NIGHTREIGN TRPG",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-13",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "むむこ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
+   "created": "2026-06-26T13:47:06.360000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "SOOPER SIGN/スーパーサイン",
+   "reg": null,
+   "reg_is_name": true,
+   "dates": [
+    {
+     "date": "2026-07-11",
+     "start": "24:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "てん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
+   "created": "2026-06-21T00:52:17.724000+00:00",
+   "last_active": "2026-07-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-02",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-03",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-06",
+     "start": "21:00",
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-08",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "シドラン",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
+   "created": "2026-04-29T11:38:49.818000+00:00",
+   "last_active": "2026-07-08",
+   "source": "forum"
+  },
+  {
+   "scenario": "狂い火",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-27",
+     "start": "21:00",
+     "end": "22:00",
+     "time_source": "body"
+    },
+    {
+     "date": "2026-06-29",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1508426314514956428",
+   "created": "2026-05-25T11:07:38.586000+00:00",
+   "last_active": "2026-06-27",
+   "source": "forum"
+  },
+  {
+   "scenario": "版 狂気山脈～邪神の山嶺～ ユーカ班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-04",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "シドラン",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1502857859161915522",
+   "created": "2026-05-10T02:20:35.373000+00:00",
+   "last_active": "2026-06-04",
+   "source": "forum"
+  },
+  {
+   "scenario": "行こうよダンジョンモール！",
+   "reg": "ライバー＆ラビリンス",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-24",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-05-25",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1500495087476674581",
+   "created": "2026-05-03T13:51:46.705000+00:00",
+   "last_active": "2026-05-25",
+   "source": "forum"
+  },
+  {
+   "scenario": "忘却犯",
+   "reg": "DX3rd",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-19",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "taku",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1487057235254181909",
+   "created": "2026-03-27T11:54:33.072000+00:00",
+   "last_active": "2026-05-23",
+   "source": "forum"
+  },
+  {
+   "scenario": "妖魔狩り",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-16",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-05-17",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1490367148684611585",
+   "created": "2026-04-05T15:06:57.929000+00:00",
+   "last_active": "2026-05-17",
+   "source": "forum"
+  },
+  {
+   "scenario": "妖魔狩り",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-04-24",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-04-26",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1487997004280893601",
+   "created": "2026-03-30T02:08:51.468000+00:00",
+   "last_active": "2026-04-26",
+   "source": "forum"
+  },
+  {
+   "scenario": "流星の冒険者",
+   "reg": "アリアンロッド2E",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-15",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "むむこ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1414530110354100286",
+   "created": "2025-09-08T08:37:39.007000+00:00",
+   "last_active": "2026-06-26",
+   "source": "forum"
+  },
+  {
+   "scenario": "キャンペーンやる",
+   "reg": "アンコールを流星に",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-25",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-05-26",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1405512300491968602",
+   "created": "2025-08-14T11:24:05.593000+00:00",
+   "last_active": "2026-05-27",
+   "source": "forum"
+  },
+  {
+   "scenario": "単発CP 神聖死霊撃滅十字軍、最後の戦い",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-04-22",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-04-23",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "peridotite",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1429510070407790754",
+   "created": "2025-10-19T16:42:39.798000+00:00",
+   "last_active": "2026-04-22",
+   "source": "forum"
+  },
+  {
+   "scenario": "ルシフェルCP",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-12",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-03-15",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "Nn(エヌ)",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1447565014545338389",
+   "created": "2025-12-08T12:26:33.925000+00:00",
+   "last_active": "2026-03-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "Testify",
+   "reg": "賽は投げられた",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-09",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1461243679523213425",
+   "created": "2026-01-15T06:20:41.793000+00:00",
+   "last_active": "2026-03-09",
    "source": "forum"
   },
   {
@@ -3613,27 +4102,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1421404980744818794",
    "created": "2025-09-27T07:55:55.837000+00:00",
    "last_active": "2025-10-11",
-   "source": "forum"
-  },
-  {
-   "scenario": "異次元ランダムダンジョン",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-04",
-     "start": "21:30",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "peridotite",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1478717273798869083",
-   "created": "2026-03-04T11:34:31.312000+00:00",
-   "last_active": "2026-03-04",
    "source": "forum"
   },
   {
@@ -3700,27 +4168,6 @@
    "source": "forum"
   },
   {
-   "scenario": "ハンターチャンス　Cグループ",
-   "reg": "ピースメイカー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-20",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "水樹",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1474359453867311127",
-   "created": "2026-02-20T10:58:06.076000+00:00",
-   "last_active": "2026-02-20",
-   "source": "forum"
-  },
-  {
    "scenario": "泥土の毒竜",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -3739,58 +4186,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1469353407461462198",
    "created": "2026-02-06T15:25:51.605000+00:00",
    "last_active": "2026-02-23",
-   "source": "forum"
-  },
-  {
-   "scenario": "「A long time wayfarer」",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-21",
-     "start": "22:00",
-     "end": "25:00"
-    },
-    {
-     "date": "2026-02-22",
-     "start": "22:00",
-     "end": "25:00"
-    },
-    {
-     "date": "2026-02-22",
-     "start": "22:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "Nagusa",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472581316615602357",
-   "created": "2026-02-15T13:12:25.119000+00:00",
-   "last_active": "2026-02-22",
-   "source": "forum"
-  },
-  {
-   "scenario": "𝐂𝐡𝐨𝐜𝐨𝐥𝐚𝐭𝐞, 𝐒𝐞𝐚𝐬𝐨𝐧𝐞𝐝",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-22",
-     "start": "13:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "てん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472545655116267541",
-   "created": "2026-02-15T10:50:42.755000+00:00",
-   "last_active": "2026-02-22",
    "source": "forum"
   },
   {
@@ -25044,401 +25439,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1097724681605349469",
    "created": "2023-04-18T03:25:58.833000+00:00",
    "last_active": "2023-04-22",
-   "source": "forum"
-  },
-  {
-   "scenario": "人を集めてGMを回すキャンペーン",
-   "reg": "ライバー＆ラビリンス",
-   "reg_is_name": false,
-   "dates": [],
-   "open": false,
-   "suriawase": true,
-   "ongoing": false,
-   "gm": "豆の塩ゆで",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1509931191262904360",
-   "created": "2026-05-29T14:47:29.162000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "星の吸血鬼にさよならを",
-   "reg": "クトゥルフ神話TRPG7版",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-18",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-19",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-25",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "reiran",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1512783660179525672",
-   "created": "2026-06-06T11:42:10.748000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "火種",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-23",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-07-24",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1512833539090022460",
-   "created": "2026-06-06T15:00:22.807000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "オトギバラシ",
-   "reg": "エモクロアTRPG",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-30",
-     "start": "21:00",
-     "end": "10:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "reiran",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1513111124978044958",
-   "created": "2026-06-07T09:23:24.440000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "煌日の姫と冴月の王子",
-   "reg": "SW2.5",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-11",
-     "start": null,
-     "end": null,
-     "held": true
-    }
-   ],
-   "open": false,
-   "suriawase": true,
-   "ongoing": false,
-   "gm": "ユーカ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1513491906686881894",
-   "created": "2026-06-08T10:36:29.874000+00:00",
-   "last_active": "2026-07-12",
-   "source": "forum"
-  },
-  {
-   "scenario": "狂い火",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-14",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-07-15",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1514257239848779949",
-   "created": "2026-06-10T13:17:39.519000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "旅路",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-08-20",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-08-24",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1526557321449312257",
-   "created": "2026-07-14T11:53:47.497000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "三つ首の獣",
-   "reg": "ELDEN RING NIGHTREIGN TRPG",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-13",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "むむこ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
-   "created": "2026-06-26T13:47:06.360000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "SOOPER SIGN/スーパーサイン",
-   "reg": null,
-   "reg_is_name": true,
-   "dates": [
-    {
-     "date": "2026-07-11",
-     "start": "24:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "てん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
-   "created": "2026-06-21T00:52:17.724000+00:00",
-   "last_active": "2026-07-12",
-   "source": "forum"
-  },
-  {
-   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
-   "reg": null,
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-02",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-03",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-06",
-     "start": "21:00",
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-08",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "シドラン",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
-   "created": "2026-04-29T11:38:49.818000+00:00",
-   "last_active": "2026-07-08",
-   "source": "forum"
-  },
-  {
-   "scenario": "狂い火",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-27",
-     "start": "21:00",
-     "end": "22:00",
-     "time_source": "body"
-    },
-    {
-     "date": "2026-06-29",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1508426314514956428",
-   "created": "2026-05-25T11:07:38.586000+00:00",
-   "last_active": "2026-06-27",
-   "source": "forum"
-  },
-  {
-   "scenario": "版 狂気山脈～邪神の山嶺～ ユーカ班",
-   "reg": null,
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-04",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "シドラン",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1502857859161915522",
-   "created": "2026-05-10T02:20:35.373000+00:00",
-   "last_active": "2026-06-04",
-   "source": "forum"
-  },
-  {
-   "scenario": "行こうよダンジョンモール！",
-   "reg": "ライバー＆ラビリンス",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-24",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-05-25",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1500495087476674581",
-   "created": "2026-05-03T13:51:46.705000+00:00",
-   "last_active": "2026-05-25",
-   "source": "forum"
-  },
-  {
-   "scenario": "忘却犯",
-   "reg": "DX3rd",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-19",
-     "start": "21:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "taku",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1487057235254181909",
-   "created": "2026-03-27T11:54:33.072000+00:00",
-   "last_active": "2026-05-23",
-   "source": "forum"
-  },
-  {
-   "scenario": "妖魔狩り",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-16",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-05-17",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1490367148684611585",
-   "created": "2026-04-05T15:06:57.929000+00:00",
-   "last_active": "2026-05-17",
-   "source": "forum"
-  },
-  {
-   "scenario": "妖魔狩り",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-04-24",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-04-26",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1487997004280893601",
-   "created": "2026-03-30T02:08:51.468000+00:00",
-   "last_active": "2026-04-26",
    "source": "forum"
   },
   {
