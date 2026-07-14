@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/14 13:01",
- "checked": "2026/07/14 13:01",
+ "updated": "2026/07/14 14:16",
+ "checked": "2026/07/14 14:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -147,27 +147,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1518276601169707209",
    "created": "2026-06-21T15:29:09.934000+00:00",
    "last_active": "2026-07-11",
-   "source": "forum"
-  },
-  {
-   "scenario": "少女の手紙",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-10",
-     "start": "21:00",
-     "end": "24:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "よし/やっぴー",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1519683981648592998",
-   "created": "2026-06-25T12:41:35.588000+00:00",
-   "last_active": "2026-07-14",
    "source": "forum"
   },
   {
@@ -380,6 +359,27 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1526076820791759038",
    "created": "2026-07-13T04:04:27.213000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "少女の手紙",
+   "reg": "アンコールを流星に",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-10",
+     "start": "21:00",
+     "end": "24:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "よし/やっぴー",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1519683981648592998",
+   "created": "2026-06-25T12:41:35.588000+00:00",
    "last_active": "2026-07-14",
    "source": "forum"
   },
