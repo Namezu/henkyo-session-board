@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/15 00:01",
- "checked": "2026/07/15 00:01",
+ "updated": "2026/07/15 00:16",
+ "checked": "2026/07/15 00:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -281,7 +281,7 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1524055805215637534",
    "created": "2026-07-07T14:13:39.551000+00:00",
-   "last_active": "2026-07-14",
+   "last_active": "2026-07-15",
    "source": "forum"
   },
   {
@@ -309,15 +309,21 @@
    "scenario": "名探偵？ノックス・ホップスフィールド",
    "reg": "ミスリルクレスト",
    "reg_is_name": false,
-   "dates": [],
+   "dates": [
+    {
+     "date": "2026-07-31",
+     "start": "21:00",
+     "end": null
+    }
+   ],
    "open": false,
-   "suriawase": true,
+   "suriawase": false,
    "ongoing": false,
    "gm": "水樹",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1525181090208157898",
    "created": "2026-07-10T16:45:08.400000+00:00",
-   "last_active": "2026-07-14",
+   "last_active": "2026-07-15",
    "source": "forum"
   },
   {
