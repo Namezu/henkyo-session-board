@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/15 21:16",
- "checked": "2026/07/15 21:16",
+ "updated": "2026/07/16 00:01",
+ "checked": "2026/07/16 00:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -348,6 +348,21 @@
    "source": "forum"
   },
   {
+   "scenario": "WS2-4 眩暈と葬送",
+   "reg": "氷原開拓団",
+   "reg_is_name": false,
+   "dates": [],
+   "open": true,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "Mizshiro",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1526554858289758330",
+   "created": "2026-07-14T11:44:00.234000+00:00",
+   "last_active": "2026-07-15",
+   "source": "forum"
+  },
+  {
    "scenario": "影は名を騙る",
    "reg": "ミスリルクレスト",
    "reg_is_name": false,
@@ -365,21 +380,6 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1526076820791759038",
    "created": "2026-07-13T04:04:27.213000+00:00",
-   "last_active": "2026-07-15",
-   "source": "forum"
-  },
-  {
-   "scenario": "WS2-4 眩暈と葬送",
-   "reg": "氷原開拓団",
-   "reg_is_name": false,
-   "dates": [],
-   "open": true,
-   "suriawase": true,
-   "ongoing": false,
-   "gm": "Mizshiro",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1526554858289758330",
-   "created": "2026-07-14T11:44:00.234000+00:00",
    "last_active": "2026-07-15",
    "source": "forum"
   },
@@ -3433,27 +3433,6 @@
    "source": "forum"
   },
   {
-   "scenario": "蹄持つ隣人",
-   "reg": "氷原開拓団",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-08",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "水樹です",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472546636373819468",
-   "created": "2026-02-15T10:54:36.705000+00:00",
-   "last_active": "2026-03-08",
-   "source": "forum"
-  },
-  {
    "scenario": "異次元ランダムダンジョン",
    "reg": "フツウノアリアン",
    "reg_is_name": false,
@@ -3493,58 +3472,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1474359453867311127",
    "created": "2026-02-20T10:58:06.076000+00:00",
    "last_active": "2026-02-20",
-   "source": "forum"
-  },
-  {
-   "scenario": "「A long time wayfarer」",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-21",
-     "start": "22:00",
-     "end": "25:00"
-    },
-    {
-     "date": "2026-02-22",
-     "start": "22:00",
-     "end": "25:00"
-    },
-    {
-     "date": "2026-02-22",
-     "start": "22:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "Nagusa",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472581316615602357",
-   "created": "2026-02-15T13:12:25.119000+00:00",
-   "last_active": "2026-02-22",
-   "source": "forum"
-  },
-  {
-   "scenario": "𝐂𝐡𝐨𝐜𝐨𝐥𝐚𝐭𝐞, 𝐒𝐞𝐚𝐬𝐨𝐧𝐞𝐝",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-22",
-     "start": "13:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "てん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472545655116267541",
-   "created": "2026-02-15T10:50:42.755000+00:00",
-   "last_active": "2026-02-22",
    "source": "forum"
   },
   {
@@ -3940,6 +3867,79 @@
    "url": "https://discord.com/channels/1001833522723561593/1487997004280893601",
    "created": "2026-03-30T02:08:51.468000+00:00",
    "last_active": "2026-04-26",
+   "source": "forum"
+  },
+  {
+   "scenario": "蹄持つ隣人",
+   "reg": "氷原開拓団",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-08",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "水樹です",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472546636373819468",
+   "created": "2026-02-15T10:54:36.705000+00:00",
+   "last_active": "2026-03-08",
+   "source": "forum"
+  },
+  {
+   "scenario": "「A long time wayfarer」",
+   "reg": "アンコールを流星に",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-21",
+     "start": "22:00",
+     "end": "25:00"
+    },
+    {
+     "date": "2026-02-22",
+     "start": "22:00",
+     "end": "25:00"
+    },
+    {
+     "date": "2026-02-22",
+     "start": "22:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "Nagusa",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472581316615602357",
+   "created": "2026-02-15T13:12:25.119000+00:00",
+   "last_active": "2026-02-22",
+   "source": "forum"
+  },
+  {
+   "scenario": "𝐂𝐡𝐨𝐜𝐨𝐥𝐚𝐭𝐞, 𝐒𝐞𝐚𝐬𝐨𝐧𝐞𝐝",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-22",
+     "start": "13:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "てん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472545655116267541",
+   "created": "2026-02-15T10:50:42.755000+00:00",
+   "last_active": "2026-02-22",
    "source": "forum"
   },
   {
