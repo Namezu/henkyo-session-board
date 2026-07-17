@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/18 02:46",
- "checked": "2026/07/18 02:46",
+ "updated": "2026/07/18 04:19",
+ "checked": "2026/07/18 04:19",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -807,6 +807,27 @@
    "url": "https://discord.com/channels/1001833522723561593/1508077343489658951",
    "created": "2026-05-24T12:00:57.410000+00:00",
    "last_active": "2026-06-27",
+   "source": "forum"
+  },
+  {
+   "scenario": "流星の冒険者",
+   "reg": "アリアンロッド2E",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-15",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "むむこ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1414530110354100286",
+   "created": "2025-09-08T08:37:39.007000+00:00",
+   "last_active": "2026-06-26",
    "source": "forum"
   },
   {
@@ -1686,6 +1707,32 @@
    "source": "forum"
   },
   {
+   "scenario": "キャンペーンやる",
+   "reg": "アンコールを流星に",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-25",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-05-26",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1405512300491968602",
+   "created": "2025-08-14T11:24:05.593000+00:00",
+   "last_active": "2026-05-27",
+   "source": "forum"
+  },
+  {
    "scenario": "月は誰の夢を見る",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -2547,6 +2594,32 @@
    "source": "forum"
   },
   {
+   "scenario": "単発CP 神聖死霊撃滅十字軍、最後の戦い",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-04-22",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-04-23",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "peridotite",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1429510070407790754",
+   "created": "2025-10-19T16:42:39.798000+00:00",
+   "last_active": "2026-04-22",
+   "source": "forum"
+  },
+  {
    "scenario": "Hail to you",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -3240,6 +3313,27 @@
    "source": "forum"
   },
   {
+   "scenario": "劇場",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-22",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "一藻通",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1472959367933595751",
+   "created": "2026-02-16T14:14:39.577000+00:00",
+   "last_active": "2026-03-22",
+   "source": "forum"
+  },
+  {
    "scenario": "ギルマンの襲撃",
    "reg": "フツウノアリアン",
    "reg_is_name": false,
@@ -3345,470 +3439,6 @@
    "source": "forum"
   },
   {
-   "scenario": "オスカル王",
-   "reg": "氷原開拓団",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-10",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "一藻通",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1474419210196353138",
-   "created": "2026-02-20T14:55:33.095000+00:00",
-   "last_active": "2026-03-10",
-   "source": "forum"
-  },
-  {
-   "scenario": "異次元ランダムダンジョン",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-04",
-     "start": "21:30",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "peridotite",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1478717273798869083",
-   "created": "2026-03-04T11:34:31.312000+00:00",
-   "last_active": "2026-03-04",
-   "source": "forum"
-  },
-  {
-   "scenario": "ハンターチャンス　Cグループ",
-   "reg": "ピースメイカー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-02-20",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "水樹",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1474359453867311127",
-   "created": "2026-02-20T10:58:06.076000+00:00",
-   "last_active": "2026-02-20",
-   "source": "forum"
-  },
-  {
-   "scenario": "人を集めてGMを回すキャンペーン",
-   "reg": "ライバー＆ラビリンス",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-27",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "豆の塩ゆで",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1509931191262904360",
-   "created": "2026-05-29T14:47:29.162000+00:00",
-   "last_active": "2026-07-16",
-   "source": "forum"
-  },
-  {
-   "scenario": "星の吸血鬼にさよならを",
-   "reg": "クトゥルフ神話TRPG7版",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-18",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-19",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-07-25",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "reiran",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1512783660179525672",
-   "created": "2026-06-06T11:42:10.748000+00:00",
-   "last_active": "2026-07-18",
-   "source": "forum"
-  },
-  {
-   "scenario": "火種",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-23",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-07-24",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1512833539090022460",
-   "created": "2026-06-06T15:00:22.807000+00:00",
-   "last_active": "2026-07-16",
-   "source": "forum"
-  },
-  {
-   "scenario": "オトギバラシ",
-   "reg": "エモクロアTRPG",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-30",
-     "start": "21:00",
-     "end": "10:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "reiran",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1513111124978044958",
-   "created": "2026-06-07T09:23:24.440000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "煌日の姫と冴月の王子",
-   "reg": "SW2.5",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-11",
-     "start": null,
-     "end": null,
-     "held": true
-    }
-   ],
-   "open": false,
-   "suriawase": true,
-   "ongoing": false,
-   "gm": "ユーカ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1513491906686881894",
-   "created": "2026-06-08T10:36:29.874000+00:00",
-   "last_active": "2026-07-15",
-   "source": "forum"
-  },
-  {
-   "scenario": "旅路",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-08-20",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-08-24",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1526557321449312257",
-   "created": "2026-07-14T11:53:47.497000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "狂い火",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-14",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-07-15",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1514257239848779949",
-   "created": "2026-06-10T13:17:39.519000+00:00",
-   "last_active": "2026-07-15",
-   "source": "forum"
-  },
-  {
-   "scenario": "三つ首の獣",
-   "reg": "ELDEN RING NIGHTREIGN TRPG",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-13",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "むむこ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
-   "created": "2026-06-26T13:47:06.360000+00:00",
-   "last_active": "2026-07-14",
-   "source": "forum"
-  },
-  {
-   "scenario": "SOOPER SIGN/スーパーサイン",
-   "reg": null,
-   "reg_is_name": true,
-   "dates": [
-    {
-     "date": "2026-07-11",
-     "start": "24:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "てん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
-   "created": "2026-06-21T00:52:17.724000+00:00",
-   "last_active": "2026-07-12",
-   "source": "forum"
-  },
-  {
-   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
-   "reg": null,
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-02",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-03",
-     "start": null,
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-06",
-     "start": "21:00",
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2026-07-08",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "シドラン",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
-   "created": "2026-04-29T11:38:49.818000+00:00",
-   "last_active": "2026-07-08",
-   "source": "forum"
-  },
-  {
-   "scenario": "狂い火",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-27",
-     "start": "21:00",
-     "end": "22:00",
-     "time_source": "body"
-    },
-    {
-     "date": "2026-06-29",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1508426314514956428",
-   "created": "2026-05-25T11:07:38.586000+00:00",
-   "last_active": "2026-06-27",
-   "source": "forum"
-  },
-  {
-   "scenario": "版 狂気山脈～邪神の山嶺～ ユーカ班",
-   "reg": null,
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-04",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "シドラン",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1502857859161915522",
-   "created": "2026-05-10T02:20:35.373000+00:00",
-   "last_active": "2026-06-04",
-   "source": "forum"
-  },
-  {
-   "scenario": "行こうよダンジョンモール！",
-   "reg": "ライバー＆ラビリンス",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-24",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-05-25",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1500495087476674581",
-   "created": "2026-05-03T13:51:46.705000+00:00",
-   "last_active": "2026-05-25",
-   "source": "forum"
-  },
-  {
-   "scenario": "忘却犯",
-   "reg": "DX3rd",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-19",
-     "start": "21:00",
-     "end": "25:00"
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "taku",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1487057235254181909",
-   "created": "2026-03-27T11:54:33.072000+00:00",
-   "last_active": "2026-05-23",
-   "source": "forum"
-  },
-  {
-   "scenario": "妖魔狩り",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-16",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-05-17",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1490367148684611585",
-   "created": "2026-04-05T15:06:57.929000+00:00",
-   "last_active": "2026-05-17",
-   "source": "forum"
-  },
-  {
-   "scenario": "妖魔狩り",
-   "reg": "アリアンストラテジー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-04-24",
-     "start": "21:00",
-     "end": null
-    },
-    {
-     "date": "2026-04-26",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "カピ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1487997004280893601",
-   "created": "2026-03-30T02:08:51.468000+00:00",
-   "last_active": "2026-04-26",
-   "source": "forum"
-  },
-  {
    "scenario": "氷の底に眠る大牙",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -3835,121 +3465,6 @@
    "source": "forum"
   },
   {
-   "scenario": "戦え！雪だるマン！氷原の戦闘訓練！",
-   "reg": "氷原開拓団",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-11",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "reiran",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1473305724640563323",
-   "created": "2026-02-17T13:10:57.451000+00:00",
-   "last_active": "2026-03-12",
-   "source": "forum"
-  },
-  {
-   "scenario": "流星の冒険者",
-   "reg": "アリアンロッド2E",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-06-15",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "むむこ",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1414530110354100286",
-   "created": "2025-09-08T08:37:39.007000+00:00",
-   "last_active": "2026-06-26",
-   "source": "forum"
-  },
-  {
-   "scenario": "キャンペーンやる",
-   "reg": "アンコールを流星に",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-05-25",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-05-26",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "dabdab",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1405512300491968602",
-   "created": "2025-08-14T11:24:05.593000+00:00",
-   "last_active": "2026-05-27",
-   "source": "forum"
-  },
-  {
-   "scenario": "単発CP 神聖死霊撃滅十字軍、最後の戦い",
-   "reg": "フツウノアリアン",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-04-22",
-     "start": null,
-     "end": null
-    },
-    {
-     "date": "2026-04-23",
-     "start": null,
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "peridot",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1429510070407790754",
-   "created": "2025-10-19T16:42:39.798000+00:00",
-   "last_active": "2026-04-22",
-   "source": "forum"
-  },
-  {
-   "scenario": "劇場",
-   "reg": "ピースメイカー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-03-22",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "一藻通",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1472959367933595751",
-   "created": "2026-02-16T14:14:39.577000+00:00",
-   "last_active": "2026-03-22",
-   "source": "forum"
-  },
-  {
    "scenario": "ルシフェルCP",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -3973,6 +3488,48 @@
    "url": "https://discord.com/channels/1001833522723561593/1447565014545338389",
    "created": "2025-12-08T12:26:33.925000+00:00",
    "last_active": "2026-03-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "戦え！雪だるマン！氷原の戦闘訓練！",
+   "reg": "氷原開拓団",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-11",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "reiran",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1473305724640563323",
+   "created": "2026-02-17T13:10:57.451000+00:00",
+   "last_active": "2026-03-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "オスカル王",
+   "reg": "氷原開拓団",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-10",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "一藻通",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1474419210196353138",
+   "created": "2026-02-20T14:55:33.095000+00:00",
+   "last_active": "2026-03-10",
    "source": "forum"
   },
   {
@@ -4060,6 +3617,27 @@
    "source": "forum"
   },
   {
+   "scenario": "異次元ランダムダンジョン",
+   "reg": "フツウノアリアン",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-03-04",
+     "start": "21:30",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "peridotite",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1478717273798869083",
+   "created": "2026-03-04T11:34:31.312000+00:00",
+   "last_active": "2026-03-04",
+   "source": "forum"
+  },
+  {
    "scenario": "エリン至高の極上グルメ十選:ジェノサイド”キング”サーモン編",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -4123,6 +3701,27 @@
    "source": "forum"
   },
   {
+   "scenario": "ハンターチャンス　Cグループ",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-02-20",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "水樹",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1474359453867311127",
+   "created": "2026-02-20T10:58:06.076000+00:00",
+   "last_active": "2026-02-20",
+   "source": "forum"
+  },
+  {
    "scenario": "泥土の毒竜",
    "reg": "ピースメイカー",
    "reg_is_name": false,
@@ -4136,7 +3735,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1469353407461462198",
    "created": "2026-02-06T15:25:51.605000+00:00",
@@ -4230,7 +3829,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1469541504358940724",
    "created": "2026-02-07T03:53:17.400000+00:00",
@@ -4314,7 +3913,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1470767425833140430",
    "created": "2026-02-10T13:04:39.856000+00:00",
@@ -4686,7 +4285,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1461328742549946428",
    "created": "2026-01-15T11:58:42.399000+00:00",
@@ -4707,7 +4306,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1460112735797903391",
    "created": "2026-01-12T03:26:43.797000+00:00",
@@ -4728,7 +4327,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1457054790319079486",
    "created": "2026-01-03T16:55:32.781000+00:00",
@@ -5310,7 +4909,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1441833391396753578",
    "created": "2025-11-22T16:51:08.478000+00:00",
@@ -5331,7 +4930,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1435697110807744593",
    "created": "2025-11-05T18:27:45.179000+00:00",
@@ -5415,7 +5014,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1434214509253234769",
    "created": "2025-11-01T16:16:25.423000+00:00",
@@ -5541,7 +5140,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1426540143522611294",
    "created": "2025-10-11T12:01:14.050000+00:00",
@@ -5646,7 +5245,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1423325848257302611",
    "created": "2025-10-02T15:08:46.340000+00:00",
@@ -5841,7 +5440,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1424338920879165600",
    "created": "2025-10-05T10:14:21.675000+00:00",
@@ -6744,7 +6343,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1412112315394031636",
    "created": "2025-09-01T16:30:11.768000+00:00",
@@ -6870,7 +6469,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1410928144386621460",
    "created": "2025-08-29T10:04:43.399000+00:00",
@@ -6954,7 +6553,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1407751354260263102",
    "created": "2025-08-20T15:41:17.611000+00:00",
@@ -7017,7 +6616,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1303746558386503740",
    "created": "2024-11-06T15:43:21.959000+00:00",
@@ -7227,7 +6826,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1400059321181540382",
    "created": "2025-07-30T10:15:54.014000+00:00",
@@ -7395,7 +6994,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1394694448172236923",
    "created": "2025-07-15T14:57:48.614000+00:00",
@@ -7416,7 +7015,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1396598129377284206",
    "created": "2025-07-20T21:02:21.582000+00:00",
@@ -7584,7 +7183,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1393188307940282390",
    "created": "2025-07-11T11:12:56.800000+00:00",
@@ -7851,7 +7450,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1381095539562778624",
    "created": "2025-06-08T02:20:36.146000+00:00",
@@ -8109,7 +7708,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1383385402018107433",
    "created": "2025-06-14T09:59:41.899000+00:00",
@@ -8266,7 +7865,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1380851868141490218",
    "created": "2025-06-07T10:12:20.352000+00:00",
@@ -8350,7 +7949,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1379050234990039120",
    "created": "2025-06-02T10:53:17.536000+00:00",
@@ -8539,7 +8138,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1373616251116716092",
    "created": "2025-05-18T11:00:34.822000+00:00",
@@ -8906,7 +8505,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1368587541485191290",
    "created": "2025-05-04T13:58:17.017000+00:00",
@@ -9158,7 +8757,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1365605785459232768",
    "created": "2025-04-26T08:29:50.982000+00:00",
@@ -9200,7 +8799,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1366507162586710188",
    "created": "2025-04-28T20:11:36.036000+00:00",
@@ -9458,7 +9057,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1364009606061494393",
    "created": "2025-04-21T22:47:12.158000+00:00",
@@ -9479,7 +9078,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1363547494448889896",
    "created": "2025-04-20T16:10:56.164000+00:00",
@@ -9563,7 +9162,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1362447225061642382",
    "created": "2025-04-17T15:18:51.500000+00:00",
@@ -9815,7 +9414,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1362031052931203284",
    "created": "2025-04-16T11:45:08.332000+00:00",
@@ -10403,7 +10002,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1349011400965488640",
    "created": "2025-03-11T13:29:41.410000+00:00",
@@ -10424,7 +10023,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1350791716797419580",
    "created": "2025-03-16T11:24:01.781000+00:00",
@@ -10722,7 +10321,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1340491000933781574",
    "created": "2025-02-16T01:12:39.741000+00:00",
@@ -10958,7 +10557,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1338116582118789130",
    "created": "2025-02-09T11:57:34.181000+00:00",
@@ -10979,7 +10578,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1337922553699766283",
    "created": "2025-02-08T23:06:34.201000+00:00",
@@ -11000,7 +10599,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1337546536740978709",
    "created": "2025-02-07T22:12:24.772000+00:00",
@@ -11147,7 +10746,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1332315199864180806",
    "created": "2025-01-24T11:44:56.867000+00:00",
@@ -11246,7 +10845,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1328381533827891353",
    "created": "2025-01-13T15:13:57.800000+00:00",
@@ -11477,7 +11076,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1324739902562242590",
    "created": "2025-01-03T14:03:25.248000+00:00",
@@ -11498,7 +11097,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1324732713504215112",
    "created": "2025-01-03T13:34:51.243000+00:00",
@@ -11540,7 +11139,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1312234768565538867",
    "created": "2024-11-30T01:52:28.969000+00:00",
@@ -11624,7 +11223,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1323470968689135709",
    "created": "2024-12-31T02:01:07.837000+00:00",
@@ -11771,7 +11370,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1320712059943391283",
    "created": "2024-12-23T11:18:12.734000+00:00",
@@ -11923,7 +11522,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1315620286208540764",
    "created": "2024-12-09T10:05:19.275000+00:00",
@@ -12454,7 +12053,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1310215592757694565",
    "created": "2024-11-24T12:08:59.942000+00:00",
@@ -12538,7 +12137,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1309471457990017046",
    "created": "2024-11-22T10:52:04.388000+00:00",
@@ -12559,7 +12158,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1300840699742257193",
    "created": "2024-10-29T15:16:31.270000+00:00",
@@ -12848,7 +12447,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1293124081646043146",
    "created": "2024-10-08T08:13:26.148000+00:00",
@@ -13331,7 +12930,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1299057925020450847",
    "created": "2024-10-24T17:12:24.654000+00:00",
@@ -13483,7 +13082,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1298298781019930715",
    "created": "2024-10-22T14:55:50.620000+00:00",
@@ -13881,7 +13480,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1291715467370561556",
    "created": "2024-10-04T10:56:06.334000+00:00",
@@ -13944,7 +13543,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1284158478117634130",
    "created": "2024-09-13T14:27:19.694000+00:00",
@@ -14295,7 +13894,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1280176020380454912",
    "created": "2024-09-02T14:42:27.779000+00:00",
@@ -14358,7 +13957,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1284721722079314022",
    "created": "2024-09-15T03:45:27.519000+00:00",
@@ -14442,7 +14041,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1278010400373211327",
    "created": "2024-08-27T15:17:03.734000+00:00",
@@ -14505,7 +14104,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1281581845452034099",
    "created": "2024-09-06T11:48:42.595000+00:00",
@@ -14862,7 +14461,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1271720032929320990",
    "created": "2024-08-10T06:41:23.266000+00:00",
@@ -14946,7 +14545,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1267558151079727226",
    "created": "2024-07-29T19:03:33.309000+00:00",
@@ -14967,7 +14566,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1269617469539221535",
    "created": "2024-08-04T11:26:33.090000+00:00",
@@ -15114,7 +14713,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1264525467520733205",
    "created": "2024-07-21T10:12:45.204000+00:00",
@@ -15135,7 +14734,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1253693522674974750",
    "created": "2024-06-21T12:50:28.305000+00:00",
@@ -15156,7 +14755,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1253678020657680515",
    "created": "2024-06-21T11:48:52.336000+00:00",
@@ -15240,7 +14839,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1261827233190903851",
    "created": "2024-07-13T23:30:56.009000+00:00",
@@ -15523,7 +15122,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1252953546664448133",
    "created": "2024-06-19T11:50:04.276000+00:00",
@@ -15676,7 +15275,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1247586821525733486",
    "created": "2024-06-04T16:24:37.294000+00:00",
@@ -15760,7 +15359,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1246492228747264092",
    "created": "2024-06-01T15:55:06.039000+00:00",
@@ -15802,7 +15401,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1246614985526739065",
    "created": "2024-06-02T00:02:53.536000+00:00",
@@ -15844,7 +15443,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1243602338145636455",
    "created": "2024-05-24T16:31:42.428000+00:00",
@@ -15949,7 +15548,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1241260491481813052",
    "created": "2024-05-18T05:26:02.674000+00:00",
@@ -16369,7 +15968,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1237001624749215836",
    "created": "2024-05-06T11:22:49.719000+00:00",
@@ -16663,7 +16262,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1235175520820400168",
    "created": "2024-05-01T10:26:32.615000+00:00",
@@ -16831,7 +16430,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1233308610873004102",
    "created": "2024-04-26T06:48:06.598000+00:00",
@@ -17193,7 +16792,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1228717152706625628",
    "created": "2024-04-13T14:43:17.666000+00:00",
@@ -17571,7 +17170,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1226111272224030790",
    "created": "2024-04-06T10:08:27.344000+00:00",
@@ -19382,7 +18981,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1221435256331178036",
    "created": "2024-03-24T12:27:38.279000+00:00",
@@ -20726,7 +20325,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1216573498718421043",
    "created": "2024-03-11T02:28:44.937000+00:00",
@@ -20768,7 +20367,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "peridot",
+   "gm": "peridotite",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1217801622479179796",
    "created": "2024-03-14T11:48:52.459000+00:00",
@@ -25446,6 +25045,407 @@
    "url": "https://discord.com/channels/1001833522723561593/1097724681605349469",
    "created": "2023-04-18T03:25:58.833000+00:00",
    "last_active": "2023-04-22",
+   "source": "forum"
+  },
+  {
+   "scenario": "人を集めてGMを回すキャンペーン",
+   "reg": "ライバー＆ラビリンス",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-27",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "豆の塩ゆで",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1509931191262904360",
+   "created": "2026-05-29T14:47:29.162000+00:00",
+   "last_active": "2026-07-16",
+   "source": "forum"
+  },
+  {
+   "scenario": "星の吸血鬼にさよならを",
+   "reg": "クトゥルフ神話TRPG7版",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-07-19",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-07-25",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "reiran",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1512783660179525672",
+   "created": "2026-06-06T11:42:10.748000+00:00",
+   "last_active": "2026-07-18",
+   "source": "forum"
+  },
+  {
+   "scenario": "火種",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-23",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-07-24",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1512833539090022460",
+   "created": "2026-06-06T15:00:22.807000+00:00",
+   "last_active": "2026-07-16",
+   "source": "forum"
+  },
+  {
+   "scenario": "オトギバラシ",
+   "reg": "エモクロアTRPG",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-30",
+     "start": "21:00",
+     "end": "10:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "reiran",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1513111124978044958",
+   "created": "2026-06-07T09:23:24.440000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "煌日の姫と冴月の王子",
+   "reg": "SW2.5",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-11",
+     "start": null,
+     "end": null,
+     "held": true
+    }
+   ],
+   "open": false,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "ユーカ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1513491906686881894",
+   "created": "2026-06-08T10:36:29.874000+00:00",
+   "last_active": "2026-07-15",
+   "source": "forum"
+  },
+  {
+   "scenario": "旅路",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-20",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-08-24",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1526557321449312257",
+   "created": "2026-07-14T11:53:47.497000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "狂い火",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-14",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-07-15",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1514257239848779949",
+   "created": "2026-06-10T13:17:39.519000+00:00",
+   "last_active": "2026-07-15",
+   "source": "forum"
+  },
+  {
+   "scenario": "三つ首の獣",
+   "reg": "ELDEN RING NIGHTREIGN TRPG",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-13",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "むむこ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1520062856366919931",
+   "created": "2026-06-26T13:47:06.360000+00:00",
+   "last_active": "2026-07-14",
+   "source": "forum"
+  },
+  {
+   "scenario": "SOOPER SIGN/スーパーサイン",
+   "reg": null,
+   "reg_is_name": true,
+   "dates": [
+    {
+     "date": "2026-07-11",
+     "start": "24:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "てん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1518055929566859284",
+   "created": "2026-06-21T00:52:17.724000+00:00",
+   "last_active": "2026-07-12",
+   "source": "forum"
+  },
+  {
+   "scenario": "版 狂気山脈～邪神の山嶺～ カテナ班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-02",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-03",
+     "start": null,
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-06",
+     "start": "21:00",
+     "end": null,
+     "held": true
+    },
+    {
+     "date": "2026-07-08",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "シドラン",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1499012078524956752",
+   "created": "2026-04-29T11:38:49.818000+00:00",
+   "last_active": "2026-07-08",
+   "source": "forum"
+  },
+  {
+   "scenario": "狂い火",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-27",
+     "start": "21:00",
+     "end": "22:00",
+     "time_source": "body"
+    },
+    {
+     "date": "2026-06-29",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1508426314514956428",
+   "created": "2026-05-25T11:07:38.586000+00:00",
+   "last_active": "2026-06-27",
+   "source": "forum"
+  },
+  {
+   "scenario": "版 狂気山脈～邪神の山嶺～ ユーカ班",
+   "reg": null,
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-06-04",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "シドラン",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1502857859161915522",
+   "created": "2026-05-10T02:20:35.373000+00:00",
+   "last_active": "2026-06-04",
+   "source": "forum"
+  },
+  {
+   "scenario": "行こうよダンジョンモール！",
+   "reg": "ライバー＆ラビリンス",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-24",
+     "start": null,
+     "end": null
+    },
+    {
+     "date": "2026-05-25",
+     "start": null,
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1500495087476674581",
+   "created": "2026-05-03T13:51:46.705000+00:00",
+   "last_active": "2026-05-25",
+   "source": "forum"
+  },
+  {
+   "scenario": "忘却犯",
+   "reg": "DX3rd",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-19",
+     "start": "21:00",
+     "end": "25:00"
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "taku",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1487057235254181909",
+   "created": "2026-03-27T11:54:33.072000+00:00",
+   "last_active": "2026-05-23",
+   "source": "forum"
+  },
+  {
+   "scenario": "妖魔狩り",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-05-16",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-05-17",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1490367148684611585",
+   "created": "2026-04-05T15:06:57.929000+00:00",
+   "last_active": "2026-05-17",
+   "source": "forum"
+  },
+  {
+   "scenario": "妖魔狩り",
+   "reg": "アリアンストラテジー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-04-24",
+     "start": "21:00",
+     "end": null
+    },
+    {
+     "date": "2026-04-26",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "カピ",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1487997004280893601",
+   "created": "2026-03-30T02:08:51.468000+00:00",
+   "last_active": "2026-04-26",
    "source": "forum"
   },
   {
