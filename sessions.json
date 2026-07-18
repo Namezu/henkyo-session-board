@@ -1,35 +1,8 @@
 {
- "updated": "2026/07/19 00:31",
- "checked": "2026/07/19 00:31",
+ "updated": "2026/07/19 00:46",
+ "checked": "2026/07/19 00:46",
  "guild": "辺境TRPG村",
  "sessions": [
-  {
-   "scenario": "一期一会CP",
-   "reg": "アリアンロッド2E",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-18",
-     "start": "21:00",
-     "end": null,
-     "held": true
-    },
-    {
-     "date": "2027-07-18",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": true,
-   "gm": "taku",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1389898698703507527",
-   "created": "2025-07-02T09:21:12.840000+00:00",
-   "last_active": "2026-07-18",
-   "source": "forum"
-  },
   {
    "scenario": "はるかぜのしらべ",
    "reg": "氷原開拓団",
@@ -133,27 +106,6 @@
    "url": "https://discord.com/channels/1001833522723561593/1514613554110791880",
    "created": "2026-06-11T12:53:31.459000+00:00",
    "last_active": "2026-07-19",
-   "source": "forum"
-  },
-  {
-   "scenario": "エリン至高の極上グルメ十選:ヴェノム\"マスター\"スコーピオン編",
-   "reg": "ピースメイカー",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-18",
-     "start": "21:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "dabdab",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1518276601169707209",
-   "created": "2026-06-21T15:29:09.934000+00:00",
-   "last_active": "2026-07-18",
    "source": "forum"
   },
   {
@@ -346,6 +298,27 @@
    "url": "https://discord.com/channels/1001833522723561593/1526554858289758330",
    "created": "2026-07-14T11:44:00.234000+00:00",
    "last_active": "2026-07-15",
+   "source": "forum"
+  },
+  {
+   "scenario": "エリン至高の極上グルメ十選:ヴェノム\"マスター\"スコーピオン編",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-18",
+     "start": "21:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1518276601169707209",
+   "created": "2026-06-21T15:29:09.934000+00:00",
+   "last_active": "2026-07-18",
    "source": "forum"
   },
   {
