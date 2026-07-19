@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/19 10:01",
- "checked": "2026/07/19 10:01",
+ "updated": "2026/07/19 13:01",
+ "checked": "2026/07/19 13:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -298,6 +298,21 @@
    "url": "https://discord.com/channels/1001833522723561593/1526554858289758330",
    "created": "2026-07-14T11:44:00.234000+00:00",
    "last_active": "2026-07-15",
+   "source": "forum"
+  },
+  {
+   "scenario": "畑荒らしの害獣を狩れ（初心者歓迎）",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [],
+   "open": false,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1527951517301080105",
+   "created": "2026-07-18T08:13:49.691000+00:00",
+   "last_active": "2026-07-19",
    "source": "forum"
   },
   {
@@ -27820,12 +27835,5 @@
    "source": "forum"
   }
  ],
- "unparsed": [
-  {
-   "title": "諸々相談中",
-   "url": "https://discord.com/channels/1001833522723561593/1527951517301080105",
-   "gm": "dabdab",
-   "open": false
-  }
- ]
+ "unparsed": []
 }
