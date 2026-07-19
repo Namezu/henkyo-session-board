@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/19 16:01",
- "checked": "2026/07/19 16:01",
+ "updated": "2026/07/19 16:16",
+ "checked": "2026/07/19 16:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -265,27 +265,6 @@
    "source": "forum"
   },
   {
-   "scenario": "ヨーマの砦",
-   "reg": "ミスリルクレスト",
-   "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-07-19",
-     "start": "13:00",
-     "end": null
-    }
-   ],
-   "open": false,
-   "suriawase": false,
-   "ongoing": false,
-   "gm": "にゃぎさん",
-   "gm_active": true,
-   "url": "https://discord.com/channels/1001833522723561593/1525649674223226920",
-   "created": "2026-07-11T23:47:07.535000+00:00",
-   "last_active": "2026-07-19",
-   "source": "forum"
-  },
-  {
    "scenario": "WS2-4 眩暈と葬送",
    "reg": "氷原開拓団",
    "reg_is_name": false,
@@ -312,6 +291,27 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1527951517301080105",
    "created": "2026-07-18T08:13:49.691000+00:00",
+   "last_active": "2026-07-19",
+   "source": "forum"
+  },
+  {
+   "scenario": "ヨーマの砦",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-07-19",
+     "start": "13:00",
+     "end": null
+    }
+   ],
+   "open": false,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "にゃぎさん",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1525649674223226920",
+   "created": "2026-07-11T23:47:07.535000+00:00",
    "last_active": "2026-07-19",
    "source": "forum"
   },
