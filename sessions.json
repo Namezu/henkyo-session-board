@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/20 09:31",
- "checked": "2026/07/20 09:31",
+ "updated": "2026/07/20 11:16",
+ "checked": "2026/07/20 11:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -191,7 +191,7 @@
      "end": null
     }
    ],
-   "open": true,
+   "open": false,
    "suriawase": false,
    "ongoing": false,
    "gm": "一藻通",
