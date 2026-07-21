@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/21 22:01",
- "checked": "2026/07/21 22:01",
+ "updated": "2026/07/21 22:46",
+ "checked": "2026/07/21 22:46",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -270,7 +270,22 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1528444489482506420",
    "created": "2026-07-19T16:52:43.418000+00:00",
-   "last_active": "2026-07-20",
+   "last_active": "2026-07-21",
+   "source": "forum"
+  },
+  {
+   "scenario": "戦々恐々、最恐トリオ",
+   "reg": "ピースメイカー",
+   "reg_is_name": false,
+   "dates": [],
+   "open": true,
+   "suriawase": true,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1529120259573944471",
+   "created": "2026-07-21T13:37:59.563000+00:00",
+   "last_active": "2026-07-21",
    "source": "forum"
   },
   {
