@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/22 19:01",
- "checked": "2026/07/22 19:01",
+ "updated": "2026/07/22 20:01",
+ "checked": "2026/07/22 20:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -1981,7 +1981,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "カテナドルグ",
+   "gm": null,
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1495306598560567397",
    "created": "2026-04-19T06:14:34.550000+00:00",
