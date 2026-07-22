@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/22 20:31",
- "checked": "2026/07/22 20:31",
+ "updated": "2026/07/22 21:01",
+ "checked": "2026/07/22 21:01",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -23,7 +23,8 @@
     {
      "date": "2026-07-21",
      "start": null,
-     "end": null
+     "end": null,
+     "held": true
     },
     {
      "date": "2026-07-29",
@@ -173,7 +174,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1524054784431095838",
    "created": "2026-07-07T14:09:36.177000+00:00",
@@ -386,7 +387,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1524064295493697647",
    "created": "2026-07-07T14:47:23.791000+00:00",
@@ -1367,7 +1368,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1508062503538790520",
    "created": "2026-05-24T11:01:59.290000+00:00",
@@ -2191,7 +2192,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1498712559694647468",
    "created": "2026-04-28T15:48:38.964000+00:00",
@@ -2338,7 +2339,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1493950500314415206",
    "created": "2026-04-15T12:25:55.533000+00:00",
@@ -2674,7 +2675,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1487107994259947720",
    "created": "2026-03-27T15:16:14.962000+00:00",
@@ -2800,7 +2801,7 @@
    "open": false,
    "suriawase": false,
    "ongoing": false,
-   "gm": "一藻通",
+   "gm": "一藻通(いつもどおり)",
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1482351209980366941",
    "created": "2026-03-14T12:14:29.213000+00:00",
