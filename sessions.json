@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/25 01:16",
- "checked": "2026/07/25 01:16",
+ "updated": "2026/07/25 01:58",
+ "checked": "2026/07/25 01:58",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -280,6 +280,27 @@
    "gm_active": true,
    "url": "https://discord.com/channels/1001833522723561593/1530245512157069373",
    "created": "2026-07-24T16:09:20.685000+00:00",
+   "last_active": "2026-07-25",
+   "source": "forum"
+  },
+  {
+   "scenario": "北方に潜む妖魔",
+   "reg": "ミスリルクレスト",
+   "reg_is_name": false,
+   "dates": [
+    {
+     "date": "2026-08-01",
+     "start": "21:00",
+     "end": "24:00"
+    }
+   ],
+   "open": true,
+   "suriawase": false,
+   "ongoing": false,
+   "gm": "dabdab",
+   "gm_active": true,
+   "url": "https://discord.com/channels/1001833522723561593/1530257566687301711",
+   "created": "2026-07-24T16:57:14.709000+00:00",
    "last_active": "2026-07-25",
    "source": "forum"
   },
