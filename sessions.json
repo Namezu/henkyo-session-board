@@ -1,6 +1,6 @@
 {
- "updated": "2026/07/24 09:31",
- "checked": "2026/07/24 09:31",
+ "updated": "2026/07/24 10:16",
+ "checked": "2026/07/24 10:16",
  "guild": "辺境TRPG村",
  "sessions": [
   {
@@ -134,15 +134,9 @@
    "scenario": "血の回廊事件･再臨",
    "reg": "ピースメイカー",
    "reg_is_name": false,
-   "dates": [
-    {
-     "date": "2026-08-23",
-     "start": "10:00",
-     "end": null
-    }
-   ],
+   "dates": [],
    "open": true,
-   "suriawase": false,
+   "suriawase": true,
    "ongoing": false,
    "gm": "カテナドルグ",
    "gm_active": true,
